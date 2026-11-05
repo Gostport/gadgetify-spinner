@@ -1,0 +1,3 @@
+GPT 2.5 visualizing 4 fun keto meals. Short prompt but works very well 
+
+Prompt: 2x2 grid, do this for 4 famous keto meals.  scene: "AR Culinary Deconstruction" target_variable: "{{TOPIC}}" environment: "Clean white studio, soft overhead softbox" physical_layer:   base: "Textured dark slate + clean white plate"   food: "Semantic inference: Separate primary ingredients of {{TOPIC}}"   actor: "1/12 scale plastic country of origin chef action figure posing with tools"   prop: "Background Menu box displaying completed {{TOPIC}}" digital_layer:   ui_type: "Frosted glass spatial UI cards"   ui_content: "Semantic inference: Flavor radar chart for {{TOPIC}}"   fx: "Floating flat graphic steam and herbs"

@@ -1,0 +1,3 @@
+An interesting hybrid prompt. I think it works better for children's stories and books. 
+
+GPT 2.5 Prompt: WITH input(era) AS (VALUES ({{TOPIC}})), spec AS (SELECT filled_character(era) ch, photoreal_artifact(era) ar, smiley_objects(era) ob,                 bold_3d_title(era) ty, neon_palette(era) pl FROM input) SELECT poster(character=>ch, artifact=>held(ar, count=>1), objects=>ob,               typography=>ty, palette=>pl, ground=>'cream', layout=>'dense') AS era_character_artifact FROM spec -- E₁: CHECK ( character filled with era scenes ) -- E₂: CHECK ( exactly one photoreal artifact, held by character ) -- E₃: CHECK ( 3-6 smiley anthropomorphized objects ) -- E₄: CHECK ( bold 3D title + taglines ) -- E₅: CHECK ( saturated neon on cream, dense )

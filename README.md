@@ -40,4 +40,11 @@ specimens/        one .md per specimen — the runnable prompt template only
 
 ## Version
 
-Spinner v1.0 — data layer: 16 specimens, 60 topics.
+Spinner v1.1 — data layer: 174 specimens, 60 topics.
+Changelog: v1.1 (2026-11-05) bulk-ingested the TwExport CSV pool — of 305
+posts / 198 extracted prompts: 158 added (134 topic-slot adapters, 24
+header-bound), 9 already present as v1.0 specimens, 17 exact duplicates,
+14 skipped (mid-spec excerpts, fixed-subject runs, photo/artifact-input
+specs, stubs). Bulk entries are adapter-bound and flagged as such in their
+`flaws`; they have not been hand-tested like the original sixteen.
+v1.0 — initial release: 16 hand-curated specimens.

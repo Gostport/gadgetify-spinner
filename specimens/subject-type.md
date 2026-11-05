@@ -1,0 +1,412 @@
+Create ONE tall vertical illustrated poster about {{TOPIC}}.
+
+The image must automatically reinterpret {{TOPIC}} as a playful,
+dense, symbolic character-collage.
+
+────────────────────────────────
+
+SEMANTIC RESEARCH
+
+Analyze {{TOPIC}} and infer:
+
+SUBJECT_TYPE =
+    city
+    place
+    historical event
+    decade / era
+    cultural movement
+    invention
+    scientific event
+    person
+    sport
+    country
+    institution
+    technology
+    franchise
+    abstract topic
+    other
+
+TITLE = shortest instantly recognizable name for {{TOPIC}}
+
+HERO =
+choose the strongest central character or personification.
+
+HERO may be:
+    a person
+    explorer
+    historical figure
+    citizen
+    mascot
+    profession
+    archetype
+    invented representative character
+
+Do NOT force a person if the subject is better represented by
+an object, machine, animal, landmark, or symbolic figure.
+
+ICON_SET = select 8–16 highly recognizable subject-specific elements.
+
+Possible classes:
+
+    landmarks
+    buildings
+    transportation
+    foods
+    tools
+    inventions
+    animals
+    clothing
+    products
+    documents
+    symbols
+    flags
+    signs
+    machines
+    technologies
+    landscapes
+    historical artifacts
+    cultural objects
+    entertainment objects
+
+SCENE_SET = infer 2–5 important environments or moments.
+
+TEXT_SNIPPETS = infer only a few short useful labels such as:
+
+    dates
+    locations
+    transit names
+    famous phrases
+    event names
+    eras
+    institutions
+
+Never turn the poster into an infographic.
+
+────────────────────────────────
+
+CENTRAL CHARACTER SYSTEM
+
+Create one oversized friendly central character.
+
+Visual anatomy:
+
+            SYMBOL / OBJECT
+       icon      icon      icon
+
+              ◉   ◉
+             CENTRAL
+             CHARACTER
+          ┌─────────────┐
+          │ SUBJECT     │
+          │ WORLD       │
+          │ EMBEDDED    │
+          │ INSIDE BODY │
+          └─────────────┘
+
+     object   landmark   object
+
+             SHOES / BASE
+
+          HUGE TITLE BELOW
+
+The HERO occupies roughly 55–70% of the poster height.
+
+Treat the body as a CONTAINER FOR THE SUBJECT.
+
+Examples:
+
+city →
+cityscape forms torso or clothing
+
+historical event →
+event scene spreads across suit/body
+
+decade →
+fashion, technology and entertainment occupy clothing and surroundings
+
+science →
+equipment, diagrams and discoveries populate body
+
+country →
+landmarks, foods, wildlife and culture become costume
+
+invention →
+components and consequences become surrounding characters
+
+────────────────────────────────
+
+ANTHROPOMORPHIC PROP RULE
+
+Give selected secondary objects:
+
+    oversized googly eyes
+    tiny curved smiles
+    simplified limbs only when useful
+
+Examples:
+
+taxi
+pizza
+planet
+flag
+camera
+cassette
+robot
+rocket
+building
+food
+tool
+
+may become friendly miniature characters.
+
+Do NOT anthropomorphize everything.
+
+Approximately 30–50% of important props may have faces.
+
+This creates the playful children's-editorial feeling.
+
+────────────────────────────────
+
+COMPOSITION
+
+Use a dense vertical pyramid composition.
+
+TOP:
+small floating icons / symbols
+
+UPPER CENTER:
+large hero face
+
+MIDSECTION:
+largest concentration of landmarks,
+objects and subject-specific scenes
+
+LOWER SECTION:
+transportation / food / secondary objects /
+ground-level details
+
+BOTTOM:
+massive subject title
+
+Use overlapping scale changes aggressively.
+
+Objects may float beside the hero.
+
+Buildings may emerge directly from clothing.
+
+Vehicles may drive across the torso.
+
+Landmarks may sit behind the head.
+
+Objects may extend beyond the body silhouette.
+
+The composition should feel like one enormous
+illustrated sticker collage, NOT separate panels.
+
+────────────────────────────────
+
+STYLE
+
+playful mid-century children's editorial illustration
+× contemporary paper-cut collage
+× 1960s educational poster
+× kawaii object character design
+× bold retro souvenir graphics
+
+Use:
+
+flat vector-like shapes
+cut-paper construction
+slightly imperfect handmade geometry
+simple rounded characters
+large circular eyes
+tiny smiling mouths
+minimal noses
+primitive geometric anatomy
+friendly disproportion
+thick simplified silhouettes
+subtle printed-paper grain
+soft screenprint texture
+very restrained shading
+clean crisp edges
+occasional paper overlap
+slight tactile depth
+
+Avoid:
+
+photorealism
+3D CGI
+glossy plastic
+anime rendering
+realistic anatomy
+tiny inaccessible detail
+complex gradients
+heavy shadows
+
+────────────────────────────────
+
+COLOR
+
+Infer a vivid palette from {{TOPIC}}.
+
+Prefer:
+
+sunny yellow
+vermillion red
+bright cobalt blue
+leaf green
+turquoise
+warm coral
+black
+cream
+
+Use approximately 5–8 dominant colors.
+
+Colors should feel screenprinted rather than digitally luminous.
+
+Background:
+
+warm ivory / aged cream paper
+with very subtle fibers and speckling.
+
+────────────────────────────────
+
+TYPOGRAPHY
+
+TITLE must be huge.
+
+Use chunky retro display lettering:
+
+bold condensed block letters
+irregular handmade proportions
+slight extrusion or black offset shadow
+high-contrast alternating colors
+
+TITLE should occupy approximately 15–22% of the poster.
+
+Examples of hierarchy:
+
+NEW YORK
+
+THE
+1980s
+
+MOON
+LANDING
+
+Use line breaks based on the semantic rhythm of {{TOPIC}}.
+
+Optional tiny decorative motifs around title:
+
+burst rays
+waves
+mini skyline
+sun
+stars
+heart
+simple emblem
+
+Do NOT overload the poster with text.
+
+────────────────────────────────
+
+SUBJECT ADAPTATION
+
+If {{TOPIC}} is a CITY:
+
+choose a representative resident or traveler
++
+landmarks
+transit
+food
+street signs
+architecture
+local wildlife
+cultural objects.
+
+If {{TOPIC}} is an ERA / DECADE:
+
+choose a person wearing era-specific fashion
++
+technology
+music
+media
+toys
+architecture
+transportation
+consumer objects
+visual motifs.
+
+If {{TOPIC}} is a HISTORICAL EVENT:
+
+make the central participant or archetype the hero
++
+date
+key machinery
+symbols
+locations
+participants
+artifacts
+scientific or political context.
+
+If {{TOPIC}} is SCIENCE:
+
+choose scientist / explorer / symbolic figure
++
+equipment
+discoveries
+models
+objects
+diagrams
+relevant environments.
+
+If {{TOPIC}} is abstract:
+
+invent a visual metaphor first,
+then populate it with concrete symbolic objects.
+
+────────────────────────────────
+
+VISUAL DENSITY
+
+Hero = dominant.
+
+Major subject icons = 6–10.
+
+Minor decorative icons = 4–10.
+
+Every major area of the poster should contain meaningful subject information,
+but retain small breathing spaces between clusters.
+
+The viewer should understand {{TOPIC}}
+before reading the title.
+
+────────────────────────────────
+
+FINAL IMAGE
+
+one single vertical poster
+approximately 2:3 aspect ratio
+
+warm cream background
+
+central oversized friendly character
+
+dense subject-specific object collage
+
+several selectively anthropomorphized props
+
+bright retro colors
+
+paper-cut / screenprint texture
+
+massive chunky title at bottom
+
+joyful, educational, collectible,
+instantly readable,
+highly specific to {{TOPIC}}.
+
+NO grid.
+NO panels.
+NO generic stock icons.
+NO style-description text inside artwork.
