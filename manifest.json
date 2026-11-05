@@ -60,7 +60,8 @@
       "flaws": [
         "No verification block — floating leader lines pointing at nothing go ungated",
         "Fixed 'numbered bullet points (1-12)' regardless of subject invites invented details",
-        "Header says 2x2 grid but the class renders one diorama; the era × topic matrix is never stated"
+        "Header says 2x2 grid but the class renders one diorama; the era × topic matrix is never stated",
+        "Provenance note, Nov 4, 2026: the Timewave Zero infographic gadgetify posted as the Figma Cute Parody Poster's example image was actually produced by this prompt"
       ],
       "filed": "2026-09-30"
     },
@@ -220,7 +221,8 @@
       "flaws": [
         "AI_INFER() is invoked four times, never defined, and carries all the creative content; the tree constrains layout and style only",
         "Pseudo-Figma, not Figma: 'fill: # F5F5DC' has a space in the hex; components don't take children string arrays — costume notation",
-        "No canvas size or aspect ratio anywhere — output shape is a coin flip; no accuracy check or asserts"
+        "No canvas size or aspect ratio anywhere — output shape is a coin flip; no accuracy check or asserts",
+        "Example mismatch resolved Nov 4, 2026: the Timewave Zero infographic gadgetify posted as this prompt's example was actually produced by his Infographic Diorama prompt, not this one"
       ],
       "filed": "2026-11-03"
     },
