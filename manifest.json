@@ -1,0 +1,308 @@
+{
+  "version": "1.0",
+  "specimens": [
+    {
+      "id": "themed-image",
+      "title": "ThemedImage",
+      "kind": "generator",
+      "file": "specimens/themed-image.md",
+      "binding": "replace",
+      "topicHint": "Any single theme, topic, or subject — one unique image out.",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "Seeded randomness (era, medium, palette) makes exact reruns unreproducible by design",
+        "The verify asserts are named, not defined — enforcement is the model's word"
+      ],
+      "filed": "2026-09-29"
+    },
+    {
+      "id": "anglish-poster",
+      "title": "Anglish Poster (Calque Converter)",
+      "kind": "generator",
+      "file": "specimens/anglish-poster.md",
+      "binding": "replace",
+      "topicHint": "A short phrase, slogan, or poster text to rebuild from Germanic roots.",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "No prompt text exists — the specimen is a single worked example, so conversion rules must be inferred from it",
+        "The example cheats on its own rule: 'MYSTERY-ONES' keeps a Greek/Latin loan",
+        "'UNWAVED' has no clear Old English root; 'WAKE OUTWARD' for 'watch out' is a stretch"
+      ],
+      "filed": "2026-10-08"
+    },
+    {
+      "id": "flocked-origami-sculpture",
+      "title": "Flocked Origami Sculpture",
+      "kind": "generator",
+      "file": "specimens/flocked-origami-sculpture.md",
+      "binding": "replace",
+      "topicHint": "Subjects with iconic silhouettes (the original brief used four historic battles).",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "Subject-type mismatch: section A assumes an iconic silhouette, but events like battles are not objects — the model must invent a vignette",
+        "The origami zone mask (wings, armor, hair, leaves, architecture) is generic boilerplate, never fitted to the subject",
+        "Header says 2x2 grid while the spec says 'Output: 1 image' — the grid/run relationship is never stated"
+      ],
+      "filed": "2026-09-30"
+    },
+    {
+      "id": "infographic-diorama",
+      "title": "Infographic Diorama",
+      "kind": "generator",
+      "file": "specimens/infographic-diorama.md",
+      "binding": "replace",
+      "topicHint": "A subject with a defining artifact silhouette, viewed across eras (original brief: toys by decade).",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "No verification block — floating leader lines pointing at nothing go ungated",
+        "Fixed 'numbered bullet points (1-12)' regardless of subject invites invented details",
+        "Header says 2x2 grid but the class renders one diorama; the era × topic matrix is never stated"
+      ],
+      "filed": "2026-09-30"
+    },
+    {
+      "id": "noir-storybook-poster",
+      "title": "Noir Storybook Poster",
+      "kind": "generator",
+      "file": "specimens/noir-storybook-poster.md",
+      "binding": "replace",
+      "topicHint": "One subject with a strong archetype — a detective, child, musician, dancer, animal, messenger.",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "Aspect contradiction: header says 16:9, Camera & Finish says 4:5 or 2:3",
+        "Typo in the specimen: SILHOUETTES resolves from '$ SUJECT' (kept verbatim)",
+        "The ∇P / ∇×P / ∇·F field math is theatrical — no model computes it; it works only as a composition cue"
+      ],
+      "filed": "2026-09-30"
+    },
+    {
+      "id": "personified-collage-poster",
+      "title": "Personified Collage Poster",
+      "kind": "generator",
+      "file": "specimens/personified-collage-poster.md",
+      "binding": "replace",
+      "topicHint": "Any topic that can be embodied as a mascot — a place, era, product, day, or event.",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "No verify step: title legibility, mascot share (55–70%), and the built-in-not-pasted-on rule are never checked",
+        "Composition is hardcoded portrait while format is a variable — setting 16:9 makes the two fight",
+        "Palette and mood resolve from single unconstrained infer_* calls"
+      ],
+      "filed": "2026-10-24"
+    },
+    {
+      "id": "semantic-history-sculpture",
+      "title": "Semantic History Sculpture (Adaptive Timeline Artifact)",
+      "kind": "generator",
+      "file": "specimens/semantic-history-sculpture.md",
+      "binding": "replace",
+      "topicHint": "Any subject with a history — an art, science, craft, technology, or industry.",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "The parents and mutations dicts are dead code: generate() never calls them; their contents leak only as paraphrase",
+        "No verify step — milestone recognizability, label legibility, and the no-generic-timeline rule are unchecked",
+        "Runs show garbled micro-type (duplicated and misspelled milestone labels)"
+      ],
+      "filed": "2026-10-27"
+    },
+    {
+      "id": "long-exposure-integral",
+      "title": "Long-Exposure Integral Engine",
+      "kind": "generator",
+      "file": "specimens/long-exposure-integral.md",
+      "binding": "header",
+      "topicHint": "A scene with a still anchor and moving elements, plus one exposure duration T (e.g. 30 seconds).",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "No input slot in the specimen: scene and duration T must be supplied from outside",
+        "No render/execute step — the frame equation is the whole prompt",
+        "Transcribed from a screenshot: the formula's bracket layout and clip scope were reconstructed, not copied"
+      ],
+      "filed": "2026-10-28"
+    },
+    {
+      "id": "physics-furniture-gallery",
+      "title": "Physics → Furniture Gallery",
+      "kind": "generator",
+      "file": "specimens/physics-furniture-gallery.md",
+      "binding": "replace",
+      "topicHint": "Abstract concepts to analyze as furniture (original brief: famous physics concepts).",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "Rules key on undeclared attributes (Rigid, Reflective, Mechanical) that the ANALYZE step never declares",
+        "Partial coverage, no fallback: 5 rules against 48 declared combinations — most analyses match nothing",
+        "No conflict resolution when antecedents overlap, and several enum values (Sticky, Warm, Medium, Low) are dead"
+      ],
+      "filed": "2026-10-28"
+    },
+    {
+      "id": "history-diorama",
+      "title": "History Diorama (Typographic Terrain Plate)",
+      "kind": "generator",
+      "file": "specimens/history-diorama.md",
+      "binding": "replace",
+      "topicHint": "Historical events, each with a name, date, subtitle, and four chronological phases.",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "Triple ratio conflict: outer 16:9 grid vs template ratio='3:2' vs what a 2x2 split actually yields",
+        "Five unbound variables (PHASES, EVENT_TOKEN, SET_PIECES, CROWD_GRAMMAR, ATMOSPHERE); PHASES is load-bearing and nothing instructs the model to derive it",
+        "No verify or anti-fabrication rule — for history, the dates are the content and nothing audits them"
+      ],
+      "filed": "2026-10-29"
+    },
+    {
+      "id": "semantic-wordmark-compiler",
+      "title": "Semantic Illustrated Wordmark Compiler",
+      "kind": "generator",
+      "file": "specimens/semantic-wordmark-compiler.md",
+      "binding": "replace",
+      "topicHint": "A word or phrase and its topic, to compile into an illustrated vector logo.",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "No verify step at all — spelling, readability, and whether the promised letter transformations happened go unaudited",
+        "Pure inference with no floor: HARD_CODING = False and zero worked examples; the author reports 5 runs giving 5 very different results",
+        "Layout lives only in the outer run instruction; which text/topic pairs fill the cells is never declared"
+      ],
+      "filed": "2026-10-29"
+    },
+    {
+      "id": "sketchbook-doodle-map",
+      "title": "Sketchbook Biography Doodle Map",
+      "kind": "generator",
+      "file": "specimens/sketchbook-doodle-map.md",
+      "binding": "replace",
+      "topicHint": "A subject with a life or story to map — a person, film, place, invention, or founder.",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "The Oct 19 style-block restyle dropped the Oct 12 class version's verify() asserts (S1–S5) — more specification, less audit",
+        "SUBJECT is never bound in the Oct 19 version; subject, grid, and count arrive only via the run instruction",
+        "Runs show duplicated labels and labels leaking across grid cells"
+      ],
+      "filed": "2026-10-30"
+    },
+    {
+      "id": "totem-glyph-field",
+      "title": "Totem Glyph Field",
+      "kind": "generator",
+      "file": "specimens/totem-glyph-field.md",
+      "binding": "replace",
+      "topicHint": "Any topic with a motif language — a field of study, place, craft, or creature world.",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "The input was written broken ('$ TOPIC', with a space) and never assigned anywhere in the specimen",
+        "Stateless iteration: no registry of placed glyphs, so the exactly-26 A–Z guarantee is unenforceable by construction (both test runs failed grid_check)",
+        "Unbounded regeneration: 'IF ANY check fails → regenerate' states no retry limit and no keep-best fallback"
+      ],
+      "filed": "2026-10-31"
+    },
+    {
+      "id": "figma-cute-parody-poster",
+      "title": "Figma Cute Parody Poster",
+      "kind": "generator",
+      "file": "specimens/figma-cute-parody-poster.md",
+      "binding": "replace",
+      "topicHint": "A pop culture icon — a famous object, character, vehicle, or franchise symbol.",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "AI_INFER() is invoked four times, never defined, and carries all the creative content; the tree constrains layout and style only",
+        "Pseudo-Figma, not Figma: 'fill: # F5F5DC' has a space in the hex; components don't take children string arrays — costume notation",
+        "No canvas size or aspect ratio anywhere — output shape is a coin flip; no accuracy check or asserts"
+      ],
+      "filed": "2026-11-03"
+    },
+    {
+      "id": "dual-synthesis-poster",
+      "title": "Dual-Synthesis Poster Engine",
+      "kind": "generator",
+      "file": "specimens/dual-synthesis-poster.md",
+      "binding": "replace",
+      "topicHint": "Any subject that can carry a poster — a neighborhood, person, event, product, or place.",
+      "pools": {
+        "movements": [
+          "Swiss International Typographic",
+          "Japanese Ukiyo-e Woodblock",
+          "Soviet Constructivist",
+          "Art Nouveau Organic",
+          "Bauhaus Geometric",
+          "Psychedelic 60s Airbrush",
+          "Cyberpunk Neon-Noir",
+          "Victorian Engraving",
+          "Memphis Group Postmodern",
+          "WPA National Park Silhouette",
+          "Risograph Grain",
+          "Art Deco Gold-Leaf",
+          "Punk Xerox Collage",
+          "Chinese Propaganda Lithograph",
+          "Vaporwave Chrome",
+          "De Stijl Primary Grid",
+          "Gothic Blackletter Illumination",
+          "Pop Art Ben-Day Dots",
+          "Scandinavian Minimal",
+          "Mexican Día de Muertos"
+        ],
+        "engines": [
+          "Radial Burst Mandala",
+          "Diagonal Cascade",
+          "Negative Space Isolation",
+          "Layered Parallax Depth",
+          "Typographic Domination",
+          "Circular Vignette Frame",
+          "Asymmetric Tension Grid",
+          "Infinite Tessellation",
+          "Single Vanishing Point Corridor",
+          "Overlapping Transparency Stack",
+          "Golden Spiral Focus",
+          "Shattered Mirror Fragment",
+          "Horizontal Band Stratification",
+          "Central Symmetry Lock",
+          "Scattered Constellation",
+          "Forced Perspective Tunnel",
+          "Borderless Bleed",
+          "Isometric Stack",
+          "Cross-Hatch Density Map",
+          "Kinetic Motion Blur Trail"
+        ]
+      },
+      "poolDraw": {
+        "movements": 2,
+        "engines": 2
+      },
+      "flaws": [
+        "Unseeded 'randomly select' in the original delegates the core creative act to the renderer, which drifts to safe favorites (the spinner rolls real dice instead)",
+        "Phase 1 only — no Phase 2: no title, typography, hierarchy, or finish spec; no asserts",
+        "Fusion has no arbiter or weights; when the two movements fight, the first rendered tends to dominate"
+      ],
+      "filed": "2026-11-04"
+    },
+    {
+      "id": "honest-caricature-laws",
+      "title": "Honest Caricature Laws",
+      "kind": "normative",
+      "file": "specimens/honest-caricature-laws.md",
+      "binding": "header",
+      "topicHint": "A real situation with a clear power holder — a named person, decision, or headline to satirize or audit.",
+      "pools": null,
+      "poolDraw": null,
+      "flaws": [
+        "It is a conscience, not an engine: no render directive, no output format, no subject binding — it can only grade an image, not produce one",
+        "Circularity: P is 'readable directly from the staging', but staging is the only instrument supplied for measuring P",
+        "OVERDETERMINATION assumes the three P estimates agree and gives no tiebreaker when they don't"
+      ],
+      "filed": "2026-11-04"
+    }
+  ]
+}

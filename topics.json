@@ -1,0 +1,74 @@
+{
+  "categories": {
+    "Places": [
+      "Montmartre, Paris",
+      "the Amalfi Coast",
+      "a Kyoto bamboo grove",
+      "the Faroe Islands",
+      "a Marrakech medina at night",
+      "the Scottish Highlands",
+      "a Venetian canal at dawn",
+      "the Atacama Desert",
+      "a Norwegian fjord village",
+      "Old Town Prague",
+      "a Greek island harbor",
+      "the Namib sand dunes"
+    ],
+    "People & Professions": [
+      "a lighthouse keeper",
+      "a beekeeper",
+      "a master glassblower",
+      "a night-train conductor",
+      "a falconer",
+      "a cartographer",
+      "a blacksmith",
+      "a botanical illustrator",
+      "a jazz drummer",
+      "a submarine captain",
+      "a stonemason",
+      "a puppeteer"
+    ],
+    "History": [
+      "the first Moon landing",
+      "the building of the Great Pyramid",
+      "the eruption of Vesuvius",
+      "the first hot-air balloon flight",
+      "the California Gold Rush",
+      "the construction of the Eiffel Tower",
+      "the first transatlantic flight",
+      "the invention of the printing press",
+      "the fall of the Berlin Wall",
+      "the first Olympic Games",
+      "the sinking of the Titanic",
+      "the opening of the Trans-Siberian Railway"
+    ],
+    "Objects & Creatures": [
+      "a mechanical pocket watch",
+      "a giant Pacific octopus",
+      "a vintage steam locomotive",
+      "a hot-air balloon",
+      "a giant redwood tree",
+      "a snow leopard",
+      "a grandfather clock",
+      "a paper crane",
+      "a deep-sea anglerfish",
+      "a carousel horse",
+      "a lighthouse",
+      "a monarch butterfly migration"
+    ],
+    "Concepts": [
+      "gravity",
+      "the passage of time",
+      "migration",
+      "invention",
+      "the water cycle",
+      "music itself",
+      "cartography",
+      "fermentation",
+      "the turning of the seasons",
+      "echoes",
+      "the deep ocean",
+      "dreams"
+    ]
+  }
+}
