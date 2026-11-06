@@ -61,8 +61,12 @@
     <h2>1 · Engine</h2>
     <button class="primary" id="spinBtn">🎲 SPIN A GADGETIFY</button>
     <div class="row" style="margin-top:10px">
+      <input type="text" id="specSearch" placeholder="Search the prompts by name…" aria-label="Search prompts by name">
+    </div>
+    <div class="row" style="margin-top:10px">
       <select id="specSelect" aria-label="Choose an engine manually"></select>
     </div>
+    <p class="hint" id="specCount"></p>
     <div class="title-line">
       <span class="spec-title" id="specTitle">—</span>
       <span class="badge" id="specKind"></span>
@@ -137,7 +141,7 @@
   </section>
 
   <footer>
-    Gadgetify Spinner <b>v1.3</b> — changelog: v1.3 data massage — baked-in format directives (grid/aspect lines like "2x2 grid, 16:9") and gadgetify's own run topics in "do this for …" lead clauses stripped from the templates: the Format controls above own the dimensions now, and your input is the only topic a prompt carries. v1.2 input guidance — every engine now says what it actually wants (its original slot: a word, a dish, a city, a figure…), with an example, and the dice roll from a bank that matches the slot instead of one generic topic bank. v1.1 bulk ingest from the TwExport pool (174 engines: the hand-tested 16 + 158 adapter-bound from gadgetify's posts). v1.0 initial release (16 engines, real dice for pool draws, shuffle-bag spins, local history).<br>
+    Gadgetify Spinner <b>v1.4</b> — changelog: v1.4 prompt finder — the engine list is now alphabetical (A–Z) and searchable: type in the search box above the list to filter the prompts by name; Enter loads the first match. v1.3 data massage — baked-in format directives (grid/aspect lines like "2x2 grid, 16:9") and gadgetify's own run topics in "do this for …" lead clauses stripped from the templates: the Format controls above own the dimensions now, and your input is the only topic a prompt carries. v1.2 input guidance — every engine now says what it actually wants (its original slot: a word, a dish, a city, a figure…), with an example, and the dice roll from a bank that matches the slot instead of one generic topic bank. v1.1 bulk ingest from the TwExport pool (174 engines: the hand-tested 16 + 158 adapter-bound from gadgetify's posts). v1.0 initial release (16 engines, real dice for pool draws, shuffle-bag spins, local history).<br>
     Specimens live in <code>specimens/</code> in this repo; the library grows by adding a file + one manifest line.
   </footer>
 </main>
@@ -151,6 +155,19 @@ const state = {
 };
 const LS_BAG="gs_bag_v1", LS_HIST="gs_history_v1";
 
+function sortedSpecimens(){
+  return [...state.manifest.specimens].sort((a,b)=>a.title.localeCompare(b.title,undefined,{sensitivity:"base"}));
+}
+function buildSpecList(){
+  const sel=$("specSelect"), q=($("specSearch").value||"").trim().toLowerCase();
+  const keep=sel.value||(state.current&&state.current.id);
+  const list=sortedSpecimens().filter(s=>!q||s.title.toLowerCase().includes(q)||s.id.toLowerCase().includes(q));
+  sel.innerHTML="";
+  list.forEach(s=>{const o=document.createElement("option");o.value=s.id;o.textContent=s.title;sel.appendChild(o);});
+  if(keep&&list.some(s=>s.id===keep)) sel.value=keep;
+  $("specCount").textContent=list.length+" of "+state.manifest.specimens.length+" prompts, A\u2013Z"+(q?(" \u2014 matching \u201C"+q+"\u201D"):"");
+}
+
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function pick(a){return a[Math.floor(Math.random()*a.length)];}
 
@@ -162,8 +179,7 @@ async function load(){
       fetch("banks.json").then(r=>r.json()).catch(()=>({banks:{}}))
     ]);
     state.manifest=m; state.topics=t; state.banks=b.banks||{};
-    const sel=$("specSelect");
-    m.specimens.forEach(s=>{const o=document.createElement("option");o.value=s.id;o.textContent=s.title;sel.appendChild(o);});
+    buildSpecList();
     const cat=$("topicCat");
     cat.innerHTML='<option value="">All categories</option>'+Object.keys(t.categories).map(c=>`<option>${c}</option>`).join("");
     try{state.bag=JSON.parse(localStorage.getItem(LS_BAG)||"[]");}catch(e){state.bag=[];}
@@ -179,6 +195,7 @@ async function setSpecimen(id, fromSpin){
   const s=state.manifest.specimens.find(x=>x.id===id);
   if(!s) return;
   state.current=s;
+  if(![...$("specSelect").options].some(o=>o.value===id)){ $("specSearch").value=""; buildSpecList(); }
   $("specSelect").value=id;
   $("specTitle").textContent=s.title;
   const k=$("specKind");
@@ -325,6 +342,11 @@ function download(name,text){
 
 $("spinBtn").onclick=spin;
 $("specSelect").onchange=e=>setSpecimen(e.target.value,false);
+$("specSearch").oninput=buildSpecList;
+$("specSearch").onkeydown=e=>{
+  if(e.key==="Enter"){ const sel=$("specSelect");
+    if(sel.options.length) setSpecimen(sel.options[0].value,false); }
+};
 $("topicDice").onclick=rollTopic;
 $("topicInput").oninput=compose;
 $("topicCat").onchange=()=>{};

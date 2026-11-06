@@ -40,8 +40,14 @@ specimens/        one .md per specimen — the runnable prompt template only
 
 ## Version
 
-Spinner v1.3 — data layer: 174 specimens, 60 topics, 9 slot banks.
-Changelog: v1.3 (2026-11-05) data massage (hidden_files/build_v13.py,
+Spinner v1.4 — data layer: 174 specimens, 60 topics, 9 slot banks.
+Changelog: v1.4 (2026-11-05) prompt finder — the engine list in the
+page is now sorted alphabetically by title and searchable: a search
+box above the dropdown filters the 174 prompts by name (or id) as you
+type, with a match count; Enter loads the first match; a spin that
+lands outside the current filter clears the search so the pick is
+always visible in the list.
+v1.3 (2026-11-05) data massage (hidden_files/build_v13.py,
 report in hidden_files/massage-report.md; pre-massage backup kept in
 hidden_files/specimens-pre-v13-backup): stripped baked-in format
 directives (88 substitutions — "2x2 grid, 16:9" lead chunks, ASPECT
