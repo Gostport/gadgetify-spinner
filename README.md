@@ -40,8 +40,16 @@ specimens/        one .md per specimen — the runnable prompt template only
 
 ## Version
 
-Spinner v1.4 — data layer: 174 specimens, 60 topics, 9 slot banks.
-Changelog: v1.4 (2026-11-05) prompt finder — the engine list in the
+Spinner v1.5 — data layer: 174 specimens, 60 topics, 9 slot banks,
+plus examples.json (example runs on file).
+Changelog: v1.5 (2026-11-05) examples — a prompt can now carry example
+runs: select one in the page and its image shows in the Engine section
+with the params used (topic, format, model, date). First ten are from
+Kip's Gemini spins of Nov 5, 2026, with params from his exported spin
+history. Images are downscaled copies hosted on the ibid-make site
+under spinner-examples/ — the GitHub App push path for this repo is
+text-only, so binaries live where the binary pipeline already works.
+v1.4 (2026-11-05) prompt finder — the engine list in the
 page is now sorted alphabetically by title and searchable: a search
 box above the dropdown filters the 174 prompts by name (or id) as you
 type, with a match count; Enter loads the first match; a spin that

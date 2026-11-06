@@ -43,6 +43,10 @@
   .chip{background:#31333f;border:1px solid var(--line);border-radius:99px;padding:7px 13px;font-size:.95rem}
   textarea{width:100%;min-height:300px;background:#101116;border:1px solid var(--line);
     border-radius:10px;padding:12px;font-family:ui-monospace,Consolas,monospace;font-size:.88rem;line-height:1.5}
+  .example{margin-top:14px}
+  .example img{width:100%;border-radius:8px;border:1px solid var(--line);display:block}
+  .example .cap{font-size:.85rem;color:var(--dim);margin-top:8px}
+  .example .cap b{color:var(--ink);font-weight:600}
   .hist-item{display:flex;gap:8px;align-items:center;padding:9px 6px;border-bottom:1px solid var(--line)}
   .hist-item:last-child{border-bottom:none}
   .hist-item .grow{flex:1}
@@ -77,6 +81,7 @@
       <summary>Known flaws — not part of the output</summary>
       <ul id="flawsList"></ul>
     </details>
+    <div id="exampleBox" hidden></div>
   </section>
 
   <section>
@@ -141,7 +146,7 @@
   </section>
 
   <footer>
-    Gadgetify Spinner <b>v1.4</b> — changelog: v1.4 prompt finder — the engine list is now alphabetical (A–Z) and searchable: type in the search box above the list to filter the prompts by name; Enter loads the first match. v1.3 data massage — baked-in format directives (grid/aspect lines like "2x2 grid, 16:9") and gadgetify's own run topics in "do this for …" lead clauses stripped from the templates: the Format controls above own the dimensions now, and your input is the only topic a prompt carries. v1.2 input guidance — every engine now says what it actually wants (its original slot: a word, a dish, a city, a figure…), with an example, and the dice roll from a bank that matches the slot instead of one generic topic bank. v1.1 bulk ingest from the TwExport pool (174 engines: the hand-tested 16 + 158 adapter-bound from gadgetify's posts). v1.0 initial release (16 engines, real dice for pool draws, shuffle-bag spins, local history).<br>
+    Gadgetify Spinner <b>v1.5</b> — changelog: v1.5 examples — prompts can carry example runs: select a prompt that has one on file and its image appears in the Engine section with the exact params used (topic, format, model, date). Ten to start, all from Kip's Gemini spins on Nov 5, 2026; the data lives in examples.json and the images are hosted on ibid-make (this repo's push path is text-only). v1.4 prompt finder — the engine list is now alphabetical (A–Z) and searchable: type in the search box above the list to filter the prompts by name; Enter loads the first match. v1.3 data massage — baked-in format directives (grid/aspect lines like "2x2 grid, 16:9") and gadgetify's own run topics in "do this for …" lead clauses stripped from the templates: the Format controls above own the dimensions now, and your input is the only topic a prompt carries. v1.2 input guidance — every engine now says what it actually wants (its original slot: a word, a dish, a city, a figure…), with an example, and the dice roll from a bank that matches the slot instead of one generic topic bank. v1.1 bulk ingest from the TwExport pool (174 engines: the hand-tested 16 + 158 adapter-bound from gadgetify's posts). v1.0 initial release (16 engines, real dice for pool draws, shuffle-bag spins, local history).<br>
     Specimens live in <code>specimens/</code> in this repo; the library grows by adding a file + one manifest line.
   </footer>
 </main>
@@ -151,7 +156,7 @@
 const $ = id => document.getElementById(id);
 const state = {
   manifest:null, topics:null, banks:null, current:null, template:"",
-  rolls:{}, extras:{}, bag:[], lastTopic:""
+  rolls:{}, extras:{}, bag:[], lastTopic:"", examples:{}
 };
 const LS_BAG="gs_bag_v1", LS_HIST="gs_history_v1";
 
@@ -173,12 +178,13 @@ function pick(a){return a[Math.floor(Math.random()*a.length)];}
 
 async function load(){
   try{
-    const [m,t,b]=await Promise.all([
+    const [m,t,b,e]=await Promise.all([
       fetch("manifest.json").then(r=>r.json()),
       fetch("topics.json").then(r=>r.json()),
-      fetch("banks.json").then(r=>r.json()).catch(()=>({banks:{}}))
+      fetch("banks.json").then(r=>r.json()).catch(()=>({banks:{}})),
+      fetch("examples.json").then(r=>r.json()).catch(()=>({examples:{}}))
     ]);
-    state.manifest=m; state.topics=t; state.banks=b.banks||{};
+    state.manifest=m; state.topics=t; state.banks=b.banks||{}; state.examples=e.examples||{};
     buildSpecList();
     const cat=$("topicCat");
     cat.innerHTML='<option value="">All categories</option>'+Object.keys(t.categories).map(c=>`<option>${c}</option>`).join("");
@@ -217,6 +223,7 @@ async function setSpecimen(id, fromSpin){
   renderPools();
   renderSlots();
   compose();
+  renderExample();
 }
 
 function extraTokens(){
@@ -236,6 +243,17 @@ function renderSlots(){
     inp.oninput=()=>{ state.extras[tok]=inp.value; compose(); };
     wrap.appendChild(lab); wrap.appendChild(inp); rows.appendChild(wrap);
   });
+}
+
+function renderExample(){
+  const box=$("exampleBox"); if(!box) return;
+  const list=(state.current&&state.examples[state.current.id])||[];
+  if(!list.length){ box.hidden=true; box.innerHTML=""; return; }
+  box.hidden=false;
+  box.innerHTML=list.map(ex=>
+    `<div class="example"><img loading="lazy" src="${ex.img}" alt="${ex.alt||""}">`+
+    `<p class="cap"><b>Example run</b> · topic: ${ex.topic} · ${ex.layout}, ${ex.aspect} · ${ex.model} · ${ex.date}</p></div>`
+  ).join("");
 }
 
 function rollPool(key){
