@@ -1,5 +1,5 @@
 {
- "version": "1.2",
+ "version": "1.3",
  "specimens": [
   {
    "id": "themed-image",
@@ -3374,7 +3374,7 @@
    "kind": "generator",
    "file": "specimens/category-broadway-musicals-prompt.md",
    "binding": "replace",
-   "topicHint": "Wants a single word or short concept — it becomes the hero text of the piece. Your input replaces the specimen's [WORD/CONCEPT] slot (x2).",
+   "topicHint": "Wants a category of titled works. Your input fills the CATEGORY line and the specimen's [WORD/CONCEPT] slots.",
    "pools": null,
    "poolDraw": null,
    "flaws": [
@@ -3383,11 +3383,11 @@
    ],
    "filed": "2026-10-26",
    "wants": {
-    "bank": "word",
-    "short": "word",
-    "label": "a single word or short concept — it becomes the hero text of the piece",
-    "example": "photosynthesis",
-    "slot": "WORD/CONCEPT"
+    "bank": "topic",
+    "short": "topic",
+    "label": "a category of titled works — the engine picks four members of it, one per panel",
+    "example": "Broadway Musicals",
+    "slot": "CATEGORY"
    }
   },
   {

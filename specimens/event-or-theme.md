@@ -1,4 +1,4 @@
-do this for 4 famous aerospace engineers: INPUT: {{TOPIC}}
+INPUT: {{TOPIC}}
 
 Create a cinematic historical-documentary poster about {{TOPIC}}.
 

@@ -1,4 +1,4 @@
-2x2 grid, 16 :9, AI picks topics: AGENT{{TOPIC}} ::=
+AI picks topics: AGENT{{TOPIC}} ::=
 find the most surprising, simple, shareable fact about SUBJECT
 
 AGENT[EDUCATOR] ::=

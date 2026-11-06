@@ -13,4 +13,4 @@ Illumination: Uniform premium studio light across all panels, subtle gradient ba
 Render Stack: 100mm macro, 8k, catalog-grade clarity, cohesive art direction::1
 Negative: [Text labels, mismatched lighting, cluttered set, literal genre logos, blurry]:: -1
 
-Output: 2x2 grid, one ItemA-as-DomainB per panel. Name of the source item underneath.
+Output: one ItemA-as-DomainB per panel. Name of the source item underneath.

@@ -1,6 +1,6 @@
 Visualizing stories with GPT 2.5. Hybrid style.
 
-2x2 grid, 16:9, do this for 4 public domain, non copyrighted stories: INPUT: {{TOPIC}}
+INPUT: {{TOPIC}}
 
 // SEMANTIC REDUCTION
  

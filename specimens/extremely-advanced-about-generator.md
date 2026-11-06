@@ -1,7 +1,7 @@
 "This is extremely advanced—about 9.6–9.7/10 as a generator/renderer specification.
 It is materially more sophisticated than the earlier resin-lantern prompt because it has evolved from a set of visual laws into a compiler-style rendering architecture" 
 
-4 images, 1:1, do this for 4 topics that were in teh news lately: // ═══ LEXER ═══
+// ═══ LEXER ═══
 tokens = [
   BUILDING("{{TOPIC}}"),
   SHELL(resin, ell_t>0, artifacts=[pour_lines, micro_bubbles, frosted]),
@@ -82,6 +82,6 @@ function render_lantern(ALT):
 
   // ── PASS 8: NEGATIVE AUDIT ──────────────────────────────────
   assert audit(out, ALT.NEG) == CLEAN
-  return out.output(frame_count=1, ratio="4:5", res="8k")   // SINGLE frame
+  return out.output(frame_count=1,, res="8k")   // SINGLE frame
 
 execute(render_lantern(ALT))

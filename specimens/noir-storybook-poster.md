@@ -1,4 +1,4 @@
-2x2 grid, 16:9, AI picks subjects: INPUT: {{TOPIC}}
+AI picks subjects: INPUT: {{TOPIC}}
 
 // ── SEMANTIC INFERENCE ──────────────────────────────────────────
 ARCHETYPE     = infer_subject_archetype({{TOPIC}})        // detective, child, musician, dancer, animal, messenger
@@ -87,7 +87,6 @@ Smoke rendered as soft diffusion, no hard edges
 
 // ── CAMERA & FINISH ────────────────────────────────────────────
 Framing   : subject slightly off-center, framed by stage geometry
-Format    : 4:5 or 2:3
 Resolution: 8K
 Finish    : filmic black-and-white, no color, no bloom, no vignette beyond natural falloff
 Text      : none

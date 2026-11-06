@@ -1,7 +1,7 @@
 domain:      op_art × psychophysical_design × vector_geometry × perceptual_attack
   intent:      induce + fatigue + disorient (controlled retinal vibration, tunnel vision)
   audience:    gallery curators, album-art directors, editorial designers, rave poster market
-  platform:    1:1 vector print, screen-native square, large-format poster
+  platform: screen-native square, large-format poster
   complexity:  extreme (angular quantization, ring-meshing constraints, luminance-sawtooth
                         color sequencing, hard-edge purity, single-origin radial symmetry)
 }

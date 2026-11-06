@@ -1,5 +1,4 @@
-2x2 grid, 16:9, do this for 4 days that changed science:   
- INPUT
+INPUT
  SET @ subject = '{{TOPIC}}';
  
  ANALYZE SUBJECT

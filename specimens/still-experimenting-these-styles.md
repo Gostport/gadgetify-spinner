@@ -1,6 +1,6 @@
 Still experimenting with these styles. GPT is so great at these.
 
-2x2 grid, 16:9, do this for 4 scientific theories: Convert the iconic achievement into an exploded technical assembly suspended around the typography.
+Convert the iconic achievement into an exploded technical assembly suspended around the typography.
 
 Begin with gigantic black letters spelling {{TOPIC}}.
 

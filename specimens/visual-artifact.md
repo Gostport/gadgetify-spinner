@@ -4,7 +4,7 @@ Art-direction quality: 9.5/10
 Semantic structure: 9.3/10
 Compositional intelligence: 9.2/10
 
-2x2 grid, 16:9, do this for underrated street foods: [EQUATION]
+[EQUATION]
 
 S = {{TOPIC}}
 
@@ -185,7 +185,7 @@ MINIMIZE:
 
 [VISUAL OUTPUT]
 
-16:9 single artwork.
+single artwork.
 
 Dominant dimensional hero.
 

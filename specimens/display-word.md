@@ -38,4 +38,4 @@ CAMERA = nearly_frontal_slightly_low
 HEADROOM = preserve_above_tallest_subject
 HIERARCHY = word > hero > cast > lower scene > environment details
 VALIDATE = word_spelling, thumbnail_readability, topic_belonging, physical_relationships
-Render 16:9, 8K, polished editorial 3D.
+Render 8K, polished editorial 3D.

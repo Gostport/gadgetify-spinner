@@ -2,7 +2,7 @@ SOURCE: Do research, a real expired patent from {{TOPIC}} for [MECHANISM OR CATE
 WHAT CHANGED: [MODERN ENABLER: cheap sensors, injection-molded recycled polymer, 3D printing, new habits, smartphones].
 NEW PROBLEM IT SOLVES: [TODAY'S PAIN POINT] for [AUDIENCE].
 
-Layout: three-panel presentation board, 16:9.
+Layout: three-panel presentation board.
 Panel 1: the original patent sheet: period line drawing, figure numbers, aged paper.
 Panel 2: exploded diagram mapping each original part to its modern equivalent, with callout lines.
 Panel 3: the new product in use in a real contemporary environment.

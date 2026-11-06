@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for {{TOPIC}}lized 3D figurine of the creator at their craft station (drafting desk, pen,
+do this for {{TOPIC}}lized 3D figurine of the creator at their craft station (drafting desk, pen,
       tablet, typewriter) in a focused working pose; toy/vinyl material.   ¬B₁ = no figure / realistic human / idle figure / no craft station.
 B₂  OWN PACKAGING IN COMPOSITION   the creator's retail box — title + box art depicting the creator — present in‑frame as
       a set piece; figure and box art share the same character design.   ¬B₂ = no box / box unrelated / box art ≠ figure.

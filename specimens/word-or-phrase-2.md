@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for 4 non-copyrighted public-space books:  INPUT:
+INPUT:
 WORD_OR_PHRASE = {{TOPIC}}
 OBJECT_OR_INSTRUMENT = [ANY OBJECT / FORM]
 SYMBOL_SYSTEM = [OPTIONAL]

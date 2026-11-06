@@ -1,4 +1,4 @@
-2x2 grid, 16:9, AI picks philosophical debates or our time: INPUT ::= {{TOPIC}}
+INPUT ::= {{TOPIC}}
 
 STEP_1 :: infer the argument
 - state the thesis in one sentence

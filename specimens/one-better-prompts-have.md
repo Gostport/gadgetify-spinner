@@ -1,6 +1,6 @@
 One of the better prompts I have done. It's a bit long though. Here is a modified version that is shorter. This was done for 4 economic theories. 
 
-2x2 grid, 16:9, 4 famous economic theories:
+4 famous economic theories:
 
 INPUT: {{TOPIC}}
 

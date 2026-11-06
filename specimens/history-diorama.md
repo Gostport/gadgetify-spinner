@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for {{TOPIC}}: <history_diorama event="{{TOPIC}}" date="{{DATE}}" subtitle="{{SUBTITLE}}" ratio="3:2"\>
+do this for {{TOPIC}}: <history_diorama event="{{TOPIC}}" date="{{DATE}}" subtitle="{{SUBTITLE}}"\>
 <plate_furniture register="document"\>
 <title_block pos="top_left"\>
 <event typeface="serif_display"\>{{TOPIC}}\</event\>

@@ -1,4 +1,4 @@
-2x2 grid, 16:9, 4 days that changed history: RENDER_CHAIN = "[{{TOPIC}} :: flow_strips :: nested_quilling_sculpture :: raking_macro]"
+RENDER_CHAIN = "[{{TOPIC}} :: flow_strips :: nested_quilling_sculpture :: raking_macro]"
 
 FUSION_RULES = {
     "flow_analysis": "compute edge-direction field θ and curvature field κ across {{TOPIC}}; derive flow vector field F = ∇θ; curl(F) drives coil tightness, divergence(F) drives coil spacing",

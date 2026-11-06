@@ -1,4 +1,4 @@
-Do this for gaming: Do this for gaming:   Input Variable:   {{TOPIC}} (e.g., History of Space Exploration)
+Input Variable:   {{TOPIC}} (e.g., History of Space Exploration)
 
   System Instruction:  
 Generate a crowded, hyper-realistic   "Book Nook" Diorama  . Use the following logic to procedurally fill the scene with high-density detail:
@@ -32,4 +32,4 @@ Generate a crowded, hyper-realistic   "Book Nook" Diorama  . Use the following l
       Lighting:   "Museum Display" lighting. A focused beam hits the Totem, creating a long shadow against the back page sketches.
       Depth:   The 3D objects must cast hard shadows onto the 2D paper to sell the optical illusion.
 
-  Output:   1:1 Aspect Ratio, Macro Photography, High Textural Contrast (Paper vs. Plastic).
+  Output:   Macro Photography, High Textural Contrast (Paper vs. Plastic).

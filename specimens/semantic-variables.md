@@ -2,7 +2,7 @@ domain:      chronophotography × sports_science_viz × motion_capture_editorial
   intent:      analyze + aestheticize + prove (motion as physics document)
   lineage:     Marey (photographic gun) → Edgerton (stroboscope) → modern mocap
   audience:    biomechanists, sports editors, kinetic design collectors
-  platform:    16:9 or 2:3 scientific-editorial plate, single composite frame
+  platform: single composite frame
   complexity:  extreme (5-phase temporal stacking + bezier trajectory +
                         force-vector typography + per-phase material optics)
 }

@@ -1,4 +1,4 @@
-2x2 grid, 16:9, AI pick topics that are in the news today: FINAL_GRAPHIC =
+AI pick topics that are in the news today: FINAL_GRAPHIC =
 
 TOPIC_KNOWLEDGE
 

@@ -1,8 +1,8 @@
-16:9, 2x2 grid, Do this for 4 incredible decades, from 1600 to 2026 CLASSIFY(input) → {
+CLASSIFY(input) → {
   domain:      isometric_diorama × pop_culture_homage × architectural_cutaway
   intent:      nostalgia + discovery + spatial_storytelling (the "dollhouse" effect)
   audience:    fandom collectors, concept art directors, editorial illustrators
-  platform:    1:1 square or 4:5 vertical, high-res digital print, lore-book insert
+  platform:    square or vertical, high-res digital print, lore-book insert
   complexity:  extreme (requires strict 45° isometric projection, architectural sectioning, 
                         zoned practical lighting, and high-density semiotic prop dressing)
 }

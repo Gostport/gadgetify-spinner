@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for 4 days that transformed science: INPUT: $ SUBJECT Create a dense illustrated portrait-poster for {{TOPIC}}.
+INPUT: $ SUBJECT Create a dense illustrated portrait-poster for {{TOPIC}}.
 
 First infer:
 

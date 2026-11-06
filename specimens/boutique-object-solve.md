@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for 4 shinigami manga: BOUTIQUE_OBJECT_SOLVE:
+BOUTIQUE_OBJECT_SOLVE:
 (inferred topic essence × collectible fabrication logic)
 + (premium material translation ^ product-photography lighting)
 - (toy-like cheapness + random accessories + overdesigned noise)

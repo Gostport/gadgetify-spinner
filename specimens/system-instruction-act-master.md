@@ -24,4 +24,4 @@ Scale: The scene must look like a high-end model kit (1:87 scale).
 The Lamp: A vintage brass desk lamp is visible in the corner, casting a warm, directional "reading light" onto the scene.
 Atmosphere: Magical realism. The water should glisten; the fog should swirl.
 Depth: Shallow depth of field to blur the edge of the desk, keeping focus on the book.
-Output: ONE image, 16:9 Aspect Ratio, Cinematic Miniature Photography, 8k Resolution.
+Output: Cinematic Miniature Photography, 8k Resolution.

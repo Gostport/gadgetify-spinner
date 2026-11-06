@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do research for 4 topics that were hot this weekend: 2x2 grid, 16:9, do this for 4 topics that keep people up at night: type Deviation = Vector FaceSpace
+type Deviation = Vector FaceSpace
 amplify :: MeanFace -> Deviation -> Alpha -> Face
 amplify μ δ α = μ + α * δ                              -- amplify DEVIATION, not features (C₁)
 -- δ is sparse: one dominant axis; the rest follow  (C₁)

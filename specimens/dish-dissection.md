@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for 4 underrated Low-Glycemic Index meals:  CREATE VIEW dish_dissection AS
+CREATE VIEW dish_dissection AS
 WITH blueprint AS (
   SELECT
     '{{TOPIC}}' AS dish,

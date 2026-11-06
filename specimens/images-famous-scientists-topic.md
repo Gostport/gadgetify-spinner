@@ -1,4 +1,4 @@
-4 images: 1:1, do this for 4 famous scientists: WITH topic_identity AS ( 
+WITH topic_identity AS ( 
     SELECT
         derive_display_word('{{TOPIC}}') AS display_word,
         infer_primary_visual_form('{{TOPIC}}') AS hero_form,

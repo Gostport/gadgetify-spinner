@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for {{TOPIC}}:
+do this for {{TOPIC}}:
 
 A = { subject silhouette: simplified, cute, oversized head, readable core mass }
 B = { flocked soft masses: rounded domes, capsules, blobs, with velvety micro-texture }

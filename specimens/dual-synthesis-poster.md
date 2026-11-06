@@ -8,5 +8,5 @@ Visual Movements: [Swiss International Typographic, Japanese Ukiyo-e Woodblock, 
 
 Compositional Engines: [Radial Burst Mandala, Diagonal Cascade, Negative Space Isolation, Layered Parallax Depth, Typographic Domination, Circular Vignette Frame, Asymmetric Tension Grid, Infinite Tessellation, Single Vanishing Point Corridor, Overlapping Transparency Stack, Golden Spiral Focus, Shattered Mirror Fragment, Horizontal Band Stratification, Central Symmetry Lock, Scattered Constellation, Forced Perspective Tunnel, Borderless Bleed, Isometric Stack, Cross-Hatch Density Map, Kinetic Motion Blur Trail].
 
-Output: one image
+
 </input>

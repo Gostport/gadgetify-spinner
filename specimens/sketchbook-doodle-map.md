@@ -1,6 +1,6 @@
-4 underrated scifi movies according to Nano Banana 2.1
 
-Prompt: 2x2 grid, 16:9, do this for {{TOPIC}}: Style = {
+
+Prompt: do this for {{TOPIC}}: Style = {
   <sketchbook_biography_doodle_map>
   MEDIUM: Hand-drawn sketchbook spread, visual biography map, notebook doodle infographic, scrapbook-style idea journal.
   SURFACE: Open cream notebook pages, dotted-grid paper, worn page edges, slight paper grain, soft archival texture.
@@ -91,7 +91,7 @@ Prompt: 2x2 grid, 16:9, do this for {{TOPIC}}: Style = {
 
 {{TOPIC}} visualized with Nano Banana 2.1
 
-2x2 grid, 16:9, do this for {{TOPIC}}: class SketchbookDoodleMap:
+do this for {{TOPIC}}: class SketchbookDoodleMap:
     def __init__(self, SUBJECT):
         s = infer(SUBJECT)
         self.s = s

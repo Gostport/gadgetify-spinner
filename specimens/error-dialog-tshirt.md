@@ -1,4 +1,4 @@
-2x2 grid, 16:9, AI picks subjects class ErrorDialogTShirt:
+AI picks subjects class ErrorDialogTShirt:
     def __init__(self, topic):
         self.topic = topic
         self.research = do_for_every_topic

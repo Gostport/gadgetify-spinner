@@ -1,4 +1,4 @@
-2x2 grid, 16:9, animals getting caught doing annoying things: SUBJECT=[...]
+SUBJECT=[...]
 
 VARIANT_SEED=[optional value; change this to force a fresh concept]
 

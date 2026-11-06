@@ -1,7 +1,7 @@
 domain:      isometric_3D × typographic_sculpture × architectural_diorama × brand_pavilion
   intent:      elevate + inhabit + miniaturize (the "monumental letterform as habitable space")
   audience:    brand identity directors, architectural visualizers, premium product designers
-  platform:    1:1 or 4:5 high-res 3D render, flagship campaign hero, collectible digital art
+  platform: flagship campaign hero, collectible digital art
   complexity:  extreme (requires strict dual-scale management, volumetric boolean typography, 
                         luxury material physics, and pristine showroom photometrics)
 }

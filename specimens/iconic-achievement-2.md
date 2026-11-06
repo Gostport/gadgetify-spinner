@@ -1,7 +1,7 @@
 domain:      technical_drafting × pen_plotter_art × negative_space_typography × blueprint_aesthetic
   intent:      deconstruct + memorialize + engineer (the "architectural homage" via vector subtraction)
   audience:    architects, technical illustrators, plotter-art collectors, engineering firms
-  platform:    High-res monochrome raster (mimicking A0/A1 plotter paper), 1:1 or 3:4 portrait
+  platform:    High-res monochrome raster (mimicking A0/A1 plotter paper)
   complexity:  extreme (requires strict lineweight hierarchy, topological boolean subtraction, 
                         geometric guide convergence, and physical pen-plotter artifact simulation)
 }

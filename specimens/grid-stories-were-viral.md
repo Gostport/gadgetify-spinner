@@ -1,4 +1,4 @@
-2x2 grid, 16;9, do this for 4 stories that were viral this week: % METAFONT COMPILER SCRIPT: CUSTOM LIGATURE LOGO
+% METAFONT COMPILER SCRIPT: CUSTOM LIGATURE LOGO
 % PARAMETERS: string name = "{{TOPIC}}"; string object = "[INVENTION/CONCEPT]";
 
 beginchar(1, 100u#, 50u#, 0);

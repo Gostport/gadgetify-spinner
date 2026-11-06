@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for {{TOPIC}}: class Infographic_Diorama:
+do this for {{TOPIC}}: class Infographic_Diorama:
     def __init__(self, era="[ERA]", topic="{{TOPIC}}"):
         self.canvas = "Pure matte beige studio backdrop"
         # Force AI to calculate the container shape FIRST

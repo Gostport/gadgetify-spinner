@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for 4 famous days in history: // ADOBE ILLUSTRATOR JSX SCRIPT: ENVELOPE_DISTORT_TYPOGRAPHY
+// ADOBE ILLUSTRATOR JSX SCRIPT: ENVELOPE_DISTORT_TYPOGRAPHY
 // TARGET_STRING: "{{TOPIC}}"
 
 var doc = app.activeDocument;

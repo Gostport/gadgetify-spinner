@@ -61,7 +61,7 @@ VISUAL CONSTRUCTION:
 
 COMPOSITION:
 
-Wide 16:9 editorial masterpiece.
+Wide editorial masterpiece.
 
 Strong primary title occupying approximately 45–60% of the visual emphasis.
 

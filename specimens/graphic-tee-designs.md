@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for famous scientists : SELECT innocent_mascot, edgy_prop, deadpan_typography 
+SELECT innocent_mascot, edgy_prop, deadpan_typography 
 FROM Graphic_Tee_Designs
 WHERE character = '{{TOPIC}}' AND anomaly = '[ABSURD_PROP]';
 

@@ -1,8 +1,8 @@
-2x2 grid, 16:9, do this for 4 delicious carnivore diet dishes internationallly: CLASSIFY(input) → {
+CLASSIFY(input) → {
   domain:      miniature_diorama × pop_up_book_engineering × culinary_narrative × tilt_shift_macro
   intent:      narrate + delight + miniaturize (farm → fire → feast in a single spread)
   audience:    food editorial, cookbook publishers, miniature collectors, brand campaigns
-  platform:    3:2 or 16:9 landscape hero shot, print + social
+  platform: print + social
   complexity:  extreme (three-act narrative across physical book topology, 1:87 HO figures,
                         diegetic gutter thermodynamics, scale-nesting, Scheimpflug optics)
 }

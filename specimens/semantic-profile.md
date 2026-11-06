@@ -231,4 +231,3 @@ RENDER:
     illustrated character surrounded by
     a world of subject-specific visual symbols.
 
-Aspect ratio: 2:3 portrait.

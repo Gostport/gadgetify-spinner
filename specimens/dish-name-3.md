@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for highly underrated international spicy meals: void main() {
+void main() {
     string dish = "{{TOPIC}}";
     
     // Optical Materials

@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for 4 famous decades: // p5.js GENERATIVE KINETIC POSTER
+// p5.js GENERATIVE KINETIC POSTER
 // TARGET_SUBJECT: "{{TOPIC}}" // ASSETS: "[THEMATIC_ICONS]"
 
 function draw() {

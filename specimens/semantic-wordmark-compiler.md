@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for {{TOPIC}}: INPUT = {
+do this for {{TOPIC}}: INPUT = {
     "text": [ANY_WORD_PHRASE_SYMBOL_NUMBER_OR_SIGN],
     "topic": "{{TOPIC}}",
     "mood": [OPTIONAL],

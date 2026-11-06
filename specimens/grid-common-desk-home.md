@@ -1,4 +1,4 @@
-2x2 grid, do this {{TOPIC}}: Concept: Turn objects into a landmark building that could exist.
+do this {{TOPIC}}: Concept: Turn objects into a landmark building that could exist.
 
 1. ANALYZE INPUT (Massing & Structure):
 

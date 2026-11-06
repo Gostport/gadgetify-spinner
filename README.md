@@ -40,8 +40,19 @@ specimens/        one .md per specimen — the runnable prompt template only
 
 ## Version
 
-Spinner v1.2 — data layer: 174 specimens, 60 topics, 9 slot banks.
-Changelog: v1.2 (2026-11-05) input guidance — v1.1 bound every input as a
+Spinner v1.3 — data layer: 174 specimens, 60 topics, 9 slot banks.
+Changelog: v1.3 (2026-11-05) data massage (hidden_files/build_v13.py,
+report in hidden_files/massage-report.md; pre-massage backup kept in
+hidden_files/specimens-pre-v13-backup): stripped baked-in format
+directives (88 substitutions — "2x2 grid, 16:9" lead chunks, ASPECT
+RATIO lines, platform-line ratios, ratio= attributes) and gadgetify's
+own run topics (35 "do this for <his topic>:" lead clauses, 7 bare
+lead topics, 4 topic-bearing preamble lines, the CATEGORY = Broadway
+Musicals definition, which is now CATEGORY = {{TOPIC}}). Kept:
+miniature model scales (1:87 etc.), layout-as-content grids, code
+identifiers, and code-level format defaults — those are flagged in
+the massage report for a possible deeper pass.
+v1.2 (2026-11-05) input guidance — v1.1 bound every input as a
 generic "topic," but most specimens' original slot is narrower ([WORD],
 [DISH_NAME], [CITY_NAME], [FIGURE]…), so random topics often didn't fit.
 v1.2 recovers each specimen's original slot from the v1.1 build report,

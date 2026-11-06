@@ -1,3 +1,3 @@
-Stories that parents tell their children, visualized with GPT 2.5. I tried it with NB 2.1 but I like this output better. 
+ 
 
-Prompt: 16:9, do this for {{TOPIC}}t =  ( 2x2_Grid_Toy_Packaging_Layout * 2.0 ) +  [ Quadrant_Template:    ( Left_Sidebar_2D_Cardboard_Typography_Metadata * 1.5 ) +    ( Center_3D_Matte_Vinyl_Toy_Diorama_Of_"[IP]" * 2.5 ) +    ( Right_Sidebar_Clear_Plastic_Blister_Pack * 2.0 ) +    ( Three_Inferred_3D_Miniature_Accessories_Inside_Plastic * 1.8 ) +    ( Vintage_Graphic_Design_Aesthetic * 1.2 )  ] * 4 -  ( Blended_Materials / 2.0 ) -  ( Flat_2D_Characters / 2.0 ) -  ( Real_Human_Cosplay / 2.0 )
+Prompt: do this for {{TOPIC}}t =  ( 2x2_Grid_Toy_Packaging_Layout * 2.0 ) +  [ Quadrant_Template:    ( Left_Sidebar_2D_Cardboard_Typography_Metadata * 1.5 ) +    ( Center_3D_Matte_Vinyl_Toy_Diorama_Of_"[IP]" * 2.5 ) +    ( Right_Sidebar_Clear_Plastic_Blister_Pack * 2.0 ) +    ( Three_Inferred_3D_Miniature_Accessories_Inside_Plastic * 1.8 ) +    ( Vintage_Graphic_Design_Aesthetic * 1.2 )  ] * 4 -  ( Blended_Materials / 2.0 ) -  ( Flat_2D_Characters / 2.0 ) -  ( Real_Human_Cosplay / 2.0 )

@@ -386,8 +386,6 @@ before reading the title.
 FINAL IMAGE
 
 one single vertical poster
-approximately 2:3 aspect ratio
-
 warm cream background
 
 central oversized friendly character

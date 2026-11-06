@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for 4 historic battles: INPUT: {{TOPIC}}
+INPUT: {{TOPIC}}
 
 // REALITY–DRAWING HYBRID ENGINE
  

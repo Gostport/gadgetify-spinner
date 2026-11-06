@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for {{TOPIC}}: Concept: Object → one iconic furniture piece (gallery design).
+do this for {{TOPIC}}: Concept: Object → one iconic furniture piece (gallery design).
 1. ANALYZE INPUT (Ergonomics & Load):
 Load-bearing: (High/Medium/Low)
 Touch: (Cold/Warm/Sticky/Soft)

@@ -1,4 +1,4 @@
-2x2 grid, 16:9, do this for 4 topics in the news this week: <manga_page format="B5" margins="printer_safe" bleed_panels="max_1" render="{{TOPIC}}">
+<manga_page format="B5" margins="printer_safe" bleed_panels="max_1" render="{{TOPIC}}">
 
   <flow_field>
     <scalar_potential>Phi(x,y) = narrative_tension({{SLICE_BEAT}}, {{EMOTIONAL_TURN}})</scalar_potential>
