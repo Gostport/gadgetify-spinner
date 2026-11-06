@@ -1,0 +1,123 @@
+{
+ "version": "1.2",
+ "banks": {
+  "word": [
+   "entropy",
+   "cartography",
+   "velvet",
+   "migration",
+   "photosynthesis",
+   "labyrinth",
+   "echo",
+   "compass",
+   "gravity",
+   "metamorphosis",
+   "horizon",
+   "alchemy"
+  ],
+  "dish": [
+   "shakshuka",
+   "beef Wellington",
+   "ramen carbonara",
+   "ratatouille",
+   "chiles en nogada",
+   "peking duck",
+   "moussaka",
+   "biryani",
+   "okonomiyaki",
+   "coq au vin",
+   "tiramisu",
+   "pho bo"
+  ],
+  "city": [
+   "Lisbon",
+   "Kyoto",
+   "Reykjavik",
+   "Marrakech",
+   "Havana",
+   "Prague",
+   "Istanbul",
+   "Cusco",
+   "Hanoi",
+   "Tallinn",
+   "Quebec City",
+   "Naples"
+  ],
+  "person": [
+   "Marie Curie",
+   "Leonardo da Vinci",
+   "a lighthouse keeper",
+   "Frida Kahlo",
+   "a deep-sea diver",
+   "Nikola Tesla",
+   "a beekeeper",
+   "Ada Lovelace",
+   "a volcano photographer",
+   "Marco Polo",
+   "a master glassblower",
+   "Amelia Earhart"
+  ],
+  "event": [
+   "the first Moon landing",
+   "the fall of the Berlin Wall",
+   "the eruption of Vesuvius",
+   "the first transatlantic flight",
+   "the opening of the Panama Canal",
+   "the Great Fire of London",
+   "the first Olympic Games",
+   "the maiden voyage of the Titanic",
+   "the signing of the Magna Carta",
+   "the first powered flight at Kitty Hawk"
+  ],
+  "era": [
+   "the Bronze Age",
+   "the Roaring Twenties",
+   "the Viking Age",
+   "the Edo period",
+   "the Space Race",
+   "the Belle Epoque",
+   "the Pleistocene",
+   "the Harlem Renaissance",
+   "the age of sail",
+   "the early internet, 1995"
+  ],
+  "concept": [
+   "quantum entanglement",
+   "photosynthesis",
+   "plate tectonics",
+   "the water cycle",
+   "compound interest",
+   "natural selection",
+   "the Doppler effect",
+   "fermentation",
+   "echolocation",
+   "the greenhouse effect",
+   "supply and demand",
+   "antibiotic resistance"
+  ],
+  "work": [
+   "Star Wars",
+   "The Lord of the Rings",
+   "Hamilton",
+   "the Mario games",
+   "Pride and Prejudice",
+   "Star Trek",
+   "the Sherlock Holmes stories",
+   "Tetris",
+   "Don Quixote",
+   "the Peanuts comics"
+  ],
+  "product": [
+   "a Tamagotchi",
+   "the instant camera",
+   "a mechanical keyboard",
+   "the Swiss Army knife",
+   "a robot vacuum",
+   "the lava lamp",
+   "a keychain multitool",
+   "the electric kettle",
+   "a pocket translator",
+   "the fidget spinner"
+  ]
+ }
+}

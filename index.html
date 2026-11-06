@@ -35,6 +35,7 @@
   .badge{font-size:.75rem;padding:3px 9px;border-radius:99px;border:1px solid var(--accent2);color:var(--accent2)}
   .badge.norm{border-color:var(--accent);color:var(--accent)}
   .hint{color:var(--dim);margin:4px 0 0}
+  .want{color:var(--accent2);margin:6px 0 0;font-weight:600}
   details{margin-top:10px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
   summary{cursor:pointer;min-height:32px;color:var(--accent)}
   details ul{margin:8px 0 4px;padding-left:20px;color:var(--dim)}
@@ -66,6 +67,7 @@
       <span class="spec-title" id="specTitle">—</span>
       <span class="badge" id="specKind"></span>
     </div>
+    <p class="want" id="specWant"></p>
     <p class="hint" id="specHint"></p>
     <details id="flawsBox">
       <summary>Known flaws — not part of the output</summary>
@@ -74,7 +76,7 @@
   </section>
 
   <section>
-    <h2>2 · Topic</h2>
+    <h2>2 · Your Input</h2>
     <div class="row">
       <input type="text" id="topicInput" placeholder="Type a topic, or roll one →">
       <button class="narrow" id="topicDice">🎲 Random topic</button>
@@ -135,7 +137,7 @@
   </section>
 
   <footer>
-    Gadgetify Spinner <b>v1.1</b> — changelog: v1.1 bulk ingest from the TwExport pool (174 engines: the hand-tested 16 + 158 adapter-bound from gadgetify's posts). v1.0 initial release (16 engines, real dice for pool draws, shuffle-bag spins, local history).<br>
+    Gadgetify Spinner <b>v1.2</b> — changelog: v1.2 input guidance — every engine now says what it actually wants (its original slot: a word, a dish, a city, a figure…), with an example, and the dice roll from a bank that matches the slot instead of one generic topic bank. v1.1 bulk ingest from the TwExport pool (174 engines: the hand-tested 16 + 158 adapter-bound from gadgetify's posts). v1.0 initial release (16 engines, real dice for pool draws, shuffle-bag spins, local history).<br>
     Specimens live in <code>specimens/</code> in this repo; the library grows by adding a file + one manifest line.
   </footer>
 </main>
@@ -144,7 +146,7 @@
 "use strict";
 const $ = id => document.getElementById(id);
 const state = {
-  manifest:null, topics:null, current:null, template:"",
+  manifest:null, topics:null, banks:null, current:null, template:"",
   rolls:{}, extras:{}, bag:[], lastTopic:""
 };
 const LS_BAG="gs_bag_v1", LS_HIST="gs_history_v1";
@@ -154,11 +156,12 @@ function pick(a){return a[Math.floor(Math.random()*a.length)];}
 
 async function load(){
   try{
-    const [m,t]=await Promise.all([
+    const [m,t,b]=await Promise.all([
       fetch("manifest.json").then(r=>r.json()),
-      fetch("topics.json").then(r=>r.json())
+      fetch("topics.json").then(r=>r.json()),
+      fetch("banks.json").then(r=>r.json()).catch(()=>({banks:{}}))
     ]);
-    state.manifest=m; state.topics=t;
+    state.manifest=m; state.topics=t; state.banks=b.banks||{};
     const sel=$("specSelect");
     m.specimens.forEach(s=>{const o=document.createElement("option");o.value=s.id;o.textContent=s.title;sel.appendChild(o);});
     const cat=$("topicCat");
@@ -181,6 +184,13 @@ async function setSpecimen(id, fromSpin){
   const k=$("specKind");
   k.textContent=s.kind; k.className="badge"+(s.kind==="normative"?" norm":"");
   $("specHint").textContent=s.topicHint||"";
+  const w=s.wants||null;
+  $("specWant").textContent=w?("What to enter: "+w.label+(w.example?(" — e.g. \u201C"+w.example+"\u201D"):"")):"";
+  $("topicInput").placeholder=w&&w.example?("e.g. "+w.example):"Type a topic, or roll one \u2192";
+  $("topicDice").textContent="\uD83C\uDFB2 Random "+((w&&w.short)||"topic");
+  const generic=!w||w.bank==="topic"||w.bank==="header";
+  $("topicCat").disabled=!generic;
+  $("topicCat").style.opacity=generic?"1":"0.45";
   $("flawsList").innerHTML=(s.flaws||[]).map(f=>`<li>${f}</li>`).join("");
   $("flawsBox").style.display=(s.flaws&&s.flaws.length)?"":"none";
   try{ state.template=await (await fetch(s.file)).text(); }
@@ -236,11 +246,18 @@ function renderPools(){
 }
 
 function rollTopic(){
-  const cats=state.topics.categories;
-  const chosen=$("topicCat").value;
-  const names=chosen?[chosen]:Object.keys(cats);
+  const w=state.current&&state.current.wants;
+  const bank=w&&state.banks?w.bank:null;
   let t, guard=0;
-  do{ t=pick(cats[pick(names)]); guard++; }while(t===state.lastTopic&&guard<8);
+  if(bank&&bank!=="topic"&&bank!=="header"&&state.banks[bank]){
+    const pool=state.banks[bank];
+    do{ t=pick(pool); guard++; }while(t===state.lastTopic&&guard<8);
+  }else{
+    const cats=state.topics.categories;
+    const chosen=$("topicCat").value;
+    const names=chosen?[chosen]:Object.keys(cats);
+    do{ t=pick(cats[pick(names)]); guard++; }while(t===state.lastTopic&&guard<8);
+  }
   state.lastTopic=t;
   $("topicInput").value=t;
   compose();

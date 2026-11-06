@@ -40,8 +40,17 @@ specimens/        one .md per specimen — the runnable prompt template only
 
 ## Version
 
-Spinner v1.1 — data layer: 174 specimens, 60 topics.
-Changelog: v1.1 (2026-11-05) bulk-ingested the TwExport CSV pool — of 305
+Spinner v1.2 — data layer: 174 specimens, 60 topics, 9 slot banks.
+Changelog: v1.2 (2026-11-05) input guidance — v1.1 bound every input as a
+generic "topic," but most specimens' original slot is narrower ([WORD],
+[DISH_NAME], [CITY_NAME], [FIGURE]…), so random topics often didn't fit.
+v1.2 recovers each specimen's original slot from the v1.1 build report,
+adds a `wants` field (slot, bank, label, example) to the manifest plus a
+`banks.json` of slot-matched value banks: the page now states what each
+engine actually wants, shows an example, and rolls random values from
+the matching bank. 63 specimens get slot-specific banks; 85 stay on the
+generic topic bank; 26 are header-bound and say so.
+v1.1 (2026-11-05) bulk-ingested the TwExport CSV pool — of 305
 posts / 198 extracted prompts: 158 added (134 topic-slot adapters, 24
 header-bound), 9 already present as v1.0 specimens, 17 exact duplicates,
 14 skipped (mid-spec excerpts, fixed-subject runs, photo/artifact-input
