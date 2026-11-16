@@ -85,6 +85,7 @@ v1.0 — initial release: 16 hand-curated specimens.
 
 ## Changelog
 
+- **v2.2** (Nov 16, 2026) — Clean copy for running: a button that produces the mix with all Mixer bookkeeping removed (no provenance attributions, no fully-demoted blocks, no fight report, no DRAFT stamp) — the text to paste into an image model. Canonical copy unchanged.
 - **v2.1** (Nov 16, 2026) — UI cleanup: footer changelog removed, Mixer slots are compact dropdowns with a one-line detail readout, Recipes and the C-block render live in collapsible sections, Spin History collapses too. No behaviour change.
 - **v2.0** (Nov 16, 2026) — the Slot Mixer (below).
 

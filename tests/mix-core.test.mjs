@@ -6,8 +6,8 @@ import assert from "node:assert";
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
 const m = html.match(/\/\/ == MIX CORE[\s\S]*?\/\/ == END MIX CORE ==/);
 assert(m, "MIX CORE block not found in index.html");
-const { MIX_SLOTS, mixBases, mixComposeText, mixFillersForSlot, mixActiveFillers, mixDetectFights, mixComposeMix, mixFightKey, mixLocks, mixMakeRecipe, mixApplyRecipe, mixRecipeCard, mixRenderCBlock, mixSpinMix } = new Function(
-  m[0] + "\nreturn { MIX_SLOTS, mixBases, mixComposeText, mixFillersForSlot, mixActiveFillers, mixDetectFights, mixComposeMix, mixFightKey, mixLocks, mixMakeRecipe, mixApplyRecipe, mixRecipeCard, mixRenderCBlock, mixSpinMix };"
+const { MIX_SLOTS, mixBases, mixComposeText, mixFillersForSlot, mixActiveFillers, mixDetectFights, mixComposeMix, mixFightKey, mixLocks, mixMakeRecipe, mixApplyRecipe, mixRecipeCard, mixRenderCBlock, mixSpinMix, mixCleanText } = new Function(
+  m[0] + "\nreturn { MIX_SLOTS, mixBases, mixComposeText, mixFillersForSlot, mixActiveFillers, mixDetectFights, mixComposeMix, mixFightKey, mixLocks, mixMakeRecipe, mixApplyRecipe, mixRecipeCard, mixRenderCBlock, mixSpinMix, mixCleanText };"
 )();
 
 const data = JSON.parse(readFileSync(new URL("../fillers.json", import.meta.url), "utf8"));
@@ -188,5 +188,43 @@ const spunRecipe = mixMakeRecipe(fillers, spunOnce.base, "test subject", spunOnc
 const spunBack = mixApplyRecipe(fillers, JSON.parse(JSON.stringify(spunRecipe)));
 assert(spunBack && spunBack.base === spunOnce.base && JSON.stringify(spunBack.picks) === JSON.stringify(spunOnce.picks),
   "spun mix round-trips through a recipe");
+
+// 23. v2.2 — clean copy: no provenance, no fight report, content intact;
+//     the canonical copy still carries the bookkeeping (guard both ways)
+const cleanFight = mixCleanText(fillers, "personified-collage-poster", "migration",
+  { Surface: "opart-surface" }, { [rKey]: "personified-composition" }, null);
+assert(!cleanFight.text.includes("\u00B7 from"), "clean copy has no provenance");
+assert(!cleanFight.text.includes("[FIGHT REPORT]"), "clean copy has no fight report");
+assert(!cleanFight.text.includes("fully demoted"), "clean copy has no demotion bookkeeping");
+assert(cleanFight.text.includes("[SURFACE \u2014 Continuous ribbon field]"), "clean headers keep slot + filler name only");
+assert(cleanFight.text.includes("Generate 80\u2013260 continuous"), "clean copy keeps the content");
+const canonFight = mixComposeMix(fillers, "personified-collage-poster", "migration",
+  { Surface: "opart-surface" }, { [rKey]: "personified-composition" }, null);
+assert(canonFight.text.includes("[FIGHT REPORT]") && canonFight.text.includes("\u00B7 from"),
+  "canonical copy still carries bookkeeping");
+
+// 24. v2.2 — a fully demoted filler vanishes from the clean copy entirely
+const tiny = [
+  { id: "a-sf", name: "Alpha surface", slot: "Surface", source: "src-a", provenance: "gadgetify",
+    claims: ["Surface", "Background"], requires: [], weight: 100,
+    segments: [{ property: "Surface", text: "Alpha texture." }, { property: "Background", text: "Alpha page is the world." }] },
+  { id: "b-bg", name: "Beta backdrop", slot: "Background", source: "src-b", provenance: "gadgetify",
+    claims: ["Background"], requires: [], weight: 100, segments: [{ property: "Background", text: "Beta void." }] },
+  { id: "a-ch", name: "Alpha hero", slot: "Character", source: "src-a", provenance: "gadgetify",
+    claims: ["Character"], requires: [], weight: 100, segments: [{ property: "Character", text: "Alpha hero." }] }
+];
+const tinyKey = mixFightKey("Background", "a-sf", "b-bg");
+const tinyRes = { [tinyKey]: "a-sf" };
+const tinyCanon = mixComposeMix(tiny, "src-a", "x", { Background: "b-bg" }, tinyRes, null);
+assert(tinyCanon.text.includes("fully demoted"), "canonical shows the fully-demoted placeholder");
+const tinyClean = mixCleanText(tiny, "src-a", "x", { Background: "b-bg" }, tinyRes, null);
+assert(!tinyClean.text.includes("Beta backdrop") && !tinyClean.text.includes("Beta void."),
+  "fully demoted filler leaves no trace in the clean copy");
+assert(tinyClean.text.includes("Alpha page is the world."), "the winner's content is in the clean copy");
+
+// 25. v2.2 — Lock header is cleaned too
+const cleanLock = mixCleanText(fillers, "personified-collage-poster", "a famous chef", {}, {}, "memelegend-lock-identity");
+assert(cleanLock.text.includes("[LOCK \u2014 Identity Lock"), "clean lock header present");
+assert(!cleanLock.text.includes("from hyperreal-meme-legend"), "clean lock header has no provenance");
 
 console.log("mix-core tests: ALL PASS (" + fillers.length + " fillers, " + bases.length + " bases)");

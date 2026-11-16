@@ -181,9 +181,17 @@
     <textarea id="mixOutput" readonly style="margin-top:10px;min-height:170px"></textarea>
     <div class="row" style="margin-top:10px">
       <button id="mixCopyBtn">📋 Copy mix</button>
+      <button id="mixCleanBtn">🧹 Clean copy for running</button>
       <button id="mixCardBtn">🃏 Copy recipe card</button>
       <button id="mixRenderBtn">🔤 C-block render</button>
     </div>
+    <details id="mixCleanBox" hidden>
+      <summary>🧹 Clean run copy — no bookkeeping (paste this into Gemini / GPT)</summary>
+      <textarea id="mixClean" readonly style="margin-top:10px;min-height:170px"></textarea>
+      <div class="row" style="margin-top:10px">
+        <button id="mixCleanCopyBtn">📋 Copy clean text</button>
+      </div>
+    </details>
     <details id="mixRenderBox" hidden>
       <summary>🔤 C-block render — gadgetify dialect (copy-only)</summary>
       <textarea id="mixRender" readonly style="margin-top:10px;min-height:170px"></textarea>
@@ -212,7 +220,7 @@
   </section>
 
   <footer>
-    Gadgetify Spinner <b>v2.1</b> · Kip's filed @Gdgtify prompt library — specimens live in <code>specimens/</code> in this repo.
+    Gadgetify Spinner <b>v2.2</b> · Kip's filed @Gdgtify prompt library — specimens live in <code>specimens/</code> in this repo.
   </footer>
 </main>
 
@@ -484,7 +492,8 @@ function mixPlan(fillers, baseId, picks, resolutions){
   }
   return { active, fights, demoted, unresolved, report, byId };
 }
-function mixComposeMix(fillers, baseId, subject, picks, resolutions, lockId){
+function mixComposeMix(fillers, baseId, subject, picks, resolutions, lockId, opts){
+  const clean=!!(opts&&opts.clean);
   const subj=(subject||"").trim()||"{{TOPIC}}";
   const active=mixActiveFillers(fillers, baseId, picks);
   const lock=lockId?fillers.find(f=>f.id===lockId&&f.slot==="Lock"):null;
@@ -495,9 +504,9 @@ function mixComposeMix(fillers, baseId, subject, picks, resolutions, lockId){
   const plan=mixPlan(fillers, baseId, picks, resolutions);
   const demoted=plan.demoted, unresolved=plan.unresolved, report=plan.report, fights=plan.fights;
   const lines=[];
-  if(unresolved) lines.push("\u26A0 DRAFT \u2014 "+unresolved+" unresolved fight(s). Do not use as a final prompt.", "");
+  if(unresolved&&!clean) lines.push("\u26A0 DRAFT \u2014 "+unresolved+" unresolved fight(s). Do not use as a final prompt.", "");
   if(lock){
-    lines.push("[LOCK \u2014 "+lock.name+" \u00B7 from "+lock.source+"]");
+    lines.push(clean?("[LOCK \u2014 "+lock.name+"]"):("[LOCK \u2014 "+lock.name+" \u00B7 from "+lock.source+"]"));
     for(const seg of lock.segments) lines.push(seg.text.split("{{TOPIC}}").join(subj));
     lines.push("");
   }
@@ -506,15 +515,21 @@ function mixComposeMix(fillers, baseId, subject, picks, resolutions, lockId){
     for(const f of active.filter(x=>x.slot===slot)){
       const segs=f.segments.filter(s=>!(demoted[f.id]&&demoted[f.id].has(s.property)));
       if(!segs.length){
-        lines.push("", "["+slot.toUpperCase()+" \u2014 "+f.name+" \u00B7 from "+f.source+" \u2014 fully demoted, contributes nothing]");
+        if(!clean) lines.push("", "["+slot.toUpperCase()+" \u2014 "+f.name+" \u00B7 from "+f.source+" \u2014 fully demoted, contributes nothing]");
         continue;
       }
-      lines.push("", "["+slot.toUpperCase()+" \u2014 "+f.name+" \u00B7 from "+f.source+"]");
+      lines.push("", clean?("["+slot.toUpperCase()+" \u2014 "+f.name+"]"):("["+slot.toUpperCase()+" \u2014 "+f.name+" \u00B7 from "+f.source+"]"));
       for(const seg of segs) lines.push(seg.text.split("{{TOPIC}}").join(subj));
     }
   }
-  if(report.length) lines.push("", "[FIGHT REPORT]", ...report);
+  if(report.length&&!clean) lines.push("", "[FIGHT REPORT]", ...report);
   return { text: lines.join("\n")+"\n", fights, unresolved, flags, lock: lock?lock.id:null };
+}
+// Clean run copy: the same mix with all Mixer bookkeeping removed — no
+// provenance attributions, no fully-demoted blocks, no fight report, no
+// DRAFT stamp. This is the text to paste into an image model.
+function mixCleanText(fillers, baseId, subject, picks, resolutions, lockId){
+  return mixComposeMix(fillers, baseId, subject, picks, resolutions, lockId, { clean:true });
 }
 function mixComposeText(fillers, baseId, subject, picks){
   return mixComposeMix(fillers, baseId, subject, picks, null, null).text;
@@ -773,6 +788,21 @@ $("mixSpinBtn").onclick=()=>{
   $("mixMsg").textContent=spun.clean
     ? "Spun a clean mix on "+specTitle(spun.base)+" \u2014 saved as a recipe."
     : "Spun a mix on "+specTitle(spun.base)+", but "+spun.fights.length+" fight(s) could not be re-rolled away \u2014 flagged above, and saved as a recipe.";
+};
+$("mixCleanBtn").onclick=async()=>{
+  const base=$("mixBaseSel").value; if(!base) return;
+  const r=mixCleanText(state.fillers, base, $("mixTopic").value, state.mixPicks, state.mixResolutions, state.mixLock||null);
+  $("mixClean").value=r.text;
+  $("mixCleanBox").hidden=false;
+  $("mixCleanBox").open=true;
+  try{ await navigator.clipboard.writeText(r.text); }catch(e){ /* box holds the text regardless */ }
+  $("mixMsg").textContent=r.unresolved
+    ? "Clean copy ready and copied \u2014 but note: "+r.unresolved+" fight(s) are still unresolved in this mix."
+    : "Clean copy ready and copied \u2014 no provenance, no demoted blocks, no fight report. Paste it into Gemini / GPT.";
+};
+$("mixCleanCopyBtn").onclick=async()=>{
+  try{ await navigator.clipboard.writeText($("mixClean").value); $("mixMsg").textContent="Clean copy copied."; }
+  catch(e){ $("mixClean").select(); document.execCommand("copy"); $("mixMsg").textContent="Copied."; }
 };
 $("mixRenderBtn").onclick=()=>{
   const base=$("mixBaseSel").value; if(!base) return;
