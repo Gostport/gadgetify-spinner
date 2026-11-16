@@ -83,6 +83,11 @@ specs, stubs). Bulk entries are adapter-bound and flagged as such in their
 `flaws`; they have not been hand-tested like the original sixteen.
 v1.0 — initial release: 16 hand-curated specimens.
 
+## Changelog
+
+- **v2.1** (Nov 16, 2026) — UI cleanup: footer changelog removed, Mixer slots are compact dropdowns with a one-line detail readout, Recipes and the C-block render live in collapsible sections, Spin History collapses too. No behaviour change.
+- **v2.0** (Nov 16, 2026) — the Slot Mixer (below).
+
 ## Mix mode (v2.0)
 
 Beside Spin, the page has a Mix mode: prompts dissected into **slot fillers**

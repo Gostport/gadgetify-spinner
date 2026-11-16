@@ -41,7 +41,7 @@
   details ul{margin:8px 0 4px;padding-left:20px;color:var(--dim)}
   .chips{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
   .chip{background:#31333f;border:1px solid var(--line);border-radius:99px;padding:7px 13px;font-size:.95rem}
-  textarea{width:100%;min-height:300px;background:#101116;border:1px solid var(--line);
+  textarea{width:100%;min-height:220px;background:#101116;border:1px solid var(--line);
     border-radius:10px;padding:12px;font-family:ui-monospace,Consolas,monospace;font-size:.88rem;line-height:1.5}
   .example{margin-top:14px}
   .example img{width:100%;border-radius:8px;border:1px solid var(--line);display:block}
@@ -54,17 +54,11 @@
   .empty{color:var(--dim)}
   footer{color:var(--dim);font-size:.85rem;margin-top:20px}
   .err{color:#ff9c9c}
-  .mixcols{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
-  .mixcol{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px}
-  .mixcol h3{margin:0 0 8px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
-  .fcard{display:block;width:100%;text-align:left;background:#31333f;border:1px solid var(--line);
-    border-radius:8px;padding:8px 10px;margin:0 0 6px;min-height:0;cursor:pointer}
-  .fcard:hover{border-color:var(--accent2)}
-  .fcard.sel{border-color:var(--accent);background:#3a3826}
-  .fcard .fname{font-weight:600;display:block}
-  .fcard .fsrc{color:var(--dim);font-size:.8rem;display:block}
-  .fcard .fclaims{color:var(--accent2);font-size:.72rem;display:block;margin-top:3px}
-  .fcard .freq{color:var(--accent);font-size:.75rem;display:block;margin-top:3px}
+  .slotgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px 14px}
+  .slotbox label{display:block;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+  .slotbox .sdetail{font-size:.8rem;color:var(--dim);margin-top:3px}
+  .slotbox .sdetail .fclaims{color:var(--accent2)}
+  .slotbox .sdetail .freq{color:var(--accent)}
   .fightbox{background:#3a2626;border:1px solid #a5544f;border-radius:10px;padding:10px 12px;margin-bottom:10px}
   .fightbox.resolved{background:#26362a;border-color:#4f7a55}
   .fightbox .frow{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
@@ -74,7 +68,7 @@
 <body>
 <main>
   <h1>🎲 Gadgetify Spinner</h1>
-  <p class="sub">Spin a random gadgetify engine. The page rolls the dice for real, binds your topic, and hands you a finished prompt.</p>
+  <p class="sub">Spin a random gadgetify engine — or mix parts from several in 🧩 Mix mode.</p>
 
   <div class="row" style="margin:0 0 14px">
     <button id="modeSpinBtn" class="primary" style="width:auto">🎲 Spin mode</button>
@@ -157,25 +151,25 @@
   </section>
 
   <section>
-    <h2>Spin History</h2>
-    <div id="history"></div>
-    <div class="row" style="margin-top:10px">
-      <button class="small" id="exportHist">Export history .md</button>
-      <button class="small" id="clearHist">Clear history</button>
-    </div>
+    <details id="histBox">
+      <summary>Spin History</summary>
+      <div id="history"></div>
+      <div class="row" style="margin-top:10px">
+        <button class="small" id="exportHist">Export history .md</button>
+        <button class="small" id="clearHist">Clear history</button>
+      </div>
+    </details>
   </section>
 
   <section id="mixPanel" hidden>
     <h2>🧩 Mixer</h2>
-    <p class="hint">Pick a Base prompt, then swap individual slots (face, lettering, palette…) from other prompts using the columns below. Fights between parts are flagged for you to settle; save any mix as a Recipe, or render it in gadgetify's C-block dialect.</p>
+    <p class="hint">Pick a Base, type a subject, then swap any slot from the dropdowns. Fights are flagged for you to settle.</p>
     <div class="row">
       <select id="mixBaseSel" aria-label="Base specimen"></select>
+      <select id="mixLockSel" aria-label="Identity lock (optional)"></select>
     </div>
     <div class="row" style="margin-top:10px">
       <input type="text" id="mixTopic" placeholder="Subject for the mix — e.g. robot">
-    </div>
-    <div class="row" style="margin-top:10px">
-      <select id="mixLockSel" aria-label="Identity lock (optional)"></select>
     </div>
     <div id="mixFlags" style="margin-top:12px"></div>
     <div id="mixFights" style="margin-top:12px"></div>
@@ -184,38 +178,41 @@
       <button class="primary" id="mixComposeBtn">Compose mix</button>
       <button id="mixSpinBtn" style="width:auto">🎲 Spin a Mix</button>
     </div>
-    <textarea id="mixOutput" readonly style="margin-top:10px"></textarea>
+    <textarea id="mixOutput" readonly style="margin-top:10px;min-height:170px"></textarea>
     <div class="row" style="margin-top:10px">
       <button id="mixCopyBtn">📋 Copy mix</button>
       <button id="mixCardBtn">🃏 Copy recipe card</button>
-      <button id="mixRenderBtn">🔤 Render in gadgetify C-block</button>
+      <button id="mixRenderBtn">🔤 C-block render</button>
     </div>
-    <div id="mixRenderBox" hidden>
-      <textarea id="mixRender" readonly style="margin-top:10px"></textarea>
+    <details id="mixRenderBox" hidden>
+      <summary>🔤 C-block render — gadgetify dialect (copy-only)</summary>
+      <textarea id="mixRender" readonly style="margin-top:10px;min-height:170px"></textarea>
       <div class="row" style="margin-top:10px">
         <button id="mixRenderCopyBtn">📋 Copy C-block render</button>
       </div>
-    </div>
-    <div class="row" style="margin-top:10px">
-      <input type="text" id="mixRecipeName" placeholder="Recipe name — e.g. ROBOT mix">
-      <button class="narrow" id="mixSaveBtn">💾 Save recipe</button>
-    </div>
-    <div class="row" style="margin-top:10px">
-      <select id="mixRecipeSel" aria-label="Saved recipes"></select>
-      <button class="narrow" id="mixLoadBtn">Load</button>
-      <button class="narrow" id="mixDelBtn">Delete</button>
-    </div>
-    <div class="row" style="margin-top:10px">
-      <button id="mixExportBtn">⬇ Export recipe JSON</button>
-      <button id="mixImportBtn">⬆ Import recipe JSON</button>
-      <input type="file" id="mixImportFile" accept=".json,application/json" hidden>
-    </div>
+    </details>
+    <details id="mixRecipesBox">
+      <summary>🃏 Recipes — save, load, export, import</summary>
+      <div class="row" style="margin-top:10px">
+        <input type="text" id="mixRecipeName" placeholder="Recipe name — e.g. ROBOT mix">
+        <button class="narrow" id="mixSaveBtn">💾 Save recipe</button>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <select id="mixRecipeSel" aria-label="Saved recipes"></select>
+        <button class="narrow" id="mixLoadBtn">Load</button>
+        <button class="narrow" id="mixDelBtn">Delete</button>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <button id="mixExportBtn">⬇ Export recipe JSON</button>
+        <button id="mixImportBtn">⬆ Import recipe JSON</button>
+        <input type="file" id="mixImportFile" accept=".json,application/json" hidden>
+      </div>
+    </details>
     <p class="hint" id="mixMsg"></p>
   </section>
 
   <footer>
-    Gadgetify Spinner <b>v2.0</b> — changelog: v2.0 the Slot Mixer — a second mode beside Spin: 18 prompts dissected into 86 slot fillers (fillers.json), graphical mix-and-match by slot with fight detection and demotion, an Identity Lock layer, recipes (save / JSON export-import / postable card), a gadgetify C-block dialect render, and Spin a Mix. Spin mode is byte-for-byte the v1.5 behaviour. v1.5 examples — prompts can carry example runs: select a prompt that has one on file and its image appears in the Engine section with the exact params used (topic, format, model, date). Ten to start, all from Kip's Gemini spins on Nov 5, 2026; the data lives in examples.json and the images are hosted on ibid-make (this repo's push path is text-only). v1.4 prompt finder — the engine list is now alphabetical (A–Z) and searchable: type in the search box above the list to filter the prompts by name; Enter loads the first match. v1.3 data massage — baked-in format directives (grid/aspect lines like "2x2 grid, 16:9") and gadgetify's own run topics in "do this for …" lead clauses stripped from the templates: the Format controls above own the dimensions now, and your input is the only topic a prompt carries. v1.2 input guidance — every engine now says what it actually wants (its original slot: a word, a dish, a city, a figure…), with an example, and the dice roll from a bank that matches the slot instead of one generic topic bank. v1.1 bulk ingest from the TwExport pool (174 engines: the hand-tested 16 + 158 adapter-bound from gadgetify's posts). v1.0 initial release (16 engines, real dice for pool draws, shuffle-bag spins, local history).<br>
-    Specimens live in <code>specimens/</code> in this repo; the library grows by adding a file + one manifest line.
+    Gadgetify Spinner <b>v2.1</b> · Kip's filed @Gdgtify prompt library — specimens live in <code>specimens/</code> in this repo.
   </footer>
 </main>
 
@@ -658,28 +655,32 @@ function buildMixColumns(){
   const wrap=$("mixSlots"); if(!wrap||!state.fillers.length) return;
   const base=$("mixBaseSel").value;
   wrap.innerHTML="";
-  const grid=document.createElement("div"); grid.className="mixcols";
+  const grid=document.createElement("div"); grid.className="slotgrid";
   for(const slot of MIX_SLOTS){
-    const col=document.createElement("div"); col.className="mixcol";
-    const h=document.createElement("h3"); h.textContent=slot; col.appendChild(h);
+    const box=document.createElement("div"); box.className="slotbox";
+    const lab=document.createElement("label"); lab.textContent=slot; lab.htmlFor="mixslot-"+slot; box.appendChild(lab);
     const baseFillers=state.fillers.filter(f=>f.source===base&&f.slot===slot);
-    const inh=document.createElement("button"); inh.className="fcard"+(!state.mixPicks[slot]?" sel":"");
-    inh.innerHTML='<span class="fname">\u21A9 Inherit from Base</span><span class="fsrc">'+
-      (baseFillers.length?baseFillers.map(f=>f.name).join("; "):"Base has nothing here")+"</span>";
-    inh.onclick=()=>{ delete state.mixPicks[slot]; buildMixColumns(); mixCompose(); };
-    col.appendChild(inh);
+    const sel=document.createElement("select"); sel.id="mixslot-"+slot; sel.setAttribute("aria-label", slot+" filler");
+    const o0=document.createElement("option"); o0.value="";
+    o0.textContent="\u21A9 Base: "+(baseFillers.length?baseFillers.map(f=>f.name).join("; "):"\u2014 nothing \u2014");
+    sel.appendChild(o0);
     mixFillersForSlot(state.fillers, slot).forEach(f=>{
-      const c=document.createElement("button");
-      c.className="fcard"+(state.mixPicks[slot]===f.id?" sel":"");
-      let inner='<span class="fname">'+f.name+(f.provenance==="derivative"?' <span class="badge">derivative</span>':"")+'</span>'+
-        '<span class="fsrc">from '+specTitle(f.source)+"</span>"+
-        '<span class="fclaims">claims: '+f.claims.join(", ")+"</span>";
-      if(f.requires&&f.requires.length) inner+='<span class="freq">\u26A0 needs: '+f.requires.join("; ")+"</span>";
-      c.innerHTML=inner;
-      c.onclick=()=>{ state.mixPicks[slot]=f.id; buildMixColumns(); mixCompose(); };
-      col.appendChild(c);
+      const o=document.createElement("option"); o.value=f.id;
+      o.textContent=f.name+" \u00B7 "+specTitle(f.source)+(f.provenance==="derivative"?" (derivative)":"");
+      sel.appendChild(o);
     });
-    grid.appendChild(col);
+    sel.value=state.mixPicks[slot]||"";
+    if(sel.value!==((state.mixPicks[slot]||""))) sel.value="";
+    sel.onchange=()=>{ if(sel.value) state.mixPicks[slot]=sel.value; else delete state.mixPicks[slot]; buildMixColumns(); mixCompose(); };
+    box.appendChild(sel);
+    const det=document.createElement("div"); det.className="sdetail";
+    const active=state.mixPicks[slot]?state.fillers.find(f=>f.id===state.mixPicks[slot]):baseFillers[0];
+    if(active){
+      det.innerHTML=(state.mixPicks[slot]?"":'from Base \u00B7 ')+'<span class="fclaims">claims: '+active.claims.join(", ")+"</span>"+
+        (active.requires&&active.requires.length?' <span class="freq">\u26A0 needs: '+active.requires.join("; ")+"</span>":"");
+    } else det.textContent="Empty in this mix.";
+    box.appendChild(det);
+    grid.appendChild(box);
   }
   wrap.appendChild(grid);
 }
@@ -778,6 +779,7 @@ $("mixRenderBtn").onclick=()=>{
   const r=mixRenderCBlock(state.fillers, base, $("mixTopic").value, state.mixPicks, state.mixResolutions, state.mixLock||null);
   $("mixRender").value=r.text;
   $("mixRenderBox").hidden=false;
+  $("mixRenderBox").open=true;
   $("mixMsg").textContent=r.unresolved?("Rendered as a DRAFT — "+r.unresolved+" fight(s) still unresolved."):"Rendered in gadgetify's C-block dialect. The canonical mix above stays the editable source.";
 };
 $("mixRenderCopyBtn").onclick=async()=>{
