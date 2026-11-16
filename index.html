@@ -171,6 +171,7 @@
     <div class="row" style="margin-top:10px">
       <input type="text" id="mixTopic" placeholder="Subject for the mix — e.g. robot">
     </div>
+    <div id="mixAdvice" style="margin-top:10px"></div>
     <div id="mixFlags" style="margin-top:12px"></div>
     <div id="mixFights" style="margin-top:12px"></div>
     <div id="mixSlots" style="margin-top:12px"></div>
@@ -220,7 +221,7 @@
   </section>
 
   <footer>
-    Gadgetify Spinner <b>v2.2</b> · Kip's filed @Gdgtify prompt library — specimens live in <code>specimens/</code> in this repo.
+    Gadgetify Spinner <b>v2.3</b> · Kip's filed @Gdgtify prompt library — specimens live in <code>specimens/</code> in this repo.
   </footer>
 </main>
 
@@ -652,6 +653,50 @@ function mixSpinMix(fillers, rng){
   const fights=mixDetectFights(active);
   return { base, picks, fights, clean: fights.length===0 };
 }
+// Subject advice — read the mix's own requirements and say what kind of
+// subject it wants, with concrete topics to try. Priority: the Lock's source
+// first (strongest constraint), then the identity-bearing slots (Character,
+// Lettering, Face), then every source; a specific want (a word, a figure, an
+// event…) beats a generic "any topic". Suggestions come from the topic banks.
+const ADVICE_BANK_FALLBACK={ figure:"person", header:null, topic:null };
+const ADVICE_SLOT_PRIORITY=["Character","Lettering","Face","Costume","Pose","Composition","Presentation","Surface","Palette","Background","Format"];
+function mixSubjectAdvice(fillers, wantsBySource, banks, baseId, picks, lockId){
+  const active=mixActiveFillers(fillers, baseId, picks);
+  const lock=lockId?fillers.find(f=>f.id===lockId&&f.slot==="Lock"):null;
+  const needs=[];
+  for(const f of (lock?[lock,...active]:active))
+    for(const r of (f.requires||[])) if(!needs.includes(r)) needs.push(r);
+  const wantOf=src=>wantsBySource?wantsBySource[src]:null;
+  let chosen=null, chosenFrom=null;
+  const consider=(w, from)=>{ if(w&&w.label&&!chosen){ chosen=w; chosenFrom=from; } };
+  if(lock) consider(wantOf(lock.source), "the Lock");
+  if(!chosen){
+    // explicit picks outrank inherited parts; then slot priority order
+    for(const pickedOnly of [true, false]){
+      for(const slot of ADVICE_SLOT_PRIORITY){
+        const f=active.find(x=>x.slot===slot);
+        if(!f) continue;
+        if(pickedOnly!==!!(picks&&picks[slot]===f.id)) continue;
+        const w=wantOf(f.source);
+        if(w&&w.bank&&w.bank!=="topic"&&w.bank!=="header"){ consider(w, "the "+slot+" part"); break; }
+      }
+      if(chosen) break;
+    }
+  }
+  if(!chosen){
+    // no specific want anywhere: fall back to the base's own want
+    consider(wantOf(baseId), "the Base");
+    for(const f of active){ if(chosen) break; consider(wantOf(f.source), "the "+f.slot+" part"); }
+  }
+  let bank=chosen?(ADVICE_BANK_FALLBACK.hasOwnProperty(chosen.bank)?ADVICE_BANK_FALLBACK[chosen.bank]:chosen.bank):null;
+  let topics=[];
+  if(bank&&banks&&banks[bank]) topics=[...banks[bank]];
+  if(!topics.length&&banks){
+    for(const b of ["event","concept","person","work"]) if(banks[b]) topics.push(...banks[b].slice(0,3));
+  }
+  return { label: chosen?chosen.label:"any topic with enough substance to fill the parts",
+    bank, from: chosenFrom, needs, topics };
+}
 // == END MIX CORE ==
 
 function buildMixBases(){
@@ -759,7 +804,37 @@ function mixCompose(){
   $("mixOutput").value=result.text;
   renderMixFights(result);
   renderMixFlags(result);
+  renderMixAdvice();
   return result.text;
+}
+function renderMixAdvice(){
+  const box=$("mixAdvice"); if(!box||!state.fillers.length) return;
+  const base=$("mixBaseSel").value; if(!base){ box.innerHTML=""; return; }
+  const wants={}; state.manifest.specimens.forEach(s=>{ wants[s.id]=s.wants; });
+  const adv=mixSubjectAdvice(state.fillers, wants, state.banks, base, state.mixPicks, state.mixLock||null);
+  box.innerHTML="";
+  const p=document.createElement("p"); p.className="want"; p.style.margin="0";
+  p.textContent="\uD83D\uDCA1 Best subject for this mix: "+adv.label+(adv.from?" (per "+adv.from+")":"");
+  box.appendChild(p);
+  if(adv.needs.length){
+    const n=document.createElement("p"); n.className="hint";
+    n.textContent="Hard needs: "+adv.needs.join("; ");
+    box.appendChild(n);
+  }
+  if(adv.topics.length){
+    const row=document.createElement("div"); row.className="chips";
+    const picks=[...adv.topics];
+    for(let i=picks.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [picks[i],picks[j]]=[picks[j],picks[i]]; }
+    picks.slice(0,6).forEach(t=>{
+      const c=document.createElement("button"); c.className="chip"; c.textContent=t;
+      c.onclick=()=>{ $("mixTopic").value=t; mixCompose(); };
+      row.appendChild(c);
+    });
+    const more=document.createElement("button"); more.className="chip"; more.textContent="\uD83C\uDFB2 more ideas";
+    more.onclick=()=>renderMixAdvice();
+    row.appendChild(more);
+    box.appendChild(row);
+  }
 }
 $("modeSpinBtn").onclick=()=>setMode("spin");
 $("modeMixBtn").onclick=()=>setMode("mix");

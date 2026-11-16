@@ -6,9 +6,12 @@ import assert from "node:assert";
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
 const m = html.match(/\/\/ == MIX CORE[\s\S]*?\/\/ == END MIX CORE ==/);
 assert(m, "MIX CORE block not found in index.html");
-const { MIX_SLOTS, mixBases, mixComposeText, mixFillersForSlot, mixActiveFillers, mixDetectFights, mixComposeMix, mixFightKey, mixLocks, mixMakeRecipe, mixApplyRecipe, mixRecipeCard, mixRenderCBlock, mixSpinMix, mixCleanText } = new Function(
-  m[0] + "\nreturn { MIX_SLOTS, mixBases, mixComposeText, mixFillersForSlot, mixActiveFillers, mixDetectFights, mixComposeMix, mixFightKey, mixLocks, mixMakeRecipe, mixApplyRecipe, mixRecipeCard, mixRenderCBlock, mixSpinMix, mixCleanText };"
+const { MIX_SLOTS, mixBases, mixComposeText, mixFillersForSlot, mixActiveFillers, mixDetectFights, mixComposeMix, mixFightKey, mixLocks, mixMakeRecipe, mixApplyRecipe, mixRecipeCard, mixRenderCBlock, mixSpinMix, mixCleanText, mixSubjectAdvice } = new Function(
+  m[0] + "\nreturn { MIX_SLOTS, mixBases, mixComposeText, mixFillersForSlot, mixActiveFillers, mixDetectFights, mixComposeMix, mixFightKey, mixLocks, mixMakeRecipe, mixApplyRecipe, mixRecipeCard, mixRenderCBlock, mixSpinMix, mixCleanText, mixSubjectAdvice };"
 )();
+const banksData = JSON.parse(readFileSync(new URL("../banks.json", import.meta.url), "utf8")).banks;
+const manifestData = JSON.parse(readFileSync(new URL("../manifest.json", import.meta.url), "utf8"));
+const wantsMap = {}; manifestData.specimens.forEach(s => { wantsMap[s.id] = s.wants; });
 
 const data = JSON.parse(readFileSync(new URL("../fillers.json", import.meta.url), "utf8"));
 const fillers = data.fillers;
@@ -226,5 +229,25 @@ assert(tinyClean.text.includes("Alpha page is the world."), "the winner's conten
 const cleanLock = mixCleanText(fillers, "personified-collage-poster", "a famous chef", {}, {}, "memelegend-lock-identity");
 assert(cleanLock.text.includes("[LOCK \u2014 Identity Lock"), "clean lock header present");
 assert(!cleanLock.text.includes("from hyperreal-meme-legend"), "clean lock header has no provenance");
+
+// 26. v2.3 — advice: a wordmark Lettering pick makes the mix want a word
+const advWord = mixSubjectAdvice(fillers, wantsMap, banksData, "op-art-ribbons", { Lettering: "wordmark-lettering" }, null);
+assert(advWord.bank === "word", "wordmark mix wants the word bank (got " + advWord.bank + ")");
+assert(advWord.label.includes("single word"), "advice names the kind: a single word");
+assert(advWord.topics.includes("entropy"), "word suggestions come from the word bank");
+
+// 27. v2.3 — advice: the Lock outranks everything (likeness → a public figure)
+const advLock = mixSubjectAdvice(fillers, wantsMap, banksData, "personified-collage-poster", {}, "memelegend-lock-identity");
+assert(advLock.from === "the Lock", "lock drives the advice");
+assert(advLock.label.includes("public figure"), "advice wants a public figure");
+assert(advLock.topics.length && advLock.bank === "person", "figure bank falls back to person topics");
+assert(advLock.needs.some(n => n.includes("specific person")), "hard needs surface in the advice");
+
+// 28. v2.3 — advice: hard needs from ordinary fillers are listed too
+const advFace = mixSubjectAdvice(fillers, wantsMap, banksData, "personified-collage-poster", {}, null);
+assert(advFace.needs.some(n => n.includes("front-facing")), "face requirement listed as a hard need");
+
+// 29. v2.3 — advice: an all-generic mix still gets usable suggestions
+assert(advFace.topics.length >= 6, "generic mix gets blended topic suggestions");
 
 console.log("mix-core tests: ALL PASS (" + fillers.length + " fillers, " + bases.length + " bases)");
