@@ -54,12 +54,32 @@
   .empty{color:var(--dim)}
   footer{color:var(--dim);font-size:.85rem;margin-top:20px}
   .err{color:#ff9c9c}
+  .mixcols{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+  .mixcol{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px}
+  .mixcol h3{margin:0 0 8px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+  .fcard{display:block;width:100%;text-align:left;background:#31333f;border:1px solid var(--line);
+    border-radius:8px;padding:8px 10px;margin:0 0 6px;min-height:0;cursor:pointer}
+  .fcard:hover{border-color:var(--accent2)}
+  .fcard.sel{border-color:var(--accent);background:#3a3826}
+  .fcard .fname{font-weight:600;display:block}
+  .fcard .fsrc{color:var(--dim);font-size:.8rem;display:block}
+  .fcard .fclaims{color:var(--accent2);font-size:.72rem;display:block;margin-top:3px}
+  .fcard .freq{color:var(--accent);font-size:.75rem;display:block;margin-top:3px}
+  .fightbox{background:#3a2626;border:1px solid #a5544f;border-radius:10px;padding:10px 12px;margin-bottom:10px}
+  .fightbox.resolved{background:#26362a;border-color:#4f7a55}
+  .fightbox .frow{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .fightbox button{min-height:40px;padding:8px 12px}
 </style>
 </head>
 <body>
 <main>
   <h1>🎲 Gadgetify Spinner</h1>
   <p class="sub">Spin a random gadgetify engine. The page rolls the dice for real, binds your topic, and hands you a finished prompt.</p>
+
+  <div class="row" style="margin:0 0 14px">
+    <button id="modeSpinBtn" class="primary" style="width:auto">🎲 Spin mode</button>
+    <button id="modeMixBtn" style="width:auto">🧩 Mix mode</button>
+  </div>
 
   <section>
     <h2>1 · Engine</h2>
@@ -145,8 +165,56 @@
     </div>
   </section>
 
+  <section id="mixPanel" hidden>
+    <h2>🧩 Mixer</h2>
+    <p class="hint">Pick a Base prompt, then swap individual slots (face, lettering, palette…) from other prompts using the columns below. Fights between parts are flagged for you to settle; save any mix as a Recipe, or render it in gadgetify's C-block dialect.</p>
+    <div class="row">
+      <select id="mixBaseSel" aria-label="Base specimen"></select>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <input type="text" id="mixTopic" placeholder="Subject for the mix — e.g. robot">
+    </div>
+    <div class="row" style="margin-top:10px">
+      <select id="mixLockSel" aria-label="Identity lock (optional)"></select>
+    </div>
+    <div id="mixFlags" style="margin-top:12px"></div>
+    <div id="mixFights" style="margin-top:12px"></div>
+    <div id="mixSlots" style="margin-top:12px"></div>
+    <div class="row" style="margin-top:10px">
+      <button class="primary" id="mixComposeBtn">Compose mix</button>
+      <button id="mixSpinBtn" style="width:auto">🎲 Spin a Mix</button>
+    </div>
+    <textarea id="mixOutput" readonly style="margin-top:10px"></textarea>
+    <div class="row" style="margin-top:10px">
+      <button id="mixCopyBtn">📋 Copy mix</button>
+      <button id="mixCardBtn">🃏 Copy recipe card</button>
+      <button id="mixRenderBtn">🔤 Render in gadgetify C-block</button>
+    </div>
+    <div id="mixRenderBox" hidden>
+      <textarea id="mixRender" readonly style="margin-top:10px"></textarea>
+      <div class="row" style="margin-top:10px">
+        <button id="mixRenderCopyBtn">📋 Copy C-block render</button>
+      </div>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <input type="text" id="mixRecipeName" placeholder="Recipe name — e.g. ROBOT mix">
+      <button class="narrow" id="mixSaveBtn">💾 Save recipe</button>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <select id="mixRecipeSel" aria-label="Saved recipes"></select>
+      <button class="narrow" id="mixLoadBtn">Load</button>
+      <button class="narrow" id="mixDelBtn">Delete</button>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <button id="mixExportBtn">⬇ Export recipe JSON</button>
+      <button id="mixImportBtn">⬆ Import recipe JSON</button>
+      <input type="file" id="mixImportFile" accept=".json,application/json" hidden>
+    </div>
+    <p class="hint" id="mixMsg"></p>
+  </section>
+
   <footer>
-    Gadgetify Spinner <b>v1.5</b> — changelog: v1.5 examples — prompts can carry example runs: select a prompt that has one on file and its image appears in the Engine section with the exact params used (topic, format, model, date). Ten to start, all from Kip's Gemini spins on Nov 5, 2026; the data lives in examples.json and the images are hosted on ibid-make (this repo's push path is text-only). v1.4 prompt finder — the engine list is now alphabetical (A–Z) and searchable: type in the search box above the list to filter the prompts by name; Enter loads the first match. v1.3 data massage — baked-in format directives (grid/aspect lines like "2x2 grid, 16:9") and gadgetify's own run topics in "do this for …" lead clauses stripped from the templates: the Format controls above own the dimensions now, and your input is the only topic a prompt carries. v1.2 input guidance — every engine now says what it actually wants (its original slot: a word, a dish, a city, a figure…), with an example, and the dice roll from a bank that matches the slot instead of one generic topic bank. v1.1 bulk ingest from the TwExport pool (174 engines: the hand-tested 16 + 158 adapter-bound from gadgetify's posts). v1.0 initial release (16 engines, real dice for pool draws, shuffle-bag spins, local history).<br>
+    Gadgetify Spinner <b>v2.0</b> — changelog: v2.0 the Slot Mixer — a second mode beside Spin: 18 prompts dissected into 86 slot fillers (fillers.json), graphical mix-and-match by slot with fight detection and demotion, an Identity Lock layer, recipes (save / JSON export-import / postable card), a gadgetify C-block dialect render, and Spin a Mix. Spin mode is byte-for-byte the v1.5 behaviour. v1.5 examples — prompts can carry example runs: select a prompt that has one on file and its image appears in the Engine section with the exact params used (topic, format, model, date). Ten to start, all from Kip's Gemini spins on Nov 5, 2026; the data lives in examples.json and the images are hosted on ibid-make (this repo's push path is text-only). v1.4 prompt finder — the engine list is now alphabetical (A–Z) and searchable: type in the search box above the list to filter the prompts by name; Enter loads the first match. v1.3 data massage — baked-in format directives (grid/aspect lines like "2x2 grid, 16:9") and gadgetify's own run topics in "do this for …" lead clauses stripped from the templates: the Format controls above own the dimensions now, and your input is the only topic a prompt carries. v1.2 input guidance — every engine now says what it actually wants (its original slot: a word, a dish, a city, a figure…), with an example, and the dice roll from a bank that matches the slot instead of one generic topic bank. v1.1 bulk ingest from the TwExport pool (174 engines: the hand-tested 16 + 158 adapter-bound from gadgetify's posts). v1.0 initial release (16 engines, real dice for pool draws, shuffle-bag spins, local history).<br>
     Specimens live in <code>specimens/</code> in this repo; the library grows by adding a file + one manifest line.
   </footer>
 </main>
@@ -156,7 +224,7 @@
 const $ = id => document.getElementById(id);
 const state = {
   manifest:null, topics:null, banks:null, current:null, template:"",
-  rolls:{}, extras:{}, bag:[], lastTopic:"", examples:{}
+  rolls:{}, extras:{}, bag:[], lastTopic:"", examples:{}, fillers:[], mixPicks:{}, mixResolutions:{}, mixLock:""
 };
 const LS_BAG="gs_bag_v1", LS_HIST="gs_history_v1";
 
@@ -178,13 +246,18 @@ function pick(a){return a[Math.floor(Math.random()*a.length)];}
 
 async function load(){
   try{
-    const [m,t,b,e]=await Promise.all([
+    const [m,t,b,e,fl]=await Promise.all([
       fetch("manifest.json").then(r=>r.json()),
       fetch("topics.json").then(r=>r.json()),
       fetch("banks.json").then(r=>r.json()).catch(()=>({banks:{}})),
-      fetch("examples.json").then(r=>r.json()).catch(()=>({examples:{}}))
+      fetch("examples.json").then(r=>r.json()).catch(()=>({examples:{}})),
+      fetch("fillers.json").then(r=>r.json()).catch(()=>({fillers:[]}))
     ]);
     state.manifest=m; state.topics=t; state.banks=b.banks||{}; state.examples=e.examples||{};
+    state.fillers=fl.fillers||[];
+    buildMixBases();
+    buildMixLocks();
+    renderRecipeList();
     buildSpecList();
     const cat=$("topicCat");
     cat.innerHTML='<option value="">All categories</option>'+Object.keys(t.categories).map(c=>`<option>${c}</option>`).join("");
@@ -357,6 +430,426 @@ function download(name,text){
   a.href=URL.createObjectURL(new Blob([text],{type:"text/markdown"}));
   a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),2000);
 }
+
+// == MIX CORE (pure — tested at the seam) ==
+const MIX_SLOTS=["Character","Face","Costume","Pose","Lettering","Palette","Surface","Composition","Background","Presentation","Format"];
+function mixBases(fillers){ return [...new Set(fillers.filter(f=>f.slot!=="Lock").map(f=>f.source))]; }
+function mixLocks(fillers){ return fillers.filter(f=>f.slot==="Lock"); }
+function mixFillersForSlot(fillers, slot){ return fillers.filter(f=>f.slot===slot); }
+function mixActiveFillers(fillers, baseId, picks){
+  const mine=fillers.filter(f=>f.source===baseId);
+  const active=[];
+  for(const slot of MIX_SLOTS){
+    let chosen=null;
+    if(picks&&picks[slot]) chosen=fillers.filter(f=>f.id===picks[slot]);
+    if(!chosen||!chosen.length) chosen=mine.filter(x=>x.slot===slot);
+    for(const f of chosen) active.push(f);
+  }
+  return active;
+}
+function mixFightKey(property, aId, bId){ return property+"|"+[aId,bId].sort().join("|"); }
+// A fight fires only between fillers from DIFFERENT sources: a specimen's own
+// fillers were authored to coexist, so same-source claim overlap is by design.
+function mixDetectFights(active){
+  const fights=[];
+  for(let i=0;i<active.length;i++) for(let j=i+1;j<active.length;j++){
+    const a=active[i], b=active[j];
+    if(a.source===b.source) continue;
+    for(const prop of a.claims){
+      if(b.claims.includes(prop)) fights.push({property:prop, a:a.id, b:b.id, key:mixFightKey(prop,a.id,b.id)});
+    }
+  }
+  return fights;
+}
+function mixPlan(fillers, baseId, picks, resolutions){
+  const active=mixActiveFillers(fillers, baseId, picks);
+  const fights=mixDetectFights(active);
+  const byId={}; fillers.forEach(f=>{ byId[f.id]=f; });
+  const demoted={}; // fillerId -> Set of properties whose segments are removed
+  let unresolved=0;
+  const report=[];
+  for(const fight of fights){
+    const winnerId=resolutions?resolutions[fight.key]:null;
+    const fa=byId[fight.a], fb=byId[fight.b];
+    if(winnerId&&(winnerId===fight.a||winnerId===fight.b)){
+      const loserId=winnerId===fight.a?fight.b:fight.a;
+      if(!demoted[loserId]) demoted[loserId]=new Set();
+      demoted[loserId].add(fight.property);
+      const loser=byId[loserId];
+      const removed=loser.segments.filter(s=>s.property===fight.property).length;
+      report.push("FIGHT over "+fight.property+": "+byId[winnerId].name+" (from "+byId[winnerId].source+
+        ") wins; "+loser.name+" (from "+loser.source+") demoted \u2014 "+removed+" segment(s) removed.");
+    }else{
+      unresolved++;
+      report.push("FIGHT over "+fight.property+": "+fa.name+" (from "+fa.source+") vs "+fb.name+
+        " (from "+fb.source+") \u2014 UNRESOLVED. Pick a winner before using this mix.");
+    }
+  }
+  return { active, fights, demoted, unresolved, report, byId };
+}
+function mixComposeMix(fillers, baseId, subject, picks, resolutions, lockId){
+  const subj=(subject||"").trim()||"{{TOPIC}}";
+  const active=mixActiveFillers(fillers, baseId, picks);
+  const lock=lockId?fillers.find(f=>f.id===lockId&&f.slot==="Lock"):null;
+  const flags=[];
+  for(const f of (lock?[lock,...active]:active)){
+    for(const r of (f.requires||[])) flags.push({filler:f.name, source:f.source, requirement:r});
+  }
+  const plan=mixPlan(fillers, baseId, picks, resolutions);
+  const demoted=plan.demoted, unresolved=plan.unresolved, report=plan.report, fights=plan.fights;
+  const lines=[];
+  if(unresolved) lines.push("\u26A0 DRAFT \u2014 "+unresolved+" unresolved fight(s). Do not use as a final prompt.", "");
+  if(lock){
+    lines.push("[LOCK \u2014 "+lock.name+" \u00B7 from "+lock.source+"]");
+    for(const seg of lock.segments) lines.push(seg.text.split("{{TOPIC}}").join(subj));
+    lines.push("");
+  }
+  lines.push("SUBJECT: "+subj);
+  for(const slot of MIX_SLOTS){
+    for(const f of active.filter(x=>x.slot===slot)){
+      const segs=f.segments.filter(s=>!(demoted[f.id]&&demoted[f.id].has(s.property)));
+      if(!segs.length){
+        lines.push("", "["+slot.toUpperCase()+" \u2014 "+f.name+" \u00B7 from "+f.source+" \u2014 fully demoted, contributes nothing]");
+        continue;
+      }
+      lines.push("", "["+slot.toUpperCase()+" \u2014 "+f.name+" \u00B7 from "+f.source+"]");
+      for(const seg of segs) lines.push(seg.text.split("{{TOPIC}}").join(subj));
+    }
+  }
+  if(report.length) lines.push("", "[FIGHT REPORT]", ...report);
+  return { text: lines.join("\n")+"\n", fights, unresolved, flags, lock: lock?lock.id:null };
+}
+function mixComposeText(fillers, baseId, subject, picks){
+  return mixComposeMix(fillers, baseId, subject, picks, null, null).text;
+}
+function mixMakeRecipe(fillers, baseId, subject, picks, resolutions, lockId){
+  const active=mixActiveFillers(fillers, baseId, picks||{});
+  const weights={};
+  for(const f of active) weights[f.id]=f.weight||100;
+  if(lockId) { const lk=fillers.find(f=>f.id===lockId); if(lk) weights[lk.id]=lk.weight||100; }
+  return { kind:"spinner-recipe", version:1, base:baseId, subject:(subject||"").trim(),
+    lock:lockId||null, picks:{...(picks||{})}, resolutions:{...(resolutions||{})}, weights };
+}
+function mixApplyRecipe(fillers, recipe){
+  if(!recipe||recipe.kind!=="spinner-recipe") return null;
+  if(!mixBases(fillers).includes(recipe.base)) return null;
+  const known=new Set(fillers.map(f=>f.id));
+  const picks={};
+  for(const [slot,id] of Object.entries(recipe.picks||{})){
+    if(MIX_SLOTS.includes(slot)&&known.has(id)) picks[slot]=id;
+  }
+  const resolutions={};
+  for(const [k,v] of Object.entries(recipe.resolutions||{})){
+    if(known.has(v)) resolutions[k]=v;
+  }
+  const lock=(recipe.lock&&known.has(recipe.lock))?recipe.lock:null;
+  return { base:recipe.base, subject:recipe.subject||"", picks, resolutions, lock };
+}
+function mixRecipeCard(fillers, recipe, titles){
+  const byId={}; fillers.forEach(f=>{ byId[f.id]=f; });
+  const title=id=>(titles&&titles[id])||id;
+  const active=mixActiveFillers(fillers, recipe.base, recipe.picks||{});
+  const lines=["RECIPE \u2014 "+(recipe.subject||"(no subject)")+" \u00B7 base: "+title(recipe.base)];
+  if(recipe.lock&&byId[recipe.lock]) lines.push("Lock: "+byId[recipe.lock].name+" (from "+title(recipe.lock)+")");
+  for(const slot of MIX_SLOTS){
+    for(const f of active.filter(x=>x.slot===slot)){
+      const tag=(recipe.picks&&recipe.picks[slot]===f.id)?"pick":"inherited";
+      lines.push(slot+": "+f.name+" (from "+title(f.source)+", "+tag+")");
+    }
+  }
+  const fights=mixDetectFights(active);
+  for(const fight of fights){
+    const w=(recipe.resolutions||{})[fight.key];
+    if(w&&byId[w]){
+      const loserId=w===fight.a?fight.b:fight.a;
+      lines.push("Fight over "+fight.property+": "+byId[w].name+" beat "+(byId[loserId]?byId[loserId].name:loserId)+" (demoted)");
+    } else lines.push("Fight over "+fight.property+": UNRESOLVED");
+  }
+  const sources=[...new Set(active.map(f=>title(f.source)))];
+  lines.push("Sources: "+sources.join(", "));
+  return lines.join("\n")+"\n";
+}
+// Dialect Render — canonical mix → gadgetify's C-block dialect.
+// Fixed block positions (his grammar): C0 Lock, C1 identity/face (master),
+// C2 costume, C3 pose, C4 material+palette (his merged block), C5 composition+
+// presentation, C6 lettering, C7 background; Format becomes the closing
+// eta HONEST RENDER tail. Empty blocks are skipped; numbers never shift.
+const CBLOCK_MAP=[
+  ["C\u2081","IDENTITY + FACE",["Character","Face"]],
+  ["C\u2082","COSTUME",["Costume"]],
+  ["C\u2083","POSE + SILHOUETTE",["Pose"]],
+  ["C\u2084","MATERIAL + PALETTE",["Surface","Palette"]],
+  ["C\u2085","COMPOSITION + PRESENTATION",["Composition","Presentation"]],
+  ["C\u2086","LETTERING",["Lettering"]],
+  ["C\u2087","BACKGROUND",["Background"]]
+];
+function mixRenderCBlock(fillers, baseId, subject, picks, resolutions, lockId){
+  const subj=(subject||"").trim()||"{{TOPIC}}";
+  const plan=mixPlan(fillers, baseId, picks, resolutions);
+  const lock=lockId?fillers.find(f=>f.id===lockId&&f.slot==="Lock"):null;
+  const kept=f=>f.segments.filter(s=>!(plan.demoted[f.id]&&plan.demoted[f.id].has(s.property)));
+  const lines=[];
+  if(plan.unresolved) lines.push("\u26A0 DRAFT \u2014 "+plan.unresolved+" unresolved fight(s). Do not use as a final prompt.", "");
+  lines.push("SUBJECT: "+subj, "");
+  if(lock){
+    lines.push("C\u2080  "+lock.name.toUpperCase()+" (highest priority)");
+    for(const seg of lock.segments) lines.push(seg.text.split("{{TOPIC}}").join(subj));
+    lines.push("");
+  }
+  for(const [label, name, slots] of CBLOCK_MAP){
+    const inBlock=plan.active.filter(f=>slots.includes(f.slot))
+      .sort((a,b)=>MIX_SLOTS.indexOf(a.slot)-MIX_SLOTS.indexOf(b.slot));
+    const withText=inBlock.map(f=>({f, segs:kept(f)})).filter(x=>x.segs.length);
+    if(!withText.length) continue;
+    lines.push(label+"  "+name+(label==="C\u2081"?" (master)":""));
+    for(const {segs} of withText) for(const seg of segs) lines.push(seg.text.split("{{TOPIC}}").join(subj));
+    lines.push("");
+  }
+  const formats=plan.active.filter(f=>f.slot==="Format").map(f=>({f, segs:kept(f)})).filter(x=>x.segs.length);
+  if(formats.length){
+    lines.push("\u03B7 HONEST RENDER");
+    for(const {segs} of formats) for(const seg of segs) lines.push(seg.text.split("{{TOPIC}}").join(subj));
+  }
+  return { text: lines.join("\n")+"\n", unresolved: plan.unresolved };
+}
+// Spin a Mix — random base, then per slot a random foreign filler; any pick
+// that would start a fight with the parts already chosen is re-rolled from
+// the slot's remaining candidates. If no candidate in a slot is clean, the
+// first candidate stands and its fight stays flagged (never hidden).
+function mixSpinMix(fillers, rng){
+  const rand=rng||Math.random;
+  const bases=mixBases(fillers);
+  const base=bases[Math.floor(rand()*bases.length)];
+  const picks={};
+  const chosen=[]; // fillers picked so far (foreign picks only)
+  for(const slot of MIX_SLOTS){
+    const cands=mixFillersForSlot(fillers, slot).filter(f=>f.source!==base);
+    if(!cands.length) continue;
+    const order=[...cands];
+    for(let i=order.length-1;i>0;i--){ const j=Math.floor(rand()*(i+1)); [order[i],order[j]]=[order[j],order[i]]; }
+    let picked=null;
+    for(const cand of order){
+      const trialPicks={...picks, [slot]:cand.id};
+      if(mixDetectFights(mixActiveFillers(fillers, base, trialPicks)).length===0){ picked=cand; break; }
+    }
+    if(!picked) picked=order[0];
+    picks[slot]=picked.id;
+    chosen.push(picked);
+  }
+  const active=mixActiveFillers(fillers, base, picks);
+  const fights=mixDetectFights(active);
+  return { base, picks, fights, clean: fights.length===0 };
+}
+// == END MIX CORE ==
+
+function buildMixBases(){
+  const sel=$("mixBaseSel"); if(!sel) return;
+  sel.innerHTML="";
+  mixBases(state.fillers).forEach(id=>{
+    const s=state.manifest.specimens.find(x=>x.id===id);
+    const o=document.createElement("option"); o.value=id;
+    o.textContent=(s?s.title:id)+" (Base)";
+    sel.appendChild(o);
+  });
+  buildMixColumns();
+}
+function specTitle(id){ const s=state.manifest&&state.manifest.specimens.find(x=>x.id===id); return s?s.title:id; }
+function buildMixColumns(){
+  const wrap=$("mixSlots"); if(!wrap||!state.fillers.length) return;
+  const base=$("mixBaseSel").value;
+  wrap.innerHTML="";
+  const grid=document.createElement("div"); grid.className="mixcols";
+  for(const slot of MIX_SLOTS){
+    const col=document.createElement("div"); col.className="mixcol";
+    const h=document.createElement("h3"); h.textContent=slot; col.appendChild(h);
+    const baseFillers=state.fillers.filter(f=>f.source===base&&f.slot===slot);
+    const inh=document.createElement("button"); inh.className="fcard"+(!state.mixPicks[slot]?" sel":"");
+    inh.innerHTML='<span class="fname">\u21A9 Inherit from Base</span><span class="fsrc">'+
+      (baseFillers.length?baseFillers.map(f=>f.name).join("; "):"Base has nothing here")+"</span>";
+    inh.onclick=()=>{ delete state.mixPicks[slot]; buildMixColumns(); mixCompose(); };
+    col.appendChild(inh);
+    mixFillersForSlot(state.fillers, slot).forEach(f=>{
+      const c=document.createElement("button");
+      c.className="fcard"+(state.mixPicks[slot]===f.id?" sel":"");
+      let inner='<span class="fname">'+f.name+(f.provenance==="derivative"?' <span class="badge">derivative</span>':"")+'</span>'+
+        '<span class="fsrc">from '+specTitle(f.source)+"</span>"+
+        '<span class="fclaims">claims: '+f.claims.join(", ")+"</span>";
+      if(f.requires&&f.requires.length) inner+='<span class="freq">\u26A0 needs: '+f.requires.join("; ")+"</span>";
+      c.innerHTML=inner;
+      c.onclick=()=>{ state.mixPicks[slot]=f.id; buildMixColumns(); mixCompose(); };
+      col.appendChild(c);
+    });
+    grid.appendChild(col);
+  }
+  wrap.appendChild(grid);
+}
+function setMode(mode){
+  const mix=mode==="mix";
+  $("mixPanel").hidden=!mix;
+  document.querySelectorAll("main > section:not(#mixPanel)").forEach(sec=>{ sec.hidden=mix; });
+  if(!mix){ renderPools(); renderSlots(); }
+  $("modeSpinBtn").className=mix?"":"primary";
+  $("modeMixBtn").className=mix?"primary":"";
+  if(mix) mixCompose();
+}
+function renderMixFights(result){
+  const box=$("mixFights"); if(!box) return;
+  box.innerHTML="";
+  if(!result||!result.fights.length) return;
+  const byId={}; state.fillers.forEach(f=>{ byId[f.id]=f; });
+  result.fights.forEach(fight=>{
+    const winner=state.mixResolutions[fight.key];
+    const div=document.createElement("div");
+    div.className="fightbox"+(winner?" resolved":"");
+    const fa=byId[fight.a], fb=byId[fight.b];
+    div.innerHTML="<b>\u2694 Fight over "+fight.property+"</b> \u2014 "+
+      fa.name+" (from "+fa.source+") vs "+fb.name+" (from "+fb.source+")"+
+      (winner?("<br>Winner: <b>"+byId[winner].name+"</b> \u2014 the loser keeps only its other parts."):"");
+    if(!winner){
+      const row=document.createElement("div"); row.className="frow";
+      [fa,fb].forEach(f=>{
+        const b=document.createElement("button"); b.textContent=f.name+" wins";
+        b.onclick=()=>{ state.mixResolutions[fight.key]=f.id; mixCompose(); };
+        row.appendChild(b);
+      });
+      div.appendChild(row);
+    }
+    box.appendChild(div);
+  });
+}
+function buildMixLocks(){
+  const sel=$("mixLockSel"); if(!sel) return;
+  sel.innerHTML='<option value="">\uD83D\uDD13 No lock</option>';
+  mixLocks(state.fillers).forEach(f=>{
+    const o=document.createElement("option"); o.value=f.id;
+    o.textContent="\uD83D\uDD12 Lock: "+f.name+" \u2014 from "+specTitle(f.source);
+    sel.appendChild(o);
+  });
+}
+function renderMixFlags(result){
+  const box=$("mixFlags"); if(!box) return;
+  box.innerHTML="";
+  if(!result||!result.flags.length) return;
+  const div=document.createElement("div");
+  div.className="fightbox resolved";
+  div.innerHTML="<b>\u26A0 Check your subject</b>"+result.flags.map(fl=>
+    "<br>\u2022 <b>"+fl.filler+"</b> (from "+fl.source+") needs: "+fl.requirement).join("");
+  box.appendChild(div);
+}
+function mixCompose(){
+  const base=$("mixBaseSel").value;
+  if(!base){ $("mixOutput").value=""; return ""; }
+  const result=mixComposeMix(state.fillers, base, $("mixTopic").value, state.mixPicks, state.mixResolutions, state.mixLock||null);
+  $("mixOutput").value=result.text;
+  renderMixFights(result);
+  renderMixFlags(result);
+  return result.text;
+}
+$("modeSpinBtn").onclick=()=>setMode("spin");
+$("modeMixBtn").onclick=()=>setMode("mix");
+$("mixBaseSel").onchange=()=>{ buildMixColumns(); mixCompose(); };
+$("mixLockSel").onchange=e=>{ state.mixLock=e.target.value; mixCompose(); };
+$("mixTopic").oninput=mixCompose;
+$("mixComposeBtn").onclick=mixCompose;
+$("mixCopyBtn").onclick=async()=>{
+  try{ await navigator.clipboard.writeText(mixCompose()); $("mixMsg").textContent="Copied — paste it into Gemini / GPT."; }
+  catch(e){ $("mixOutput").select(); document.execCommand("copy"); $("mixMsg").textContent="Copied."; }
+};
+
+$("mixSpinBtn").onclick=()=>{
+  const spun=mixSpinMix(state.fillers, Math.random);
+  $("mixBaseSel").value=spun.base;
+  state.mixPicks=spun.picks;
+  state.mixResolutions={};
+  buildMixColumns();
+  mixCompose();
+  const recipe=mixMakeRecipe(state.fillers, spun.base, $("mixTopic").value, spun.picks, {}, state.mixLock||null);
+  const name="\uD83C\uDFB2 Spun mix \u00B7 "+specTitle(spun.base)+(spun.clean?"":" \u00B7 fight flagged");
+  const list=getRecipes();
+  list.unshift({ name, ts:new Date().toISOString(), recipe });
+  localStorage.setItem(LS_RECIPES, JSON.stringify(list.slice(0,100)));
+  renderRecipeList();
+  $("mixMsg").textContent=spun.clean
+    ? "Spun a clean mix on "+specTitle(spun.base)+" \u2014 saved as a recipe."
+    : "Spun a mix on "+specTitle(spun.base)+", but "+spun.fights.length+" fight(s) could not be re-rolled away \u2014 flagged above, and saved as a recipe.";
+};
+$("mixRenderBtn").onclick=()=>{
+  const base=$("mixBaseSel").value; if(!base) return;
+  const r=mixRenderCBlock(state.fillers, base, $("mixTopic").value, state.mixPicks, state.mixResolutions, state.mixLock||null);
+  $("mixRender").value=r.text;
+  $("mixRenderBox").hidden=false;
+  $("mixMsg").textContent=r.unresolved?("Rendered as a DRAFT — "+r.unresolved+" fight(s) still unresolved."):"Rendered in gadgetify's C-block dialect. The canonical mix above stays the editable source.";
+};
+$("mixRenderCopyBtn").onclick=async()=>{
+  try{ await navigator.clipboard.writeText($("mixRender").value); $("mixMsg").textContent="C-block render copied."; }
+  catch(e){ $("mixRender").select(); document.execCommand("copy"); $("mixMsg").textContent="Copied."; }
+};
+
+const LS_RECIPES="gs_recipes_v1";
+function getRecipes(){ try{ return JSON.parse(localStorage.getItem(LS_RECIPES)||"[]"); }catch(e){ return []; } }
+function currentRecipe(){
+  return mixMakeRecipe(state.fillers, $("mixBaseSel").value, $("mixTopic").value,
+    state.mixPicks, state.mixResolutions, state.mixLock||null);
+}
+function renderRecipeList(){
+  const sel=$("mixRecipeSel"); if(!sel) return;
+  const list=getRecipes();
+  sel.innerHTML=list.length?"":'<option value="">No saved recipes yet</option>';
+  list.forEach((r,i)=>{ const o=document.createElement("option"); o.value=i; o.textContent=r.name; sel.appendChild(o); });
+}
+function applyRecipeToUI(recipe){
+  const applied=mixApplyRecipe(state.fillers, recipe);
+  if(!applied){ $("mixMsg").textContent="That recipe does not fit this library (unknown base or parts)."; return false; }
+  $("mixBaseSel").value=applied.base;
+  $("mixTopic").value=applied.subject;
+  state.mixPicks=applied.picks;
+  state.mixResolutions=applied.resolutions;
+  state.mixLock=applied.lock||"";
+  $("mixLockSel").value=state.mixLock;
+  buildMixColumns();
+  mixCompose();
+  return true;
+}
+$("mixSaveBtn").onclick=()=>{
+  const base=$("mixBaseSel").value; if(!base) return;
+  const name=$("mixRecipeName").value.trim()||
+    (($("mixTopic").value.trim()||"untitled")+" \u00B7 "+specTitle(base));
+  const list=getRecipes();
+  list.unshift({ name, ts:new Date().toISOString(), recipe:currentRecipe() });
+  localStorage.setItem(LS_RECIPES, JSON.stringify(list.slice(0,100)));
+  renderRecipeList();
+  $("mixMsg").textContent="Recipe saved: "+name;
+};
+$("mixLoadBtn").onclick=()=>{
+  const list=getRecipes(), r=list[Number($("mixRecipeSel").value)];
+  if(r&&applyRecipeToUI(r.recipe)) $("mixMsg").textContent="Recipe loaded: "+r.name;
+};
+$("mixDelBtn").onclick=()=>{
+  const list=getRecipes(), i=Number($("mixRecipeSel").value);
+  if(list[i]){ const gone=list.splice(i,1)[0]; localStorage.setItem(LS_RECIPES, JSON.stringify(list));
+    renderRecipeList(); $("mixMsg").textContent="Recipe deleted: "+gone.name; }
+};
+$("mixCardBtn").onclick=async()=>{
+  const titles={}; state.manifest.specimens.forEach(s=>{ titles[s.id]=s.title; });
+  const card=mixRecipeCard(state.fillers, currentRecipe(), titles);
+  try{ await navigator.clipboard.writeText(card); $("mixMsg").textContent="Recipe card copied — ready to post."; }
+  catch(e){ $("mixOutput").value=card; $("mixMsg").textContent="Card is in the output box — copy it from there."; }
+};
+$("mixExportBtn").onclick=()=>{
+  const name=($("mixRecipeName").value.trim()||$("mixTopic").value.trim()||"recipe").toLowerCase().replace(/[^a-z0-9]+/g,"-").slice(0,40);
+  download("spinner-recipe--"+name+".json", JSON.stringify(currentRecipe(), null, 2)+"\n");
+};
+$("mixImportBtn").onclick=()=>$("mixImportFile").click();
+$("mixImportFile").onchange=e=>{
+  const file=e.target.files[0]; if(!file) return;
+  file.text().then(txt=>{
+    try{
+      const recipe=JSON.parse(txt);
+      if(applyRecipeToUI(recipe)) $("mixMsg").textContent="Recipe imported and loaded.";
+    }catch(err){ $("mixMsg").textContent="That file is not a recipe JSON."; }
+    e.target.value="";
+  });
+};
 
 $("spinBtn").onclick=spin;
 $("specSelect").onchange=e=>setSpecimen(e.target.value,false);

@@ -1,0 +1,3 @@
+# Canonical form is the source of truth; gadgetify dialects are renderings
+
+A composed mix exists in exactly one editable form: canonical labeled slot blocks. Gadgetify's dialects (C-block, Python-class, Figma tree, SQL) are produced from it by translation at the Dialect Render seam, never edited directly. We rejected composing directly into the Base specimen's own dialect — surgical replacement across five incompatible dialects is the most fragile option, and it would make every mix's shape depend on its Base. The cost is that a posted mix does not look hand-written in its source dialect until rendered; the gain is one compose path, one test seam, and new dialects addable without touching composition.

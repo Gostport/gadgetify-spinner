@@ -82,3 +82,14 @@ header-bound), 9 already present as v1.0 specimens, 17 exact duplicates,
 specs, stubs). Bulk entries are adapter-bound and flagged as such in their
 `flaws`; they have not been hand-tested like the original sixteen.
 v1.0 — initial release: 16 hand-curated specimens.
+
+## Mix mode (v2.0)
+
+Beside Spin, the page has a Mix mode: prompts dissected into **slot fillers**
+(`fillers.json` — 86 fillers from 18 pilot specimens) can be combined
+graphically. Pick a Base, swap fillers per slot, settle claim **fights**
+(the loser is demoted to its non-conflicting segments), optionally apply an
+**Identity Lock**, and save the mix as a **Recipe** (browser storage, JSON
+export/import, plain-text card). A composed mix can also be rendered into
+gadgetify's C-block dialect. Design record: `SPEC-v2.0.md`, `CONTEXT.md`,
+`docs/adr/`, tickets in `.scratch/spinner-v2-slot-mixer/issues/`.

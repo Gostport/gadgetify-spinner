@@ -1,0 +1,3 @@
+# A slot is a property, not a text chunk
+
+In Spinner v2.0, a slot is a named visual property of a composed prompt (palette, surface, face, lettering, …), and a filler is the fragment that sets that property. We rejected defining slots as sections or chunks of specimen text, because a single specimen's palette is scattered across several of its sections — a fight ("two fillers claim the same property") is only mechanically detectable if slots are properties. This makes dissection slower (fillers must be extracted by meaning, not cut by headings) in exchange for fight detection and demotion being computable at all.

@@ -1,0 +1,1693 @@
+{
+  "version": "0.2.0-draft",
+  "feature": "spinner-v2-slot-mixer",
+  "slots": [
+    "Character",
+    "Face",
+    "Costume",
+    "Pose",
+    "Lettering",
+    "Palette",
+    "Surface",
+    "Composition",
+    "Background",
+    "Presentation",
+    "Format"
+  ],
+  "note": "Pilot corpus: 16 curated + Op-Art + Prism (derivative) dissected into slot fillers; plus ONE Lock filler from the Nov pull (Hyperreal Meme Legend C0) — locks are a layer above slots, claims empty, never fight. Ticket 05.",
+  "fillers": [
+    {
+      "id": "opart-character",
+      "name": "Ribbon-emergent subject",
+      "slot": "Character",
+      "source": "op-art-ribbons",
+      "provenance": "gadgetify",
+      "claims": [
+        "Character"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Character",
+          "text": "Extract the subject's semantic geometry: core identity, silhouette, anatomy and structure, motion, symbols and associations (5–10), emotional character, geometric primitives, feature hierarchy. Choose the HERO — the subject's best visual representation (physical metaphor if abstract, flowing transformation if a process, iconic structure if a place). The subject emerges because the ribbon bands themselves deform around its features: cavity = nested inward spirals; protrusion = bands bend outward; sharp edge = accelerated convergence; organic surface = smooth anatomical flow; mechanical surface = precise geometric folds; motion = stretch along trajectory. Never draw the object and overlay a texture."
+        }
+      ]
+    },
+    {
+      "id": "opart-face",
+      "name": "Ribbon feature sculpting",
+      "slot": "Face",
+      "source": "op-art-ribbons",
+      "provenance": "gadgetify",
+      "claims": [
+        "Face",
+        "Character"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Face",
+          "text": "Preserve the subject's top 5 defining features through the ribbon field at increased local precision, using tiny black anchor regions: eye → concentric vortex; mouth → compressed cavity; wing → branching bands; horn → tapered bundles; wheel → rotating contours; tower → vertical waves."
+        },
+        {
+          "property": "Character",
+          "text": "Preserve the anatomical and structural relationships between the major features — deformation follows the subject's own geometry, never an arbitrary wave pattern."
+        }
+      ]
+    },
+    {
+      "id": "opart-palette",
+      "name": "Pure black / pure white",
+      "slot": "Palette",
+      "source": "op-art-ribbons",
+      "provenance": "gadgetify",
+      "claims": [
+        "Palette"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Palette",
+          "text": "Palette is exactly two colors: pure black #000000 and pure white #FFFFFF, color_count = 2, maximum optical contrast. No gray, no color, no gradients of tone — all shading is stripe density and width."
+        }
+      ]
+    },
+    {
+      "id": "opart-surface",
+      "name": "Continuous ribbon field",
+      "slot": "Surface",
+      "source": "op-art-ribbons",
+      "provenance": "gadgetify",
+      "claims": [
+        "Surface",
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Surface",
+          "text": "Generate 80–260 continuous black-and-white ribbons as an optical engraving. Every stripe follows the field equation: tangent direction + curvature field + feature attraction + silhouette constraint + vortex influence. Line style: perfectly smooth, mathematically continuous, no broken lines, no sketch texture, no noise, no randomness. Width response: narrow over convex surfaces, wide inside cavities, compressed near focal features, expanded across broad surfaces, pinched at structural boundaries, flowing through transitions."
+        },
+        {
+          "property": "Composition",
+          "text": "Optical depth is engineered, not decorated: DEPTH = stripe frequency + overlap occlusion + contour convergence + black/white balance + silhouette readability. Volume appears only through folding, nested cavities, pinched bundles, convex/concave alternation, and optical tunnels."
+        }
+      ]
+    },
+    {
+      "id": "opart-composition",
+      "name": "Subject-class composition",
+      "slot": "Composition",
+      "source": "op-art-ribbons",
+      "provenance": "gadgetify",
+      "claims": [
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "Select composition by subject class: portrait → dramatic macro composition; animal → dynamic three-quarter anatomical view; object → sculptural close-up; architecture → perspective emphasizing structure; abstract concept → centralized vortex composition; landscape → layered optical terrain. The finished piece must read clearly at distance (silhouette), at medium range (major forms), and close (micro ribbon behaviour)."
+        }
+      ]
+    },
+    {
+      "id": "opart-background",
+      "name": "Field-integrated background",
+      "slot": "Background",
+      "source": "op-art-ribbons",
+      "provenance": "gadgetify",
+      "claims": [
+        "Background",
+        "Surface"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Background",
+          "text": "The background is integrated into the same ribbon line field as the subject — there is no separate backdrop, plate, or empty surround; the field is continuous across the whole frame."
+        }
+      ]
+    },
+    {
+      "id": "opart-format",
+      "name": "Op-art asserts & rejects",
+      "slot": "Format",
+      "source": "op-art-ribbons",
+      "provenance": "gadgetify",
+      "claims": [
+        "Format"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Format",
+          "text": "Aspect is inferred from the subject. ASSERT: one subject only; ribbons generate the subject; pure black and white; continuous mathematical flow; strong optical depth; recognizable silhouette; no text unless requested. REJECT: color, grayscale, gradients, shadows, textures, multiple unrelated objects, random waves unrelated to subject geometry, generic op-art patterns, photorealism, 3D rendering, cartoon style, watermark, signature."
+        }
+      ]
+    },
+    {
+      "id": "wordmark-lettering",
+      "name": "Illustrated wordmark compiler",
+      "slot": "Lettering",
+      "source": "semantic-wordmark-compiler",
+      "provenance": "gadgetify",
+      "claims": [
+        "Lettering"
+      ],
+      "requires": [
+        "subject must include a word, phrase, symbol, or sign as the hero text"
+      ],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Lettering",
+          "text": "Compile the text into an illustrated vector wordmark. First diagnose the glyphs: parse letters/numbers/symbols; inventory glyph opportunities — curves, counters, stems, baseline, dots, swashes — while preserving a readable word or sign. Then map the topic onto the type: convert glyph parts into topic features; place meaningful icons inside counters where the letterforms support them; add motion marks (steam, speed, light, sound, splash, energy — or none) inferred from the topic; add minimal supporting context motifs. Constraints: no hard-coded subject, no fixed object substitutions; the text must remain readable; every icon must belong to the topic; the final mark must work as a logo."
+        }
+      ]
+    },
+    {
+      "id": "wordmark-palette",
+      "name": "Topic-inferred limited palette",
+      "slot": "Palette",
+      "source": "semantic-wordmark-compiler",
+      "provenance": "gadgetify",
+      "claims": [
+        "Palette"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Palette",
+          "text": "Palette is a limited vector palette inferred from the topic's identity and mood — few flat colors, logo-safe, no photographic range."
+        }
+      ]
+    },
+    {
+      "id": "wordmark-composition",
+      "name": "Lockup layout inference",
+      "slot": "Composition",
+      "source": "semantic-wordmark-compiler",
+      "provenance": "gadgetify",
+      "claims": [
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "Layout is inferred from the text and topic: horizontal, vertical, badge, or compact lockup. The mark sits on a topic-specific container or base — an understructure drawn from the topic itself, never a fixed container shape."
+        }
+      ]
+    },
+    {
+      "id": "personified-character",
+      "name": "Personified mascot embodiment",
+      "slot": "Character",
+      "source": "personified-collage-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Character",
+        "Pose",
+        "Costume"
+      ],
+      "requires": [
+        "subject must be personifiable — a topic that can be embodied as a mascot"
+      ],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Character",
+          "text": "Infer the topic's core identity and visual world, with 6–10 primary and 8–16 secondary elements. The subject becomes an anthropomorphic embodiment of that core identity. The mascot's body is an integrated collage of the topic's own world — architecture, landscapes, products, inventions, people, transport, cultural objects, maps, roads, screens, patterns, famous scenes, environments — BUILT INTO the mascot, never pasted on."
+        },
+        {
+          "property": "Pose",
+          "text": "The mascot occupies 55–70% of the composition in a confident, iconic pose with simple expressive limbs and a readable silhouette."
+        },
+        {
+          "property": "Costume",
+          "text": "Body, clothing, cape, backpack, or helmet become the collage surface itself — the outfit is made of the topic's elements, integrated, not decorated."
+        }
+      ]
+    },
+    {
+      "id": "personified-face",
+      "name": "Friendly circular-eye face",
+      "slot": "Face",
+      "source": "personified-collage-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Face"
+      ],
+      "requires": [
+        "the figure needs a visible front-facing head (the mascot supplies it)"
+      ],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Face",
+          "text": "Friendly facial geometry: large circular eyes with black pupils, a tiny nose, and a curved smile. Supporting icons get the same face language at miniature scale: two dot/circular eyes and a tiny smile, with optional tiny limbs."
+        }
+      ]
+    },
+    {
+      "id": "personified-lettering",
+      "name": "Carnival block title",
+      "slot": "Lettering",
+      "source": "personified-collage-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Lettering"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Lettering",
+          "text": "Title in enormous carnival block lettering: chunky uppercase, slightly irregular, two-color, thick dark offset drop shadow, no gradients, extremely legible. Below it, an inferred subtitle, plus 2–5 small inferred text elements placed in the scene."
+        }
+      ]
+    },
+    {
+      "id": "personified-palette",
+      "name": "Semantic saturated palette",
+      "slot": "Palette",
+      "source": "personified-collage-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Palette",
+        "Background"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Palette",
+          "text": "Infer a semantic palette of 4–7 colors from the topic. House colors: saturated primary/secondary range with deep navy/black for shadows and strategic red, yellow, blue, and green accents."
+        },
+        {
+          "property": "Background",
+          "text": "Background ground is warm cream."
+        }
+      ]
+    },
+    {
+      "id": "personified-surface",
+      "name": "Paper-cut collage surface",
+      "slot": "Surface",
+      "source": "personified-collage-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Surface"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Surface",
+          "text": "Flat geometric illustration with a paper-cut collage surface: mid-century editorial, 1960s/70s children's-book simplicity, contemporary graphic poster, a touch of kawaii. Shapes are simple, chunky, rounded, clean, highly readable. Texture: subtle fibrous paper, light screen-print misregistration, soft analog grain — no glossy gradients."
+        }
+      ]
+    },
+    {
+      "id": "personified-composition",
+      "name": "Triangular poster hierarchy",
+      "slot": "Composition",
+      "source": "personified-collage-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Composition",
+        "Background"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "Vertical hierarchy, top to bottom: floating icons → upper-center mascot head with an iconic object → center collage body → supporting icons at the sides → lower-center dense environment → bottom massive title → footer strip. The overall silhouette tapers like a triangle. Environment is layered: foreground icons, midground subject-world, background skyline, all drawn from the topic's primary elements."
+        },
+        {
+          "property": "Background",
+          "text": "The background layer is a skyline built from the topic's own primary elements — never a generic skyline."
+        }
+      ]
+    },
+    {
+      "id": "personified-presentation",
+      "name": "Silhouette footer strip",
+      "slot": "Presentation",
+      "source": "personified-collage-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Presentation"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Presentation",
+          "text": "The poster closes with a footer strip: a tiny silhouette strip / skyline / symbolic footer running along the bottom edge beneath the title."
+        }
+      ]
+    },
+    {
+      "id": "personified-format",
+      "name": "Portrait poster + reject list",
+      "slot": "Format",
+      "source": "personified-collage-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Format"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Format",
+          "text": "Format: portrait poster, 2:3 (overridable). NEGATIVE — reject: generic human, random icons, pasted-on collage, photorealism, 3D/CGI, gradients, dark background, thin type, faceless icons, generic skyline or props, clutter, unreadable title."
+        }
+      ]
+    },
+    {
+      "id": "anglish-lettering",
+      "name": "Germanic-root conversion",
+      "slot": "Lettering",
+      "source": "anglish-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Lettering"
+      ],
+      "requires": [
+        "subject must be a text passage to convert"
+      ],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Lettering",
+          "text": "Convert the given text into Germanic-rooted English (Anglish): replace Latinate and borrowed vocabulary with Germanic equivalents — plain Germanic words where they exist, and descriptive compounds or kennings where they don't (palm reading → hand-flat counsel; crystal → ice; horoscope → hour-watcher counsel; astrology → star-telling; embrace → take into its two arms). Meaning, emphasis, and the original's line structure are preserved; only the word-stock changes."
+        }
+      ]
+    },
+    {
+      "id": "dualsynthesis-movement",
+      "name": "Fused visual movement",
+      "slot": "Surface",
+      "source": "dual-synthesis-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Surface",
+        "Palette",
+        "Lettering"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Surface",
+          "text": "Draw exactly one Visual Movement from the pool of 20 — Swiss International Typographic, Japanese Ukiyo-e Woodblock, Soviet Constructivist, Art Nouveau Organic, Bauhaus Geometric, Psychedelic 60s Airbrush, Cyberpunk Neon-Noir, Victorian Engraving, Memphis Group Postmodern, WPA National Park Silhouette, Risograph Grain, Art Deco Gold-Leaf, Punk Xerox Collage, Chinese Propaganda Lithograph, Vaporwave Chrome, De Stijl Primary Grid, Gothic Blackletter Illumination, Pop Art Ben-Day Dots, Scandinavian Minimal, Mexican Día de Muertos — and fuse it with the drawn compositional engine into a singular poster identity. The movement supplies the poster's whole rendering language: its technique, materials, and finish."
+        },
+        {
+          "property": "Palette",
+          "text": "Palette is the drawn movement's characteristic palette, taken whole — the movement decides the colors, not the topic."
+        },
+        {
+          "property": "Lettering",
+          "text": "Typography follows the drawn movement's own conventions (Swiss grid type, blackletter illumination, Ben-Day pop lettering, and so on) — the movement decides the lettering voice."
+        }
+      ]
+    },
+    {
+      "id": "dualsynthesis-composition",
+      "name": "Compositional engine draw",
+      "slot": "Composition",
+      "source": "dual-synthesis-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "Draw exactly one Compositional Engine from the pool of 20 — Radial Burst Mandala, Diagonal Cascade, Negative Space Isolation, Layered Parallax Depth, Typographic Domination, Circular Vignette Frame, Asymmetric Tension Grid, Infinite Tessellation, Single Vanishing Point Corridor, Overlapping Transparency Stack, Golden Spiral Focus, Shattered Mirror Fragment, Horizontal Band Stratification, Central Symmetry Lock, Scattered Constellation, Forced Perspective Tunnel, Borderless Bleed, Isometric Stack, Cross-Hatch Density Map, Kinetic Motion Blur Trail — and let that engine alone structure the poster's layout."
+        }
+      ]
+    },
+    {
+      "id": "figma-character",
+      "name": "Topic object as hero character",
+      "slot": "Character",
+      "source": "figma-cute-parody-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Character"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Character",
+          "text": "The topic's main thematic object becomes the hero character, drawn as a single vector shape. Tiny cartoon workers/helpers surround it and interact with it — climbing, carrying, operating — as supporting characters."
+        }
+      ]
+    },
+    {
+      "id": "figma-face",
+      "name": "Dot-eye kawaii face",
+      "slot": "Face",
+      "source": "figma-cute-parody-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Face"
+      ],
+      "requires": [
+        "the main object must be able to carry a face (dot eyes and a smile on its body)"
+      ],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Face",
+          "text": "The main object gets a kawaii face: two dot eyes (Dot_Eye_L, Dot_Eye_R) and a single smile curve, placed on the object's body."
+        }
+      ]
+    },
+    {
+      "id": "figma-lettering",
+      "name": "Helvetica bold title",
+      "slot": "Lettering",
+      "source": "figma-cute-parody-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Lettering"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Lettering",
+          "text": "Title text is the topic's title, set in Helvetica Neue Bold, black #000000."
+        }
+      ]
+    },
+    {
+      "id": "figma-palette",
+      "name": "Flat brights on cream",
+      "slot": "Palette",
+      "source": "figma-cute-parody-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Palette",
+        "Background"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Palette",
+          "text": "Flat color only: the main object in one solid bright flat color inferred from the topic; the workers/helpers in flat colors; all outlines and the title in black."
+        },
+        {
+          "property": "Background",
+          "text": "The canvas ground is flat cream #F5F5DC."
+        }
+      ]
+    },
+    {
+      "id": "figma-surface",
+      "name": "Pristine flat vector",
+      "slot": "Surface",
+      "source": "figma-cute-parody-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Surface"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Surface",
+          "text": "Pristine flat 2D vector illustration: solid black outlines — 3px on the main object, 2px on the helpers — zero raster effects, no drop shadows, no gradients, absolute flat minimalism."
+        }
+      ]
+    },
+    {
+      "id": "figma-composition",
+      "name": "Vertical canvas stack",
+      "slot": "Composition",
+      "source": "figma-cute-parody-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "Single canvas frame in a vertical stack: title block at the top, the kawaii illustration group below it."
+        }
+      ]
+    },
+    {
+      "id": "flocked-character",
+      "name": "Cute proportion-locked silhouette",
+      "slot": "Character",
+      "source": "flocked-origami-sculpture",
+      "provenance": "gadgetify",
+      "claims": [
+        "Character"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Character",
+          "text": "Remap the subject to a simplified, cute silhouette with a readable core mass: head volume increased (oversized head), limbs simplified, overall silhouette kept iconic. Proportions are locked to this remap."
+        }
+      ]
+    },
+    {
+      "id": "flocked-surface",
+      "name": "Flocked masses + origami zones",
+      "slot": "Surface",
+      "source": "flocked-origami-sculpture",
+      "provenance": "gadgetify",
+      "claims": [
+        "Surface"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Surface",
+          "text": "Primary surfaces are flocked soft masses — rounded domes, capsules, and blobs with a velvety micro-texture, applied where curvature is low; flocking covers all primary surfaces."
+        },
+        {
+          "property": "Surface",
+          "text": "Sharp origami tessellation — folded paper modules — is overlaid only on designated high-interest zones (wings, armor, hair, leaves, architecture), masked to those zones and nowhere else."
+        }
+      ]
+    },
+    {
+      "id": "flocked-palette",
+      "name": "Fixed pastel palette",
+      "slot": "Palette",
+      "source": "flocked-origami-sculpture",
+      "provenance": "gadgetify",
+      "claims": [
+        "Palette"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Palette",
+          "text": "Fixed pastel palette of eight: sky blue, mint, lemon, coral, bubblegum, lavender, ivory, charcoal-blue. Soft and clean — no gritty realism."
+        }
+      ]
+    },
+    {
+      "id": "flocked-format",
+      "name": "Single gallery output",
+      "slot": "Format",
+      "source": "flocked-origami-sculpture",
+      "provenance": "gadgetify",
+      "claims": [
+        "Format"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Format",
+          "text": "Output: exactly 1 image, 8K, gallery-lit."
+        }
+      ]
+    },
+    {
+      "id": "histdiorama-lettering",
+      "name": "Serif plate title block",
+      "slot": "Lettering",
+      "source": "history-diorama",
+      "provenance": "gadgetify",
+      "claims": [
+        "Lettering"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Lettering",
+          "text": "Plate title block at top-left, in a document register: the event name in a serif display typeface, the date beneath it, the subtitle in small caps, and a legend mapping the numerals 01..04 to the event's phases."
+        }
+      ]
+    },
+    {
+      "id": "histdiorama-terrain",
+      "name": "Typographic terrain event",
+      "slot": "Character",
+      "source": "history-diorama",
+      "provenance": "gadgetify",
+      "claims": [
+        "Character",
+        "Lettering"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Character",
+          "text": "The event itself is the scene: it is built as a typographic terrain — a monumental mass of letterforms forming the landscape of the event, with the event's set pieces integrated into the letter masses, never floating free. Miniature crowds populate the terrain."
+        },
+        {
+          "property": "Lettering",
+          "text": "Every glyph is structural — words, numerals, and punctuation alike — and each glyph is built from the letter program: cutaway interior, roof terrain, joint beam, or shear seam, repeated per glyph."
+        }
+      ]
+    },
+    {
+      "id": "histdiorama-palette",
+      "name": "Desaturated documentary grade",
+      "slot": "Palette",
+      "source": "history-diorama",
+      "provenance": "gadgetify",
+      "claims": [
+        "Palette"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Palette",
+          "text": "Desaturated documentary grade over the whole plate."
+        }
+      ]
+    },
+    {
+      "id": "histdiorama-background",
+      "name": "Warm-grey studio void",
+      "slot": "Background",
+      "source": "history-diorama",
+      "provenance": "gadgetify",
+      "claims": [
+        "Background"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Background",
+          "text": "The stage is a void: neutral warm-grey studio, no horizon, no environment. A soft contact shadow grounds the letter mass on the studio floor."
+        }
+      ]
+    },
+    {
+      "id": "histdiorama-composition",
+      "name": "Elevated near-isometric view",
+      "slot": "Composition",
+      "source": "history-diorama",
+      "provenance": "gadgetify",
+      "claims": [
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "Viewpoint is fixed: three-quarter elevated, near-isometric, looking down on the letter terrain."
+        }
+      ]
+    },
+    {
+      "id": "histdiorama-presentation",
+      "name": "Plaque and callout annotation",
+      "slot": "Presentation",
+      "source": "history-diorama",
+      "provenance": "gadgetify",
+      "claims": [
+        "Presentation",
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Presentation",
+          "text": "Plate furniture and annotation layer: a plaque at bottom-left with a hairline double border listing event · date · subtitle, with a circular crosshair reticle diagram in its right cell; numbered callouts 01–04 with hairline leaders and tick terminals point to each phase's locus in the terrain."
+        },
+        {
+          "property": "Composition",
+          "text": "Callout numerals read left to right in chronological order; leaders stay planar and never cross."
+        }
+      ]
+    },
+    {
+      "id": "caricature-character",
+      "name": "Individuated power-target figure",
+      "slot": "Character",
+      "source": "honest-caricature-laws",
+      "provenance": "gadgetify",
+      "claims": [
+        "Character"
+      ],
+      "requires": [
+        "subject must depict people in a situation with a power relation — the laws govern who the force lands on"
+      ],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Character",
+          "text": "Every exaggerated feature traces to a measurable deviation in the individual depicted: amplify the target's own deviations (caricature), never import features from a stock type and assign them to a person (typing) — the test is whether the features would still identify this individual if group membership were removed. Every person in frame is individuated with a particular face; never render a group as an undifferentiated swarm, flood, tide, wave, or infestation. No animal, insect, vermin, or disease coding applied to a people (animal metaphor aimed at a powerful individual is ordinary satire). The claim must be about conduct — 'this official did this,' falsifiable — never an assertion about essence. Unchosen physical characteristics never carry the attack: exaggeration makes a person recognisable, it does not propose their body is the problem."
+        }
+      ]
+    },
+    {
+      "id": "caricature-composition",
+      "name": "Power staging",
+      "slot": "Composition",
+      "source": "honest-caricature-laws",
+      "provenance": "gadgetify",
+      "claims": [
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "Stage the power relation so it reads directly from the frame: relative scale, height, who acts and who is acted upon, who occupies the frame's dominant position, whose agency is depicted and whose is not. The force lands on the party holding power in the depicted relation; never stage the dominant party in the diminished position while presenting as satire. Treatment is symmetric and measurable — individuate the powerful and everyone else to the same degree; count the particular faces on each side. The power relation must be encoded consistently three ways — staging, features, and claim — and all three must agree about where the force is aimed."
+        }
+      ]
+    },
+    {
+      "id": "caricature-format",
+      "name": "Honest check & forbidden list",
+      "slot": "Format",
+      "source": "honest-caricature-laws",
+      "provenance": "gadgetify",
+      "claims": [
+        "Format"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Format",
+          "text": "HONEST check: one power relation, encoded in the staging; features that are the target's own; a claim about conduct; everyone in frame individuated. FORBIDDEN: features imported from a stock type presented as caricature of an individual; animal, insect, vermin, or disease coding applied to a people; a swarm, flood, tide, or infestation rendering of persons; the powerful individuated while everyone else is typified; an assertion about essence dressed as a claim about conduct; unchosen physical characteristics carrying the attack; staging that places the dominant party in the diminished position while presenting as satire; exaggeration that substitutes for the critique rather than delivering it."
+        }
+      ]
+    },
+    {
+      "id": "diorama-composition",
+      "name": "Artifact-silhouette container stack",
+      "slot": "Composition",
+      "source": "infographic-diorama",
+      "provenance": "gadgetify",
+      "claims": [
+        "Composition"
+      ],
+      "requires": [
+        "subject must have an iconic artifact whose defining silhouette can contain the scene"
+      ],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "Calculate the container FIRST: the defining silhouette of an iconic artifact of the topic from the chosen era; the diorama is hollowed out of that silhouette like a tray. Build the image as a three-layer stack: (1) base — a geological cross-section plinth showing layers of earth, wood, and brass; (2) inside the container, a bustling micro-city of the topic's culture in that era — tiny detailed figures, vehicles, and architecture; (3) the typography overlay layer on top."
+        }
+      ]
+    },
+    {
+      "id": "diorama-lettering",
+      "name": "Numbered pointer annotations",
+      "slot": "Lettering",
+      "source": "infographic-diorama",
+      "provenance": "gadgetify",
+      "claims": [
+        "Lettering"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Lettering",
+          "text": "Crisp, legible text overlays: numbered bullet points (1–12) run down the sides, each with a fine black line physically pointing from the number to the matching detail inside the container."
+        }
+      ]
+    },
+    {
+      "id": "diorama-background",
+      "name": "Matte beige studio backdrop",
+      "slot": "Background",
+      "source": "infographic-diorama",
+      "provenance": "gadgetify",
+      "claims": [
+        "Background"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Background",
+          "text": "Pure matte beige studio backdrop — a plain studio ground behind the diorama, nothing else in the surround."
+        }
+      ]
+    },
+    {
+      "id": "diorama-format",
+      "name": "Tilt-shift photo finish",
+      "slot": "Format",
+      "source": "infographic-diorama",
+      "provenance": "gadgetify",
+      "claims": [
+        "Format"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Format",
+          "text": "Execute as tilt-shift photography with hyper-maximalist detail at 8k resolution."
+        }
+      ]
+    },
+    {
+      "id": "exposure-surface",
+      "name": "Single-T exposure integral",
+      "slot": "Surface",
+      "source": "long-exposure-integral",
+      "provenance": "gadgetify",
+      "claims": [
+        "Surface"
+      ],
+      "requires": [
+        "scene must contain both static anchors and moving elements (lights, water, clouds, traffic) for the single-T contrast to read"
+      ],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Surface",
+          "text": "Render the frame as one true long exposure governed by a single shutter time T and neutral-density factor ND. Static anchors integrate to themselves — perfectly sharp, point-spread = δ. Every moving element smears along its velocity field over T, read off the integral, never painted by hand: a bright point light draws a continuous curve, its peak clipping at the sensor threshold τ to a white core with bloom and a coloured halo — trail colour follows direction, red receding, white/amber approaching; a small fast object (a pedestrian, ‖v‖T far larger than its size) spreads its energy thin and goes ghost or absent; turbulent water becomes a silky veil; clouds streak along the wind direction. Night ambient accumulates (ambient·T / ND), so the frame renders brighter than the eye saw it, plus hot-pixel noise and a trace of vibration."
+        }
+      ]
+    },
+    {
+      "id": "exposure-format",
+      "name": "One-T consistency test",
+      "slot": "Format",
+      "source": "long-exposure-integral",
+      "provenance": "gadgetify",
+      "claims": [
+        "Format"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Format",
+          "text": "Consistency test: one T must explain every blur in the frame — estimate T̂ independently from the water blur, the cloud streak length, and the light-trail length; HONEST ⟺ the estimates agree within ε. FORBIDDEN: any element class with T̂ ≈ 0 while another class sits at T — a frozen thing inside a long exposure."
+        }
+      ]
+    },
+    {
+      "id": "noir-character",
+      "name": "Monochrome archetype figure",
+      "slot": "Character",
+      "source": "noir-storybook-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Character",
+        "Pose",
+        "Face"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Character",
+          "text": "Infer the subject's archetype (detective, child, musician, dancer, animal, messenger…) and render it as a monochrome storybook figure with a clean, readable, theatrical silhouette. No full-face realism — expression is implied through silhouette and gesture. Add 1–3 inferred background figures (distant witness, mirror-self, shadow-self) far back in the stage; they never compete with the subject silhouette."
+        },
+        {
+          "property": "Pose",
+          "text": "Pose is staged: contrapposto or a dramatic gesture. The subject faces the primary light source — one side silver-gray, the other black."
+        },
+        {
+          "property": "Face",
+          "text": "Facial tone is partial shadow: features half-lit, half-dissolved."
+        }
+      ]
+    },
+    {
+      "id": "noir-palette",
+      "name": "Monochrome + single accent",
+      "slot": "Palette",
+      "source": "noir-storybook-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Palette"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Palette",
+          "text": "Palette is a fixed monochrome set — {black, deep charcoal, graphite, silver-gray, paper white} — plus at most one accent hue inferred from the subject (red, blue, yellow, ember orange, or none). The accent is applied to exactly one element only (a scarf, a lit window, an eye highlight, a blossom, a lantern) and covers at most 3% of frame area; if the subject suggests no accent, the palette stays pure monochrome."
+        }
+      ]
+    },
+    {
+      "id": "noir-surface",
+      "name": "Grain, ink & haze texture",
+      "slot": "Surface",
+      "source": "noir-storybook-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Surface"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Surface",
+          "text": "Texture mix: {film grain, ink wash, paper fiber, smoke haze, wet reflection}. Composite pass: subtle organic film grain over everything; ink-wash diffusion on flat tone regions; paper fiber visible in the highlights; wet reflections rendered with sharp silver streak highlights; smoke as soft diffusion with no hard edges. Atmosphere is a volumetric haze field (smoke, fog, mist, dust, rain, or steam, inferred from the subject): density gradients from the subject outward, drifting, curling, thinning; haze brightens inside the light beam and darkens in shadow, drawn as silver streaks, mist ribbons, and ink-wash blots."
+        }
+      ]
+    },
+    {
+      "id": "noir-composition",
+      "name": "Radiating subject-gravity field",
+      "slot": "Composition",
+      "source": "noir-storybook-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Composition",
+        "Background"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "The subject anchors the center and the composition is a field, not a layout: light rays and reflections radiate outward from the subject; beam direction and floor-reflection angle follow the gradient of the subject-gravity field; its curl drives smoke curls, water ripples, cloud shapes, and decorative scrollwork; its divergence maxima are where symbolic objects, background figures, and poster elements concentrate. Framing: subject slightly off-center, framed by the stage geometry."
+        },
+        {
+          "property": "Background",
+          "text": "Background is layered stage geometry in four depth layers: LAYER 1 (nearest) frame element + foreground props; LAYER 2 (mid) subject + symbolic objects; LAYER 3 (far) distant architecture, silhouettes, glowing windows; LAYER 4 (deepest) fog banks, moon, horizon haze. Every layer is separated by tone and haze; no layer is fully resolved."
+        }
+      ]
+    },
+    {
+      "id": "noir-presentation",
+      "name": "Storybook frame & edge decoration",
+      "slot": "Presentation",
+      "source": "noir-storybook-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Presentation"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Presentation",
+          "text": "Storybook framing device: an inferred architectural threshold (doorway, arch, window, mirror, stage proscenium) rendered as a strong graphic silhouette, which the subject stands within, moves through, or faces. Around the edges, restrained decorative details — scrollwork corners, hanging vines, tiny stars, floating leaves — each tracing to the subject's world, never cluttering."
+        }
+      ]
+    },
+    {
+      "id": "noir-format",
+      "name": "Poster finish & verify list",
+      "slot": "Format",
+      "source": "noir-storybook-poster",
+      "provenance": "gadgetify",
+      "claims": [
+        "Format"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Format",
+          "text": "Output: one 8K monochrome noir storybook poster. Finish: filmic black-and-white, no color beyond the palette + single accent, no bloom, no vignette beyond natural falloff. Text: none — no logos, no watermarks, no captions. Verify: the subject silhouette reads at a 200px thumbnail; the primary light source creates consistent shadows across all layers; the accent (if present) appears on exactly one element; the image reads as a poster, not a photograph."
+        }
+      ]
+    },
+    {
+      "id": "furniture-character",
+      "name": "Physics-selected furniture piece",
+      "slot": "Character",
+      "source": "physics-furniture-gallery",
+      "provenance": "gadgetify",
+      "claims": [
+        "Character"
+      ],
+      "requires": [
+        "subject must be an object or concept with physical properties (load, touch, form) to analyze"
+      ],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Character",
+          "text": "Analyze the topic object as physics: load-bearing (High/Medium/Low), touch (Cold/Warm/Sticky/Soft), form (Cantilever/Stack/Tube/Blob). Then auto-select exactly one iconic furniture piece by rule: High load + Tube → chair; Stack + Rigid → shelving; Blob + Soft → lounge seat; Cold + Reflective → coffee table; Cantilever + Mechanical → floor lamp. The topic becomes that single gallery design piece."
+        }
+      ]
+    },
+    {
+      "id": "furniture-presentation",
+      "name": "Gallery pedestal presentation",
+      "slot": "Presentation",
+      "source": "physics-furniture-gallery",
+      "provenance": "gadgetify",
+      "claims": [
+        "Presentation"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Presentation",
+          "text": "Execute as a gallery presentation: the piece rendered on a gallery pedestal, accompanied by material close-up views and a designer plaque."
+        }
+      ]
+    },
+    {
+      "id": "history-character",
+      "name": "Miniature milestone artifacts",
+      "slot": "Character",
+      "source": "semantic-history-sculpture",
+      "provenance": "gadgetify",
+      "claims": [
+        "Character"
+      ],
+      "requires": [
+        "subject must have a history — a topic that evolves over time with identifiable milestones"
+      ],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Character",
+          "text": "The subject's history is embodied as 8–20 inferred landmark milestones — artifacts, inventions, people, organisms, buildings, tools, vehicles, devices, cultural objects, discoveries, symbols, or turning points that best represent its evolution. Each milestone is rendered as a miniature physical artifact, model, sculptural icon, specimen, or environmental fragment appropriate to its era — never reduced to a flat icon. Every milestone must be visually recognizable first and labeled second. The sequence opens with an inferred visual origin artifact: a subject-appropriate container such as an opened archive box, excavation case, antique book, workshop drawer, specimen cabinet, instrument case, shipping crate, map case, or laboratory tray."
+        }
+      ]
+    },
+    {
+      "id": "history-composition",
+      "name": "Semantic path timeline",
+      "slot": "Composition",
+      "source": "semantic-history-sculpture",
+      "provenance": "gadgetify",
+      "claims": [
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "The chronology itself becomes one continuous physical sculptural path whose geometry is a spatial metaphor inferred fresh from the subject's semantic structure — never a generic straight or equal-spaced timeline, never one fixed layout for every topic. Example metaphor families: music → waveform, acoustic arc, groove, spiral; aviation → ascending flight trajectory; computing → circuit trace, branching network; biology → evolutionary tree, DNA helix; civilization → river, road, layered archaeological strata. Spatial distance is allocated by historical significance, not equal year intervals: major transitions receive more visual emphasis and larger scale, quiet transitional periods compress."
+        }
+      ]
+    },
+    {
+      "id": "history-lettering",
+      "name": "Museum serif annotation",
+      "slot": "Lettering",
+      "source": "semantic-history-sculpture",
+      "provenance": "gadgetify",
+      "claims": [
+        "Lettering"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Lettering",
+          "text": "Large elegant oversized serif title — a poetic historical title inferred from the topic, with an optional date range beneath. Each milestone is annotated museum-style: DATE / ERA line, a concise milestone name, an optional one-line descriptor, and inventor / creator / location / event where relevant. Labels stay restrained, fine, and editorial — no infographic boxes or shouty captions."
+        }
+      ]
+    },
+    {
+      "id": "history-surface",
+      "name": "Miniature artifact realism",
+      "slot": "Surface",
+      "source": "semantic-history-sculpture",
+      "provenance": "gadgetify",
+      "claims": [
+        "Surface"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Surface",
+          "text": "Premium 3D object photography of handcrafted miniatures: physically believable objects at collector-display scale, finely modeled detail, physically plausible materials, rich material realism. Materials preserve realistic differences between eras; scale varies with historical importance. The final milestones may subtly shift in material, scale, or abstraction to suggest the present and possible future — without science-fiction clutter. Objects cast soft, subtle physical shadows."
+        }
+      ]
+    },
+    {
+      "id": "history-background",
+      "name": "Museum wall environment",
+      "slot": "Background",
+      "source": "semantic-history-sculpture",
+      "provenance": "gadgetify",
+      "claims": [
+        "Background",
+        "Palette"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Background",
+          "text": "Environment is a warm neutral museum wall or archival paper-like surface with vast breathing room and sophisticated negative space; timeline objects cast subtle physical shadows on it. No conventional infographic boxes."
+        },
+        {
+          "property": "Palette",
+          "text": "Overall palette is warm and neutral — museum wall and archival paper tones; color enters only through the artifacts' own era-true materials."
+        }
+      ]
+    },
+    {
+      "id": "history-presentation",
+      "name": "Luxury exhibition presentation",
+      "slot": "Presentation",
+      "source": "semantic-history-sculpture",
+      "provenance": "gadgetify",
+      "claims": [
+        "Presentation"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Presentation",
+          "text": "Presented as a luxury historical exhibition display crossed with an elegant historical publication: museum object photography, archival elegance, tactile artifacts, restrained labels, curated chronology — a collector's display piece, not an infographic."
+        }
+      ]
+    },
+    {
+      "id": "history-format",
+      "name": "History asserts & constraints",
+      "slot": "Format",
+      "source": "semantic-history-sculpture",
+      "provenance": "gadgetify",
+      "claims": [
+        "Format"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Format",
+          "text": "Historical accuracy search is ON; time range and milestone count are inferred when not supplied. CONSTRAINTS: no generic equal-spacing timeline; no repetitive iconography; no random milestones; no visually identical objects; no single fixed layout applied to every topic — the layout MUST emerge from the subject. The viewer should understand the subject's evolution before reading any annotation."
+        }
+      ]
+    },
+    {
+      "id": "sketchbook-character",
+      "name": "Doodled subject decomposition",
+      "slot": "Character",
+      "source": "sketchbook-doodle-map",
+      "provenance": "gadgetify",
+      "claims": [
+        "Character"
+      ],
+      "requires": [
+        "subject must have a story to map — a life, history, system, or process that decomposes into moments"
+      ],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Character",
+          "text": "Break the subject into many small doodled moments: its life, history, system, mythology, process, or cultural impact decomposed into icons, milestones, influences, tools, places, quotes, diagrams, and symbolic objects. Major events, features, powers, products, traits, discoveries, and transformations become illustrated callouts connected by arrows and winding paths. Important people, creatures, objects, locations, ideas, and components become small portrait doodles, simplified icons, diagrams, badges, and comic-like vignettes. Every doodle must relate to the subject — nothing is random decoration. The result should feel like someone obsessively studied the subject and filled a sketchbook with everything important about it."
+        }
+      ]
+    },
+    {
+      "id": "sketchbook-lettering",
+      "name": "Handwritten annotation",
+      "slot": "Lettering",
+      "source": "sketchbook-doodle-map",
+      "provenance": "gadgetify",
+      "claims": [
+        "Lettering"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Lettering",
+          "text": "All text is hand-lettered — casual handwritten titles, labels, notes, small captions, underlines, callouts, arrows, speech bubbles, and playful emphasis marks. Never clean digital type. Text stays short and punchy: labels explain icons, milestones, relationships, and key concepts; playful missive-like notes are allowed, long paragraphs are not. When exact text is not provided, infer concise subject-relevant labels and diagram notes."
+        }
+      ]
+    },
+    {
+      "id": "sketchbook-palette",
+      "name": "Ink-dominant muted accents",
+      "slot": "Palette",
+      "source": "sketchbook-doodle-map",
+      "provenance": "gadgetify",
+      "claims": [
+        "Palette"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Palette",
+          "text": "Black ink dominates. Color is sparse muted watercolor or marker accents only — muted peach, pale blue, soft yellow, faded red, dusty green, warm beige — used to highlight key areas, never to fully render the image. Cream paper and black linework define the visual identity. No full-color rendering, neon, glossy gradients, or saturated cartoon color."
+        }
+      ]
+    },
+    {
+      "id": "sketchbook-surface",
+      "name": "Notebook page surface",
+      "slot": "Surface",
+      "source": "sketchbook-doodle-map",
+      "provenance": "gadgetify",
+      "claims": [
+        "Surface",
+        "Background"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Surface",
+          "text": "Hand-drawn on an open cream notebook spread: dotted-grid paper, worn page edges, slight paper grain, soft archival texture, visible notebook fold. Linework is black ink pen — loose crosshatching, imperfect doodle outlines, energetic sketch marks, uneven line weight; shading comes from crosshatching and line density, never digital gradients. Rendered as a physical sketchbook page photographed or scanned, loose but legible."
+        },
+        {
+          "property": "Background",
+          "text": "The open notebook spread itself is the entire environment — the page is the world the subject is mapped onto; there is no separate backdrop or scene behind it."
+        }
+      ]
+    },
+    {
+      "id": "sketchbook-composition",
+      "name": "Dense two-page spread",
+      "slot": "Composition",
+      "source": "sketchbook-doodle-map",
+      "provenance": "gadgetify",
+      "claims": [
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "Dense two-page open notebook layout. The largest focal image — portrait, object, logo, or main symbol — sits on one side; the opposite page carries a roadmap, process flow, timeline, ecosystem, invention chain, or idea network. Surrounding space fills with smaller doodles, arrows, captions, miniature diagrams, and symbolic references, grouped into intentional navigable clusters, with small pockets of breathing room so the page never becomes visual noise. Relationships and timelines read as visual flow: arrows, loops, roads, spirals, gears, maps, banners."
+        }
+      ]
+    },
+    {
+      "id": "sketchbook-format",
+      "name": "Sketchbook asserts & avoids",
+      "slot": "Format",
+      "source": "sketchbook-doodle-map",
+      "provenance": "gadgetify",
+      "claims": [
+        "Format"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Format",
+          "text": "ASSERT: visible paper texture, dotted grid, and notebook fold; many elements in navigable clusters, rewarding close inspection; connections genuinely explain the subject (no random arrows); all lettering handwritten and short; black ink dominant with sparse muted accents. AVOID: photorealism; clean corporate infographic styling; glossy 3D, toy, clay, plush, anime, or low-poly rendering; overly polished vector art; empty minimal pages; random unrelated doodles; dense unreadable text blocks; bright saturated full-color poster treatment; perfect symmetry — preserve lively notebook spontaneity."
+        }
+      ]
+    },
+    {
+      "id": "themed-character",
+      "name": "Subject + twist fusion",
+      "slot": "Character",
+      "source": "themed-image",
+      "provenance": "gadgetify",
+      "claims": [
+        "Character"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Character",
+          "text": "Reduce the theme to its one irreducible visual noun — the single thing the image is OF. Identify the three most obvious depictions of the theme and ban them. Fuse the subject with one surprising-but-coherent twist element nobody expects; the twist must be visible in the image, not decorative. Add exactly one quiet impossibility — a subtle wrong detail that rewards a second look."
+        }
+      ]
+    },
+    {
+      "id": "themed-palette",
+      "name": "Four-hue constrained palette",
+      "slot": "Palette",
+      "source": "themed-image",
+      "provenance": "gadgetify",
+      "claims": [
+        "Palette"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Palette",
+          "text": "Palette is constrained to exactly 4 hues plus neutrals, seed-selected for the theme. No fifth hue enters anywhere in the image."
+        }
+      ]
+    },
+    {
+      "id": "themed-surface",
+      "name": "Seeded medium & tactile texture",
+      "slot": "Surface",
+      "source": "themed-image",
+      "provenance": "gadgetify",
+      "claims": [
+        "Surface"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Surface",
+          "text": "Medium is one seed-picked tactile medium per image — oil on canvas, layered gouache, ink wash, colored pencil, or mixed-media collage — rendered with a tactile surface detail appropriate to that medium. The surface must read as a physical, touchable material, not a digital filter."
+        }
+      ]
+    },
+    {
+      "id": "themed-composition",
+      "name": "Seeded composition & single focus",
+      "slot": "Composition",
+      "source": "themed-image",
+      "provenance": "gadgetify",
+      "claims": [
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "Composition is one seed-picked scheme per image — rule-of-thirds, centered icon, diagonal thrust, or frame-within-frame — organized around a single clear focal point. The image must read at thumbnail scale."
+        }
+      ]
+    },
+    {
+      "id": "themed-format",
+      "name": "Widescreen + verify asserts",
+      "slot": "Format",
+      "source": "themed-image",
+      "provenance": "gadgetify",
+      "claims": [
+        "Format"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Format",
+          "text": "Aspect ratio 16:9. All auto-fields (subject, clichés, twist, concept, palette, composition, texture, detail) are resolved from a fresh random seed per run — exact reruns are unreproducible by design. VERIFY before render: subject is recognizable; twist is visible, not decorative; none of the three banned clichés is present; palette limited to 4 hues; single clear focal point; image reads at thumbnail scale."
+        }
+      ]
+    },
+    {
+      "id": "totem-character",
+      "name": "Motif-fused glyph masses",
+      "slot": "Character",
+      "source": "totem-glyph-field",
+      "provenance": "gadgetify",
+      "claims": [
+        "Character"
+      ],
+      "requires": [
+        "subject must have an inferable motif language — a visual vocabulary of shapes and symbols"
+      ],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Character",
+          "text": "Infer the topic's motif language (e.g. Mesoamerican, cyberpunk circuitry, botanical, nautical, astral) and its shape vocabulary of motif primitives — hooks, spirals, dots, sweeping tails, gears, leaves. Each glyph begins as a random organic or geometric bounding mass in that aesthetic, then fuses with 1–3 randomly selected motif primitives driven by the field's curl — internal spirals, loops, and curves — so every glyph is built from the topic's own symbols."
+        }
+      ]
+    },
+    {
+      "id": "totem-surface",
+      "name": "Carved negative-space ink",
+      "slot": "Surface",
+      "source": "totem-glyph-field",
+      "provenance": "gadgetify",
+      "claims": [
+        "Surface"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Surface",
+          "text": "Ink style is solid black blocks carved by negative space: each glyph is a dense solid mass (solid_mass of the cell minus carve potential of the motif primitives). Carving cuts internal eye-holes and negative-space gaps (driven by divergence — dot and gap density) and sweeping slashes (driven by the silhouette flow). Carving must never break the glyph's outer silhouette. Overall style: bold, iconic totem glyphs."
+        }
+      ]
+    },
+    {
+      "id": "totem-lettering",
+      "name": "Cell labels & IDs",
+      "slot": "Lettering",
+      "source": "totem-glyph-field",
+      "provenance": "gadgetify",
+      "claims": [
+        "Lettering"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Lettering",
+          "text": "Every cell carries two small rendered labels: its letter at the top-left of the cell, and its ID number — formatted as '00' + index — at the bottom-left."
+        }
+      ]
+    },
+    {
+      "id": "totem-palette",
+      "name": "Black on light grey",
+      "slot": "Palette",
+      "source": "totem-glyph-field",
+      "provenance": "gadgetify",
+      "claims": [
+        "Palette"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Palette",
+          "text": "Palette is exactly two values: black ink on a light grey paper ground. No other color anywhere on the board."
+        }
+      ]
+    },
+    {
+      "id": "totem-composition",
+      "name": "A–Z orthogonal grid",
+      "slot": "Composition",
+      "source": "totem-glyph-field",
+      "provenance": "gadgetify",
+      "claims": [
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "All 26 glyphs are placed in a strict orthogonal grid of 26 cells, one per letter A–Z, in alphabetical order. The grid is rigid even though the glyph masses inside the cells are organic."
+        }
+      ]
+    },
+    {
+      "id": "totem-format",
+      "name": "Glyph accuracy protocol",
+      "slot": "Format",
+      "source": "totem-glyph-field",
+      "provenance": "gadgetify",
+      "claims": [
+        "Format"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Format",
+          "text": "ACCURACY CHECK before the board is final: grid_check — exactly 26 cells, A–Z; silhouette_check — all glyphs are solid black masses; carve_check — negative space does not break any outer silhouette; theme_check — the motifs visibly belong to the topic (e.g. a marine-biology board shows fins and waves). If any check fails, regenerate the affected glyphs."
+        }
+      ]
+    },
+    {
+      "id": "prism-character",
+      "name": "Prism-emergent subject",
+      "slot": "Character",
+      "source": "chromatic-prism-ribbons",
+      "provenance": "derivative",
+      "claims": [
+        "Character",
+        "Palette"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Character",
+          "text": "Extract the subject's semantic geometry: core identity, silhouette, anatomy and structure, motion, symbols and associations (5–10), emotional character, geometric primitives, feature hierarchy. Choose the HERO — the subject's best visual representation (physical metaphor if abstract, flowing transformation if a process, iconic structure if a place). The subject emerges because the translucent glass bands themselves deform around its features: cavity = nested inward spirals; protrusion = bands bend outward and around the volume; sharp edge = accelerated convergence with the ribbon edge splitting into a spectral fringe; organic surface = smooth anatomical flow; mechanical surface = precise folded glass ribbons; motion = stretch along the characteristic trajectory. Never draw the object and overlay a striped texture."
+        },
+        {
+          "property": "Palette",
+          "text": "Emergence carries hue behaviour per feature type: cavities shift cooler and darker with depth; protrusions shift warmer and brighter; organic surfaces transition hue gradually; mechanical surfaces transition hue abruptly; a feature representing motion stretches its spectrum along the trajectory."
+        }
+      ]
+    },
+    {
+      "id": "prism-face",
+      "name": "Prismatic feature sculpting",
+      "slot": "Face",
+      "source": "chromatic-prism-ribbons",
+      "provenance": "derivative",
+      "claims": [
+        "Face",
+        "Character"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Face",
+          "text": "Preserve the subject's top 5 defining features through the glass ribbon field at increased local precision, allowing tiny opaque white or deep violet anchor regions where recognition requires them: eye → concentric prismatic vortex, cool center and warm rim; mouth → compressed ribbon cavity deepening to indigo; wing → branching directional bands warming toward the tips; horn → tapered rising bundles, amber to magenta; wheel → rotating contour system, spectrum cycling with rotation; tower → elongated vertical wave geometry, cool base to warm apex. Examples are procedural, not mandatory subject elements."
+        },
+        {
+          "property": "Character",
+          "text": "Preserve the anatomical and structural relationships between the major features — deformation follows the subject's own geometry, never an arbitrary wave pattern."
+        }
+      ]
+    },
+    {
+      "id": "prism-palette",
+      "name": "Geometry-bound spectral map",
+      "slot": "Palette",
+      "source": "chromatic-prism-ribbons",
+      "provenance": "derivative",
+      "claims": [
+        "Palette"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Palette",
+          "text": "Color is a full controlled spectrum assigned by one rule everywhere — COLOR(p) = spectral_map(curvature, depth, feature importance): convex / protruding / outward curve → WARM (magenta, red-orange, amber); concave / cavity / receding depth → COOL (cyan, indigo, violet-blue); flat / transitional surface → MID (yellow-green, teal-green); sharp feature / high importance → abrupt hue shift plus a bright white specular glass edge. Core hues: magenta, red-orange, amber, yellow-green, teal, cyan, indigo, violet. COLOR_COUNT = spectral and geometry-bound — a hue change always means a curvature, depth, or feature change. Maximum saturation against the ground. NOT black-and-white, NOT random rainbow."
+        }
+      ]
+    },
+    {
+      "id": "prism-surface",
+      "name": "Translucent glass ribbon field",
+      "slot": "Surface",
+      "source": "chromatic-prism-ribbons",
+      "provenance": "derivative",
+      "claims": [
+        "Surface",
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Surface",
+          "text": "Generate 80–260 continuous translucent ribbons of polished glass / acrylic — dense, smooth, fluid, mathematically continuous, with razor-sharp glass edges, variable thickness, and internal refraction streaks; no photographic surface texture. Every ribbon follows the field equation: surface tangent + curvature guidance + feature attraction + silhouette boundary constraint + refraction deflection. Width response: near camera → wider, clearer, thicker glass edge; distant → thinner, more saturated, compressed; convexity → expanding spacing; deep cavity → high density; sharp feature → tight bending with prismatic fringe split."
+        },
+        {
+          "property": "Composition",
+          "text": "Optical depth is created only by refraction, transmission, and geometry-bound color — never opaque shading or gray gradients: DEPTH = stripe frequency variation + refraction displacement + overlap color mixing + caustic brightness + transparency layering. Volume appears through bands refracting over one another, new secondary hues where translucent ribbons overlap and mix, nested contour cavities in deep cool tones, sharply pinched line bundles, alternating convex (warm) / concave (cool) regions, deep optical tunnels cooling to violet, and faint caustic light patterns inside ribbons. Extreme illusionistic relief without opaque lighting or shading."
+        }
+      ]
+    },
+    {
+      "id": "prism-composition",
+      "name": "Subject-class composition",
+      "slot": "Composition",
+      "source": "chromatic-prism-ribbons",
+      "provenance": "derivative",
+      "claims": [
+        "Composition"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Composition",
+          "text": "Select composition by subject class: portrait → extreme macro feature composition; animal or creature → dynamic three-quarter anatomical view; object → sculptural close-up; architecture → perspective-distorted contour structure; abstract concept → semantic vortex or optical metaphor; landscape → layered topographic ribbon field. The actual topology is determined by the subject's geometry. The finished piece must read at a distance (recognizable iconic subject), at medium scale (powerful volumetric illusion in color), and close (continuous line physics and prismatic overlap)."
+        }
+      ]
+    },
+    {
+      "id": "prism-background",
+      "name": "Luminous white field",
+      "slot": "Background",
+      "source": "chromatic-prism-ribbons",
+      "provenance": "derivative",
+      "claims": [
+        "Background",
+        "Surface"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Background",
+          "text": "The background is a luminous white field integrated into the same ribbon field as the subject — no separate backdrop or empty surround — with faint prismatic caustics bleeding outward from the subject into the field."
+        }
+      ]
+    },
+    {
+      "id": "prism-format",
+      "name": "Prism asserts & rejects",
+      "slot": "Format",
+      "source": "chromatic-prism-ribbons",
+      "provenance": "derivative",
+      "claims": [
+        "Format"
+      ],
+      "requires": [],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Format",
+          "text": "Aspect ratio is inferred from the subject's proportions. ASSERT: subject readability HIGH; ribbon continuity VERY HIGH; optical depth EXTREME; anatomy accuracy HIGH; line detail density EXTREME; color mapping consistency VERY HIGH; transparency layering HIGH. REJECT: ordinary zebra patterns, black-and-white op-art, striped textures pasted on objects, random rainbow gradients, rainbow decoration unrelated to geometry, disconnected decorative lines, gray gradients, opaque material shading, muddy or brown overlap mixing, generic concentric circles, unrecognizable silhouettes."
+        }
+      ]
+    },
+    {
+      "id": "memelegend-lock-identity",
+      "name": "Identity Lock — unmistakable resemblance",
+      "slot": "Lock",
+      "source": "hyperreal-meme-legend",
+      "provenance": "gadgetify",
+      "claims": [],
+      "requires": [
+        "subject must be a specific person whose likeness matters"
+      ],
+      "weight": 100,
+      "segments": [
+        {
+          "property": "Lock",
+          "text": "IDENTITY LOCK (highest priority — constrains every other block): preserve unmistakable resemblance to the subject. Maintain recognizable facial anatomy, head shape, jawline, cheekbones, nose, eyes, eyebrow shape, hairstyle or hair silhouette, age characteristics, skin tone, and signature facial expression. The result must read immediately as the subject before the viewer notices the stylization; never replace the subject with a generic celebrity face, model face, or cartoon face. Forbidden: identity drift, generic handsome or pretty face, unrelated hairstyle, lost likeness, interchangeable character."
+        }
+      ]
+    }
+  ]
+}
