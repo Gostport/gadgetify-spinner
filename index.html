@@ -176,30 +176,19 @@
     <div id="mixFights" style="margin-top:12px"></div>
     <div id="mixSlots" style="margin-top:12px"></div>
     <div class="row" style="margin-top:10px">
-      <button class="primary" id="mixComposeBtn">Compose mix</button>
-      <button id="mixSpinBtn" style="width:auto">🎲 Spin a Mix</button>
+      <button class="primary" id="mixSpinBtn">🎲 Spin a Mix</button>
+      <button id="mixCardBtn" style="width:auto">🃏 Copy recipe card</button>
     </div>
-    <textarea id="mixOutput" readonly style="margin-top:10px;min-height:170px"></textarea>
+    <p class="hint" style="margin-top:14px">🧹 <b>Clean copy</b> — the prompt to run (no bookkeeping). Updates as you change selections.</p>
+    <textarea id="mixClean" readonly style="margin-top:6px;min-height:170px"></textarea>
     <div class="row" style="margin-top:10px">
-      <button id="mixCopyBtn">📋 Copy mix</button>
-      <button id="mixCleanBtn">🧹 Clean copy for running</button>
-      <button id="mixCardBtn">🃏 Copy recipe card</button>
-      <button id="mixRenderBtn">🔤 C-block render</button>
+      <button id="mixCleanCopyBtn">📋 Copy clean copy</button>
     </div>
-    <details id="mixCleanBox" hidden>
-      <summary>🧹 Clean run copy — no bookkeeping (paste this into Gemini / GPT)</summary>
-      <textarea id="mixClean" readonly style="margin-top:10px;min-height:170px"></textarea>
-      <div class="row" style="margin-top:10px">
-        <button id="mixCleanCopyBtn">📋 Copy clean text</button>
-      </div>
-    </details>
-    <details id="mixRenderBox" hidden>
-      <summary>🔤 C-block render — gadgetify dialect (copy-only)</summary>
-      <textarea id="mixRender" readonly style="margin-top:10px;min-height:170px"></textarea>
-      <div class="row" style="margin-top:10px">
-        <button id="mixRenderCopyBtn">📋 Copy C-block render</button>
-      </div>
-    </details>
+    <p class="hint" style="margin-top:14px">🔤 <b>C-block render</b> — the same mix in gadgetify's dialect. Updates as you change selections.</p>
+    <textarea id="mixRender" readonly style="margin-top:6px;min-height:170px"></textarea>
+    <div class="row" style="margin-top:10px">
+      <button id="mixRenderCopyBtn">📋 Copy C-block render</button>
+    </div>
     <details id="mixRecipesBox">
       <summary>🃏 Recipes — save, load, export, import</summary>
       <div class="row" style="margin-top:10px">
@@ -221,7 +210,7 @@
   </section>
 
   <footer>
-    Gadgetify Spinner <b>v2.3</b> · Kip's filed @Gdgtify prompt library — specimens live in <code>specimens/</code> in this repo.
+    Gadgetify Spinner <b>v2.4</b> · Kip's filed @Gdgtify prompt library — specimens live in <code>specimens/</code> in this repo.
   </footer>
 </main>
 
@@ -446,6 +435,7 @@ function mixActiveFillers(fillers, baseId, picks){
   const mine=fillers.filter(f=>f.source===baseId);
   const active=[];
   for(const slot of MIX_SLOTS){
+    if(picks&&picks[slot]==="__none__") continue; // slot deliberately excluded (e.g. No face)
     let chosen=null;
     if(picks&&picks[slot]) chosen=fillers.filter(f=>f.id===picks[slot]);
     if(!chosen||!chosen.length) chosen=mine.filter(x=>x.slot===slot);
@@ -549,7 +539,7 @@ function mixApplyRecipe(fillers, recipe){
   const known=new Set(fillers.map(f=>f.id));
   const picks={};
   for(const [slot,id] of Object.entries(recipe.picks||{})){
-    if(MIX_SLOTS.includes(slot)&&known.has(id)) picks[slot]=id;
+    if(MIX_SLOTS.includes(slot)&&(known.has(id)||id==="__none__")) picks[slot]=id;
   }
   const resolutions={};
   for(const [k,v] of Object.entries(recipe.resolutions||{})){
@@ -724,6 +714,11 @@ function buildMixColumns(){
     const o0=document.createElement("option"); o0.value="";
     o0.textContent="\u21A9 Base: "+(baseFillers.length?baseFillers.map(f=>f.name).join("; "):"\u2014 nothing \u2014");
     sel.appendChild(o0);
+    if(slot==="Face"){
+      const ox=document.createElement("option"); ox.value="__none__";
+      ox.textContent="\uD83D\uDEAB No face \u2014 leave faces out of this mix";
+      sel.appendChild(ox);
+    }
     mixFillersForSlot(state.fillers, slot).forEach(f=>{
       const o=document.createElement("option"); o.value=f.id;
       o.textContent=f.name+" \u00B7 "+specTitle(f.source)+(f.provenance==="derivative"?" (derivative)":"");
@@ -734,8 +729,10 @@ function buildMixColumns(){
     sel.onchange=()=>{ if(sel.value) state.mixPicks[slot]=sel.value; else delete state.mixPicks[slot]; buildMixColumns(); mixCompose(); };
     box.appendChild(sel);
     const det=document.createElement("div"); det.className="sdetail";
-    const active=state.mixPicks[slot]?state.fillers.find(f=>f.id===state.mixPicks[slot]):baseFillers[0];
-    if(active){
+    const active=state.mixPicks[slot]==="__none__"?null:(state.mixPicks[slot]?state.fillers.find(f=>f.id===state.mixPicks[slot]):baseFillers[0]);
+    if(state.mixPicks[slot]==="__none__"){
+      det.textContent="Excluded \u2014 this slot contributes nothing to the mix.";
+    } else if(active){
       det.innerHTML=(state.mixPicks[slot]?"":'from Base \u00B7 ')+'<span class="fclaims">claims: '+active.claims.join(", ")+"</span>"+
         (active.requires&&active.requires.length?' <span class="freq">\u26A0 needs: '+active.requires.join("; ")+"</span>":"");
     } else det.textContent="Empty in this mix.";
@@ -799,9 +796,12 @@ function renderMixFlags(result){
 }
 function mixCompose(){
   const base=$("mixBaseSel").value;
-  if(!base){ $("mixOutput").value=""; return ""; }
-  const result=mixComposeMix(state.fillers, base, $("mixTopic").value, state.mixPicks, state.mixResolutions, state.mixLock||null);
-  $("mixOutput").value=result.text;
+  if(!base){ return ""; }
+  const subject=$("mixTopic").value;
+  const result=mixComposeMix(state.fillers, base, subject, state.mixPicks, state.mixResolutions, state.mixLock||null);
+  // The only two outputs: clean copy + C-block render, refreshed on every change.
+  $("mixClean").value=mixCleanText(state.fillers, base, subject, state.mixPicks, state.mixResolutions, state.mixLock||null).text;
+  $("mixRender").value=mixRenderCBlock(state.fillers, base, subject, state.mixPicks, state.mixResolutions, state.mixLock||null).text;
   renderMixFights(result);
   renderMixFlags(result);
   renderMixAdvice();
@@ -841,11 +841,6 @@ $("modeMixBtn").onclick=()=>setMode("mix");
 $("mixBaseSel").onchange=()=>{ buildMixColumns(); mixCompose(); };
 $("mixLockSel").onchange=e=>{ state.mixLock=e.target.value; mixCompose(); };
 $("mixTopic").oninput=mixCompose;
-$("mixComposeBtn").onclick=mixCompose;
-$("mixCopyBtn").onclick=async()=>{
-  try{ await navigator.clipboard.writeText(mixCompose()); $("mixMsg").textContent="Copied — paste it into Gemini / GPT."; }
-  catch(e){ $("mixOutput").select(); document.execCommand("copy"); $("mixMsg").textContent="Copied."; }
-};
 
 $("mixSpinBtn").onclick=()=>{
   const spun=mixSpinMix(state.fillers, Math.random);
@@ -864,28 +859,9 @@ $("mixSpinBtn").onclick=()=>{
     ? "Spun a clean mix on "+specTitle(spun.base)+" \u2014 saved as a recipe."
     : "Spun a mix on "+specTitle(spun.base)+", but "+spun.fights.length+" fight(s) could not be re-rolled away \u2014 flagged above, and saved as a recipe.";
 };
-$("mixCleanBtn").onclick=async()=>{
-  const base=$("mixBaseSel").value; if(!base) return;
-  const r=mixCleanText(state.fillers, base, $("mixTopic").value, state.mixPicks, state.mixResolutions, state.mixLock||null);
-  $("mixClean").value=r.text;
-  $("mixCleanBox").hidden=false;
-  $("mixCleanBox").open=true;
-  try{ await navigator.clipboard.writeText(r.text); }catch(e){ /* box holds the text regardless */ }
-  $("mixMsg").textContent=r.unresolved
-    ? "Clean copy ready and copied \u2014 but note: "+r.unresolved+" fight(s) are still unresolved in this mix."
-    : "Clean copy ready and copied \u2014 no provenance, no demoted blocks, no fight report. Paste it into Gemini / GPT.";
-};
 $("mixCleanCopyBtn").onclick=async()=>{
-  try{ await navigator.clipboard.writeText($("mixClean").value); $("mixMsg").textContent="Clean copy copied."; }
+  try{ await navigator.clipboard.writeText($("mixClean").value); $("mixMsg").textContent="Clean copy copied — paste it into Gemini / GPT."; }
   catch(e){ $("mixClean").select(); document.execCommand("copy"); $("mixMsg").textContent="Copied."; }
-};
-$("mixRenderBtn").onclick=()=>{
-  const base=$("mixBaseSel").value; if(!base) return;
-  const r=mixRenderCBlock(state.fillers, base, $("mixTopic").value, state.mixPicks, state.mixResolutions, state.mixLock||null);
-  $("mixRender").value=r.text;
-  $("mixRenderBox").hidden=false;
-  $("mixRenderBox").open=true;
-  $("mixMsg").textContent=r.unresolved?("Rendered as a DRAFT — "+r.unresolved+" fight(s) still unresolved."):"Rendered in gadgetify's C-block dialect. The canonical mix above stays the editable source.";
 };
 $("mixRenderCopyBtn").onclick=async()=>{
   try{ await navigator.clipboard.writeText($("mixRender").value); $("mixMsg").textContent="C-block render copied."; }
@@ -940,7 +916,7 @@ $("mixCardBtn").onclick=async()=>{
   const titles={}; state.manifest.specimens.forEach(s=>{ titles[s.id]=s.title; });
   const card=mixRecipeCard(state.fillers, currentRecipe(), titles);
   try{ await navigator.clipboard.writeText(card); $("mixMsg").textContent="Recipe card copied — ready to post."; }
-  catch(e){ $("mixOutput").value=card; $("mixMsg").textContent="Card is in the output box — copy it from there."; }
+  catch(e){ $("mixClean").value=card; $("mixMsg").textContent="Card is in the clean-copy box — copy it from there."; }
 };
 $("mixExportBtn").onclick=()=>{
   const name=($("mixRecipeName").value.trim()||$("mixTopic").value.trim()||"recipe").toLowerCase().replace(/[^a-z0-9]+/g,"-").slice(0,40);

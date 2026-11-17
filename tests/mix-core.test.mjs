@@ -250,4 +250,18 @@ assert(advFace.needs.some(n => n.includes("front-facing")), "face requirement li
 // 29. v2.3 — advice: an all-generic mix still gets usable suggestions
 assert(advFace.topics.length >= 6, "generic mix gets blended topic suggestions");
 
+// 30. v2.4 — "No face": a slot can be excluded outright; nothing downstream
+//     (compose, clean copy, advice needs) ever sees the excluded filler
+const noFace = mixActiveFillers(fillers, "personified-collage-poster", { Face: "__none__" });
+assert(noFace.every(f => f.slot !== "Face"), "excluded slot contributes no fillers");
+const noFaceText = mixComposeText(fillers, "personified-collage-poster", "migration", { Face: "__none__" });
+assert(!noFaceText.includes("[FACE"), "no FACE block in the composed mix");
+const advNoFace = mixSubjectAdvice(fillers, wantsMap, banksData, "personified-collage-poster", { Face: "__none__" }, null);
+assert(!advNoFace.needs.some(n => n.includes("front-facing")), "excluded face makes no demands in the advice");
+
+// 31. v2.4 — an exclusion survives the recipe round-trip
+const noneRecipe = mixMakeRecipe(fillers, "personified-collage-poster", "migration", { Face: "__none__" }, {}, null);
+const noneBack = mixApplyRecipe(fillers, JSON.parse(JSON.stringify(noneRecipe)));
+assert(noneBack && noneBack.picks.Face === "__none__", "recipe preserves the exclusion");
+
 console.log("mix-core tests: ALL PASS (" + fillers.length + " fillers, " + bases.length + " bases)");
